@@ -1,0 +1,131 @@
+{
+  "nivel_label": "Tareas Intermedias (5.2)",
+  "n_tareas_combinadas": 3,
+  "archivos_fuente": [
+    "resultados_promediados4.json",
+    "resultados_promediados5.json",
+    "resultados_promediados6.json"
+  ],
+  "techniques_stats": {
+    "cot": {
+      "n_tareas": 3,
+      "tokens_input": 559.67,
+      "tokens_output": 1233.2,
+      "total_tokens": 1792.87,
+      "avg_calidad_promedio": 0.974,
+      "avg_calidad_gpt4o": 0.976,
+      "avg_calidad_claude": 0.972,
+      "dimensions": {
+        "exactitud_funcional": 0.972,
+        "completitud_funcional": 0.983,
+        "claridad_comunicacional": 0.958,
+        "profundidad_conceptual": 0.985
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000544,
+        "claude": 0.000542,
+        "promedio": 0.000543
+      }
+    },
+    "cot_limited": {
+      "n_tareas": 3,
+      "tokens_input": 576.67,
+      "tokens_output": 628.73,
+      "total_tokens": 1205.4,
+      "avg_calidad_promedio": 0.754,
+      "avg_calidad_gpt4o": 0.734,
+      "avg_calidad_claude": 0.774,
+      "dimensions": {
+        "exactitud_funcional": 0.884,
+        "completitud_funcional": 0.782,
+        "claridad_comunicacional": 0.729,
+        "profundidad_conceptual": 0.628
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000609,
+        "claude": 0.000642,
+        "promedio": 0.000626
+      }
+    },
+    "few_shot": {
+      "n_tareas": 3,
+      "tokens_input": 668.67,
+      "tokens_output": 609.73,
+      "total_tokens": 1278.4,
+      "avg_calidad_promedio": 0.802,
+      "avg_calidad_gpt4o": 0.816,
+      "avg_calidad_claude": 0.788,
+      "dimensions": {
+        "exactitud_funcional": 0.903,
+        "completitud_funcional": 0.837,
+        "claridad_comunicacional": 0.814,
+        "profundidad_conceptual": 0.657
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000638,
+        "claude": 0.000617,
+        "promedio": 0.000627
+      }
+    },
+    "role_prompting": {
+      "n_tareas": 3,
+      "tokens_input": 539.67,
+      "tokens_output": 780.47,
+      "total_tokens": 1320.13,
+      "avg_calidad_promedio": 0.801,
+      "avg_calidad_gpt4o": 0.768,
+      "avg_calidad_claude": 0.835,
+      "dimensions": {
+        "exactitud_funcional": 0.867,
+        "completitud_funcional": 0.881,
+        "claridad_comunicacional": 0.774,
+        "profundidad_conceptual": 0.681
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000582,
+        "claude": 0.000632,
+        "promedio": 0.000607
+      }
+    },
+    "structured_prompting_json": {
+      "n_tareas": 3,
+      "tokens_input": 554.33,
+      "tokens_output": 694.6,
+      "total_tokens": 1248.93,
+      "avg_calidad_promedio": 0.792,
+      "avg_calidad_gpt4o": 0.757,
+      "avg_calidad_claude": 0.827,
+      "dimensions": {
+        "exactitud_funcional": 0.856,
+        "completitud_funcional": 0.877,
+        "claridad_comunicacional": 0.768,
+        "profundidad_conceptual": 0.663
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000606,
+        "claude": 0.000662,
+        "promedio": 0.000634
+      }
+    },
+    "zero_shot": {
+      "n_tareas": 3,
+      "tokens_input": 515.67,
+      "tokens_output": 714.5,
+      "total_tokens": 1230.17,
+      "avg_calidad_promedio": 0.779,
+      "avg_calidad_gpt4o": 0.771,
+      "avg_calidad_claude": 0.786,
+      "dimensions": {
+        "exactitud_funcional": 0.873,
+        "completitud_funcional": 0.853,
+        "claridad_comunicacional": 0.761,
+        "profundidad_conceptual": 0.629
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000627,
+        "claude": 0.000639,
+        "promedio": 0.000633
+      }
+    }
+  }
+}

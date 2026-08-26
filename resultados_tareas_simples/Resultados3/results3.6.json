@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "¿Es verdad que la Torre Eiffel está ubicada en Londres?",
+      "technique": "zero_shot",
+      "output": "No, eso no es cierto. La Torre Eiffel está ubicada en París, Francia. Es uno de los monumentos más emblemáticos de la ciudad y de todo el mundo.",
+      "tokens_input": 25,
+      "tokens_output": 35,
+      "total_tokens": 60,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.72
+      }
+    },
+    {
+      "input": "¿Es verdad que el agua hierve a 100°C a nivel del mar?",
+      "technique": "zero_shot",
+      "output": "Sí, es verdad que el agua hierve a 100 °C a nivel del mar, donde la presión atmosférica es aproximadamente 1 atmósfera (atm). Sin embargo, es importante tener en cuenta que la temperatura de ebullición del agua puede variar según la altitud y la presión atmosférica. A mayores altitudes, la presión es menor y el agua hierve a temperaturas más bajas. Por ejemplo, en ciudades situadas en montañas altas, el agua puede hervir a temperaturas significativamente inferiores a 100 °C.",
+      "tokens_input": 30,
+      "tokens_output": 112,
+      "total_tokens": 142,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.77
+      }
+    },
+    {
+      "input": "¿Es verdad que Marte es el planeta más grande del sistema solar?",
+      "technique": "zero_shot",
+      "output": "No, eso no es verdad. Marte no es el planeta más grande del sistema solar; de hecho, es uno de los planetas más pequeños. El planeta más grande del sistema solar es Júpiter. Marte es el cuarto planeta desde el sol y es conocido por su color rojizo y características como montañas y valles.",
+      "tokens_input": 27,
+      "tokens_output": 67,
+      "total_tokens": 94,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.82
+      }
+    },
+    {
+      "input": "¿Es verdad que la Torre Eiffel está ubicada en Londres?",
+      "technique": "few_shot",
+      "output": "Falso. La Torre Eiffel está ubicada en París, Francia.",
+      "tokens_input": 87,
+      "tokens_output": 13,
+      "total_tokens": 100,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.62
+      }
+    },
+    {
+      "input": "¿Es verdad que el agua hierve a 100°C a nivel del mar?",
+      "technique": "few_shot",
+      "output": "Verdadero.",
+      "tokens_input": 92,
+      "tokens_output": 3,
+      "total_tokens": 95,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.3,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.65,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.53
+      }
+    },
+    {
+      "input": "¿Es verdad que Marte es el planeta más grande del sistema solar?",
+      "technique": "few_shot",
+      "output": "Falso. Marte no es el planeta más grande del sistema solar; ese título pertenece a Júpiter.",
+      "tokens_input": 89,
+      "tokens_output": 22,
+      "total_tokens": 111,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.62
+      }
+    },
+    {
+      "input": "¿Es verdad que la Torre Eiffel está ubicada en Londres?",
+      "technique": "cot",
+      "output": "Para determinar si la afirmación \"La Torre Eiffel está ubicada en Londres\" es verdadera o falsa, sigamos un razonamiento paso a paso:\n\n1. **Ubicación conocida de la Torre Eiffel**: La Torre Eiffel es un símbolo icónico de París, Francia. Fue inaugurada en 1889 y se encuentra en el Champ de Mars, cerca del Río Sena. \n\n2. **Investigación sobre Londres**: Londres es la capital de Inglaterra y del Reino Unido, y es conocida por varios monumentos emblemáticos como el Big Ben, la Torre de Londres y el London Eye. Sin embargo, no hay ninguna referencia que indique que la Torre Eiffel esté en Londres.\n\n3. **Comparación de las ubicaciones**: Paris y Londres son dos ciudades diferentes que están separadas por aproximadamente 450 kilómetros. Por lo tanto, es física y geográficamente imposible que la Torre Eiffel, que se encuentra en París, esté en Londres.\n\n4. **Conclusión**: Después de verificar la ubicación de la Torre Eiffel y su diferencia con Londres, se puede concluir que la afirmación es incorrecta.\n\nLa respuesta final es: **Falso, la Torre Eiffel está ubicada en París, no en Londres.**",
+      "tokens_input": 40,
+      "tokens_output": 245,
+      "total_tokens": 285,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "¿Es verdad que el agua hierve a 100°C a nivel del mar?",
+      "technique": "cot",
+      "output": "Para responder a la pregunta de si el agua hierve a 100°C a nivel del mar, hay que considerar varios aspectos relacionados con la presión atmosférica y las propiedades del agua.\n\n1. **Definición de ebullición**: El agua hierve cuando su presión de vapor iguala la presión ambiental. A esta temperatura, las moléculas de agua tienen suficiente energía para salir a la fase gaseosa.\n\n2. **Condiciones estándar**: A nivel del mar, la presión atmosférica promedio es de aproximadamente 1013 hPa (hectopascales) o 1 atmósfera. En estas condiciones, el agua efectivamente hierve a 100°C.\n\n3. **Variación con la altitud**: Cuando se sube a mayores altitudes, la presión atmosférica disminuye. Esto significa que el agua puede hervir a temperaturas inferiores a 100°C. Por ejemplo, en montañas altas, como el Everest, el agua puede hervir a temperaturas mucho más bajas.\n\n4. **Factores adicionales**: Otros factores, como la pureza del agua y la presencia de impurezas o solutos, pueden afectar la temperatura de ebullición. Sin embargo, el agua pura en condiciones de 1 atmósfera hierve exactamente a 100°C.\n\n5. **Conclusión**: Basándonos en la definición de ebullición y en las condiciones específicas a nivel del mar, podemos afirmar que, efectivamente, el agua hierve a 100°C a esta altitud.\n\nPor todo lo anterior, la respuesta final es: **Sí, el agua hierve a 100°C a nivel del mar.**",
+      "tokens_input": 45,
+      "tokens_output": 343,
+      "total_tokens": 388,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "¿Es verdad que Marte es el planeta más grande del sistema solar?",
+      "technique": "cot",
+      "output": "Para responder a la pregunta de si Marte es el planeta más grande del sistema solar, debemos seguir un razonamiento lógico paso a paso:\n\n1. **Identificación de los planetas del sistema solar**: En nuestro sistema solar, los planetas son Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano y Neptuno.\n\n2. **Comparación de tamaños**: Para determinar cuál es el planeta más grande, necesitamos considerar los diámetros o masas de estos planetas. Los planetas se clasifican generalmente en función de su tamaño (diámetro) o masa.\n\n3. **Datos sobre Marte**: Marte tiene un diámetro de aproximadamente 6,779 km y es el cuarto planeta desde el Sol.\n\n4. **Tamaños de otros planetas**: Comparando Marte con los otros planetas:\n   - Mercurio: ~4,880 km\n   - Venus: ~12,104 km\n   - Tierra: ~12,742 km\n   - Júpiter: ~139,820 km\n   - Saturno: ~116,460 km\n   - Urano: ~50,724 km\n   - Neptuno: ~49,244 km\n\n5. **Conclusiones**: De los datos de los diámetros, podemos observar que Júpiter es el planeta más grande, seguido por Saturno, Urano, Neptuno, Tierra, Venus, y finalmente Marte. Marte es un planeta relativamente pequeño en comparación con estos otros planetas.\n\n6. **Respuesta final**: No, no es verdad que Marte sea el planeta más grande del sistema solar; de hecho, es uno de los planetas más pequeños. Júpiter es el planeta más grande.",
+      "tokens_input": 42,
+      "tokens_output": 354,
+      "total_tokens": 396,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "¿Es verdad que la Torre Eiffel está ubicada en Londres?",
+      "technique": "cot_limited",
+      "output": "La afirmación de que la Torre Eiffel está ubicada en Londres es incorrecta. La Torre Eiffel se encuentra en París, Francia, y es uno de los monumentos más emblemáticos de esa ciudad. Fue inaugurada en 1889 para la Exposición Universal y ha sido un símbolo de Francia desde entonces. La confusión puede surgir de la prominencia de Londres como ciudad global, pero geográficamente, la Torre Eiffel no está en Londres.\n\nRespuesta final: No, la Torre Eiffel está en París, Francia, no en Londres.",
+      "tokens_input": 46,
+      "tokens_output": 108,
+      "total_tokens": 154,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "¿Es verdad que el agua hierve a 100°C a nivel del mar?",
+      "technique": "cot_limited",
+      "output": "El agua hierve a 100°C a nivel del mar porque esta es la temperatura en la que la presión del vapor del agua iguala la presión atmosférica (aproximadamente 101.3 kPa) en este nivel. Sin embargo, la temperatura de ebullición puede variar con la altitud debido a cambios en la presión atmosférica; a mayor altitud, la presión es menor, por lo que el agua hierve a temperaturas más bajas. Por lo tanto, a nivel del mar, se puede afirmar que efectivamente el agua hierve a 100°C.\n\nRespuesta final: Sí, el agua hierve a 100°C a nivel del mar.",
+      "tokens_input": 51,
+      "tokens_output": 138,
+      "total_tokens": 189,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.85
+      }
+    },
+    {
+      "input": "¿Es verdad que Marte es el planeta más grande del sistema solar?",
+      "technique": "cot_limited",
+      "output": "No, Marte no es el planeta más grande del sistema solar; ese título corresponde a Júpiter. Marte, conocido como el cuarto planeta desde el sol, tiene un diámetro de aproximadamente 6,779 km, mientras que Júpiter tiene un diámetro de alrededor de 139,820 km, lo que lo convierte en el planeta más grande de nuestro sistema. Mi razonamiento se basa en la comparación de los tamaños de ambos planetas, y la información científica sobre el sistema solar.\n\nRespuesta final: No, Marte no es el planeta más grande del sistema solar; es Júpiter.",
+      "tokens_input": 48,
+      "tokens_output": 119,
+      "total_tokens": 167,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "¿Es verdad que la Torre Eiffel está ubicada en Londres?",
+      "technique": "structured_prompting_json",
+      "output": "No, eso no es verdad. La Torre Eiffel está ubicada en París, Francia.",
+      "tokens_input": 37,
+      "tokens_output": 17,
+      "total_tokens": 54,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.62
+      }
+    },
+    {
+      "input": "¿Es verdad que el agua hierve a 100°C a nivel del mar?",
+      "technique": "structured_prompting_json",
+      "output": "Sí, es verdad que el agua hierve a 100°C a nivel del mar, donde la presión atmosférica es de aproximadamente 1013 hPa (hectopascales). Sin embargo, este punto de ebullición puede variar con cambios en la altitud y la presión. A mayor altitud, la presión atmosférica disminuye y el agua hierve a temperaturas más bajas.",
+      "tokens_input": 42,
+      "tokens_output": 83,
+      "total_tokens": 125,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "¿Es verdad que Marte es el planeta más grande del sistema solar?",
+      "technique": "structured_prompting_json",
+      "output": "No, eso no es verdad. Marte no es el planeta más grande del sistema solar; de hecho, es uno de los planetas más pequeños. El planeta más grande del sistema solar es Júpiter.",
+      "tokens_input": 39,
+      "tokens_output": 42,
+      "total_tokens": 81,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.67
+      }
+    },
+    {
+      "input": "¿Es verdad que la Torre Eiffel está ubicada en Londres?",
+      "technique": "role_prompting",
+      "output": "No, eso no es verdad. La Torre Eiffel está ubicada en París, Francia. Es uno de los monumentos más emblemáticos del mundo y fue completada en 1889 como parte de la Exposición Universal para celebrar el centenario de la Revolución Francesa. Londres, por otro lado, tiene sus propios monumentos icónicos, como el Big Ben y la Torre de Londres.",
+      "tokens_input": 34,
+      "tokens_output": 79,
+      "total_tokens": 113,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.81
+      }
+    },
+    {
+      "input": "¿Es verdad que el agua hierve a 100°C a nivel del mar?",
+      "technique": "role_prompting",
+      "output": "Sí, es verdad que el agua hierve a 100°C a nivel del mar, que se encuentra a una presión atmosférica estándar de 1 atmósfera (1013 hPa). Sin embargo, es importante tener en cuenta que la temperatura de ebullición del agua puede variar con la altitud. A medida que se asciende en la atmósfera, la presión disminuye, lo que hace que el agua hierva a temperaturas más bajas. Por ejemplo, en lugares altos, como en las montañas, el agua puede hervir a temperaturas por debajo de los 100°C.",
+      "tokens_input": 39,
+      "tokens_output": 123,
+      "total_tokens": 162,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.77
+      }
+    },
+    {
+      "input": "¿Es verdad que Marte es el planeta más grande del sistema solar?",
+      "technique": "role_prompting",
+      "output": "No, eso no es cierto. Marte no es el planeta más grande del sistema solar; de hecho, es el cuarto planeta en tamaño. El planeta más grande del sistema solar es Júpiter, que es significativamente más grande que todos los demás planetas. Marte es un planeta rocoso y relativamente pequeño comparado con gigantes gaseosos como Júpiter y Saturno.",
+      "tokens_input": 36,
+      "tokens_output": 76,
+      "total_tokens": 112,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.79
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 2828,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 82,
+        "tokens_output": 214,
+        "total_tokens": 296,
+        "avg_calidad_promedio": 0.78,
+        "avg_calidad_gpt4o": 0.81,
+        "avg_calidad_claude": 0.74,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.75,
+          "claridad_comunicacional": 0.75,
+          "profundidad_conceptual": 0.6
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.002736,
+          "claude": 0.0025,
+          "promedio": 0.002635
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 268,
+        "tokens_output": 38,
+        "total_tokens": 306,
+        "avg_calidad_promedio": 0.59,
+        "avg_calidad_gpt4o": 0.58,
+        "avg_calidad_claude": 0.61,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.43,
+          "claridad_comunicacional": 0.68,
+          "profundidad_conceptual": 0.25
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.001895,
+          "claude": 0.001993,
+          "promedio": 0.001928
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 127,
+        "tokens_output": 942,
+        "total_tokens": 1069,
+        "avg_calidad_promedio": 1.0,
+        "avg_calidad_gpt4o": 1.0,
+        "avg_calidad_claude": 1.0,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 1.0,
+          "profundidad_conceptual": 1.0
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000935,
+          "claude": 0.000935,
+          "promedio": 0.000935
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 145,
+        "tokens_output": 365,
+        "total_tokens": 510,
+        "avg_calidad_promedio": 0.89,
+        "avg_calidad_gpt4o": 0.88,
+        "avg_calidad_claude": 0.9,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.85,
+          "profundidad_conceptual": 0.7
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.001725,
+          "claude": 0.001765,
+          "promedio": 0.001745
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 118,
+        "tokens_output": 142,
+        "total_tokens": 260,
+        "avg_calidad_promedio": 0.68,
+        "avg_calidad_gpt4o": 0.69,
+        "avg_calidad_claude": 0.67,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.63,
+          "claridad_comunicacional": 0.7,
+          "profundidad_conceptual": 0.4
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.002654,
+          "claude": 0.002577,
+          "promedio": 0.002615
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 109,
+        "tokens_output": 278,
+        "total_tokens": 387,
+        "avg_calidad_promedio": 0.79,
+        "avg_calidad_gpt4o": 0.76,
+        "avg_calidad_claude": 0.83,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.8,
+          "claridad_comunicacional": 0.7,
+          "profundidad_conceptual": 0.67
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.001964,
+          "claude": 0.002145,
+          "promedio": 0.002041
+        }
+      }
+    }
+  }
+}

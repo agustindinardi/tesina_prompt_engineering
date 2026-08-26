@@ -1,0 +1,392 @@
+{
+  "n_corridas_combinadas": 10,
+  "archivos_fuente": [
+    "results4.0.json",
+    "results4.1.json",
+    "results4.2.json",
+    "results4.3.json",
+    "results4.4.json",
+    "results4.5.json",
+    "results4.6.json",
+    "results4.7.json",
+    "results4.8.json",
+    "results4.9.json"
+  ],
+  "total_mediciones": 180,
+  "techniques_stats": {
+    "cot": {
+      "count": 3,
+      "tokens_input": 664,
+      "tokens_output": 1411.1,
+      "total_tokens": 2075.1,
+      "tokens_promedio_por_consulta": 691.7,
+      "avg_calidad_promedio": 0.942,
+      "avg_calidad_gpt4o": 0.97,
+      "avg_calidad_claude": 0.918,
+      "dimensions": {
+        "exactitud_funcional": 0.925,
+        "completitud_funcional": 0.965,
+        "claridad_comunicacional": 0.914,
+        "profundidad_conceptual": 0.975
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000468,
+        "claude": 0.000443,
+        "promedio": 0.000454
+      }
+    },
+    "cot_limited": {
+      "count": 3,
+      "tokens_input": 679,
+      "tokens_output": 926.9,
+      "total_tokens": 1605.9,
+      "tokens_promedio_por_consulta": 535.3,
+      "avg_calidad_promedio": 0.768,
+      "avg_calidad_gpt4o": 0.75,
+      "avg_calidad_claude": 0.789,
+      "dimensions": {
+        "exactitud_funcional": 0.806,
+        "completitud_funcional": 0.9,
+        "claridad_comunicacional": 0.724,
+        "profundidad_conceptual": 0.651
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000467,
+        "claude": 0.000491,
+        "promedio": 0.000478
+      }
+    },
+    "few_shot": {
+      "count": 3,
+      "tokens_input": 778,
+      "tokens_output": 764.9,
+      "total_tokens": 1542.9,
+      "tokens_promedio_por_consulta": 514.3,
+      "avg_calidad_promedio": 0.825,
+      "avg_calidad_gpt4o": 0.837,
+      "avg_calidad_claude": 0.813,
+      "dimensions": {
+        "exactitud_funcional": 0.9,
+        "completitud_funcional": 0.945,
+        "claridad_comunicacional": 0.82,
+        "profundidad_conceptual": 0.635
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000542,
+        "claude": 0.000527,
+        "promedio": 0.000535
+      }
+    },
+    "role_prompting": {
+      "count": 3,
+      "tokens_input": 643,
+      "tokens_output": 771,
+      "total_tokens": 1414,
+      "tokens_promedio_por_consulta": 471.33,
+      "avg_calidad_promedio": 0.668,
+      "avg_calidad_gpt4o": 0.593,
+      "avg_calidad_claude": 0.743,
+      "dimensions": {
+        "exactitud_funcional": 0.686,
+        "completitud_funcional": 0.806,
+        "claridad_comunicacional": 0.655,
+        "profundidad_conceptual": 0.524
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.00042,
+        "claude": 0.000526,
+        "promedio": 0.000472
+      }
+    },
+    "structured_prompting_json": {
+      "count": 3,
+      "tokens_input": 655,
+      "tokens_output": 764.9,
+      "total_tokens": 1419.9,
+      "tokens_promedio_por_consulta": 473.3,
+      "avg_calidad_promedio": 0.655,
+      "avg_calidad_gpt4o": 0.59,
+      "avg_calidad_claude": 0.719,
+      "dimensions": {
+        "exactitud_funcional": 0.686,
+        "completitud_funcional": 0.793,
+        "claridad_comunicacional": 0.643,
+        "profundidad_conceptual": 0.494
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000415,
+        "claude": 0.000506,
+        "promedio": 0.000461
+      }
+    },
+    "zero_shot": {
+      "count": 3,
+      "tokens_input": 619,
+      "tokens_output": 767.9,
+      "total_tokens": 1386.9,
+      "tokens_promedio_por_consulta": 462.3,
+      "avg_calidad_promedio": 0.705,
+      "avg_calidad_gpt4o": 0.685,
+      "avg_calidad_claude": 0.723,
+      "dimensions": {
+        "exactitud_funcional": 0.73,
+        "completitud_funcional": 0.855,
+        "claridad_comunicacional": 0.717,
+        "profundidad_conceptual": 0.519
+      },
+      "efficiency_scores": {
+        "gpt4o": 0.000494,
+        "claude": 0.000521,
+        "promedio": 0.000508
+      }
+    }
+  },
+  "variabilidad_entre_corridas": {
+    "cot": {
+      "n_corridas": 10,
+      "total_tokens": {
+        "media": 2075.1,
+        "desvio": 82.743848
+      },
+      "calidad_promedio": {
+        "media": 0.942,
+        "desvio": 0.034577
+      },
+      "calidad_gpt4o": {
+        "media": 0.97,
+        "desvio": 0.03496
+      },
+      "calidad_claude": {
+        "media": 0.918,
+        "desvio": 0.048028
+      },
+      "dimensions": {
+        "exactitud_funcional": {
+          "media": 0.925,
+          "desvio": 0.048591
+        },
+        "completitud_funcional": {
+          "media": 0.965,
+          "desvio": 0.033747
+        },
+        "claridad_comunicacional": {
+          "media": 0.914,
+          "desvio": 0.052536
+        },
+        "profundidad_conceptual": {
+          "media": 0.975,
+          "desvio": 0.026352
+        }
+      },
+      "eficiencia": {
+        "media": 0.000454,
+        "desvio": 1.9e-05
+      }
+    },
+    "cot_limited": {
+      "n_corridas": 10,
+      "total_tokens": {
+        "media": 1605.9,
+        "desvio": 12.556096
+      },
+      "calidad_promedio": {
+        "media": 0.768,
+        "desvio": 0.046857
+      },
+      "calidad_gpt4o": {
+        "media": 0.75,
+        "desvio": 0.063596
+      },
+      "calidad_claude": {
+        "media": 0.789,
+        "desvio": 0.055267
+      },
+      "dimensions": {
+        "exactitud_funcional": {
+          "media": 0.806,
+          "desvio": 0.07806
+        },
+        "completitud_funcional": {
+          "media": 0.9,
+          "desvio": 0.057735
+        },
+        "claridad_comunicacional": {
+          "media": 0.724,
+          "desvio": 0.038064
+        },
+        "profundidad_conceptual": {
+          "media": 0.651,
+          "desvio": 0.041218
+        }
+      },
+      "eficiencia": {
+        "media": 0.000478,
+        "desvio": 3.1e-05
+      }
+    },
+    "few_shot": {
+      "n_corridas": 10,
+      "total_tokens": {
+        "media": 1542.9,
+        "desvio": 6.505553
+      },
+      "calidad_promedio": {
+        "media": 0.825,
+        "desvio": 0.05462
+      },
+      "calidad_gpt4o": {
+        "media": 0.837,
+        "desvio": 0.066005
+      },
+      "calidad_claude": {
+        "media": 0.813,
+        "desvio": 0.062902
+      },
+      "dimensions": {
+        "exactitud_funcional": {
+          "media": 0.9,
+          "desvio": 0.08165
+        },
+        "completitud_funcional": {
+          "media": 0.945,
+          "desvio": 0.04378
+        },
+        "claridad_comunicacional": {
+          "media": 0.82,
+          "desvio": 0.053748
+        },
+        "profundidad_conceptual": {
+          "media": 0.635,
+          "desvio": 0.06364
+        }
+      },
+      "eficiencia": {
+        "media": 0.000535,
+        "desvio": 3.5e-05
+      }
+    },
+    "role_prompting": {
+      "n_corridas": 10,
+      "total_tokens": {
+        "media": 1414,
+        "desvio": 7.149204
+      },
+      "calidad_promedio": {
+        "media": 0.668,
+        "desvio": 0.0607
+      },
+      "calidad_gpt4o": {
+        "media": 0.593,
+        "desvio": 0.129876
+      },
+      "calidad_claude": {
+        "media": 0.743,
+        "desvio": 0.055787
+      },
+      "dimensions": {
+        "exactitud_funcional": {
+          "media": 0.686,
+          "desvio": 0.067032
+        },
+        "completitud_funcional": {
+          "media": 0.806,
+          "desvio": 0.064326
+        },
+        "claridad_comunicacional": {
+          "media": 0.655,
+          "desvio": 0.063814
+        },
+        "profundidad_conceptual": {
+          "media": 0.524,
+          "desvio": 0.06059
+        }
+      },
+      "eficiencia": {
+        "media": 0.000472,
+        "desvio": 4.4e-05
+      }
+    },
+    "structured_prompting_json": {
+      "n_corridas": 10,
+      "total_tokens": {
+        "media": 1419.9,
+        "desvio": 6.556591
+      },
+      "calidad_promedio": {
+        "media": 0.655,
+        "desvio": 0.07261
+      },
+      "calidad_gpt4o": {
+        "media": 0.59,
+        "desvio": 0.14
+      },
+      "calidad_claude": {
+        "media": 0.719,
+        "desvio": 0.062441
+      },
+      "dimensions": {
+        "exactitud_funcional": {
+          "media": 0.686,
+          "desvio": 0.076333
+        },
+        "completitud_funcional": {
+          "media": 0.793,
+          "desvio": 0.070087
+        },
+        "claridad_comunicacional": {
+          "media": 0.643,
+          "desvio": 0.066005
+        },
+        "profundidad_conceptual": {
+          "media": 0.494,
+          "desvio": 0.095009
+        }
+      },
+      "eficiencia": {
+        "media": 0.000461,
+        "desvio": 5e-05
+      }
+    },
+    "zero_shot": {
+      "n_corridas": 10,
+      "total_tokens": {
+        "media": 1386.9,
+        "desvio": 6.935416
+      },
+      "calidad_promedio": {
+        "media": 0.705,
+        "desvio": 0.025055
+      },
+      "calidad_gpt4o": {
+        "media": 0.685,
+        "desvio": 0.048362
+      },
+      "calidad_claude": {
+        "media": 0.723,
+        "desvio": 0.0462
+      },
+      "dimensions": {
+        "exactitud_funcional": {
+          "media": 0.73,
+          "desvio": 0.02582
+        },
+        "completitud_funcional": {
+          "media": 0.855,
+          "desvio": 0.015811
+        },
+        "claridad_comunicacional": {
+          "media": 0.717,
+          "desvio": 0.036225
+        },
+        "profundidad_conceptual": {
+          "media": 0.519,
+          "desvio": 0.056853
+        }
+      },
+      "eficiencia": {
+        "media": 0.000508,
+        "desvio": 1.8e-05
+      }
+    }
+  }
+}

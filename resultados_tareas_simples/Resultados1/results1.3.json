@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "Me gusta este producto",
+      "technique": "zero_shot",
+      "output": "El texto es positivo.",
+      "tokens_input": 21,
+      "tokens_output": 5,
+      "total_tokens": 26,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "Odio esperar",
+      "technique": "zero_shot",
+      "output": "El texto \"Odio esperar\" se clasifica como negativo.",
+      "tokens_input": 20,
+      "tokens_output": 13,
+      "total_tokens": 33,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.67
+      }
+    },
+    {
+      "input": "El paquete llegó tarde",
+      "technique": "zero_shot",
+      "output": "El texto se clasifica como negativo.",
+      "tokens_input": 21,
+      "tokens_output": 8,
+      "total_tokens": 29,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "Me gusta este producto",
+      "technique": "few_shot",
+      "output": "Positivo",
+      "tokens_input": 51,
+      "tokens_output": 2,
+      "total_tokens": 53,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "Odio esperar",
+      "technique": "few_shot",
+      "output": "Negativo",
+      "tokens_input": 50,
+      "tokens_output": 2,
+      "total_tokens": 52,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.3,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.4,
+        "claridad_comunicacional": 0.65,
+        "profundidad_conceptual": 0.0,
+        "calidad": 0.51
+      }
+    },
+    {
+      "input": "El paquete llegó tarde",
+      "technique": "few_shot",
+      "output": "Negativo",
+      "tokens_input": 51,
+      "tokens_output": 2,
+      "total_tokens": 53,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.7
+      }
+    },
+    {
+      "input": "Me gusta este producto",
+      "technique": "cot",
+      "output": "Para clasificar el texto \"Me gusta este producto\", seguiremos un razonamiento paso a paso:\n\n1. **Identificación de palabras clave**: La frase comienza con \"Me gusta\", que es una expresión positiva. La palabra \"gusta\" implica que hay una apreciación o satisfacción con algo.\n\n2. **Interpretación del contexto**: El sujeto está hablando de un \"producto\", y la expresión utilizada indica que tiene una opinión favorable sobre él. No hay indicios de descontento, quejas o insatisfacción.\n\n3. **Análisis del tono**: El tono de la frase es claramente positivo. No hay palabras o frases negativas que contrasten con la expresión de agrado.\n\n4. **Conclusión**: Dado que el mensaje es claro en su apreciación y no hay elementos que sugieran negatividad, clasificar la declaración como positiva es apropiado.\n\nPor lo tanto, la respuesta final es: **Positivo**.",
+      "tokens_input": 36,
+      "tokens_output": 194,
+      "total_tokens": 230,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Odio esperar",
+      "technique": "cot",
+      "output": "Para clasificar el texto \"Odio esperar\" como positivo o negativo, seguiré estos pasos:\n\n1. **Identificación de las emociones**: Analizo la palabra \"odio\". Esta palabra tiene una carga emocional muy fuerte y generalmente se asocia con sentimientos negativos, como el desagrado, la frustración o el enfado.\n\n2. **Contexto de la frase**: La expresión \"Odio esperar\" implica que la persona no disfruta del acto de esperar. La espera generalmente se considera un tiempo perdido o una experiencia frustrante, lo que refuerza el sentimiento negativo.\n\n3. **Evaluación de la frase en su conjunto**: La combinación de la palabra \"odio\" con \"esperar\" crea una impresión clara de descontento. La estructura de la frase señala que el hablante está expresando una queja o un malestar.\n\n4. **Fluctuaciones de tono y connotación**: No hay elementos en la frase que suavicen o equilibren el desagrado; todo indica una aversión clara.\n\nTeniendo en cuenta todos estos aspectos, la frase \"Odio esperar\" es claramente negativa.\n\n**Respuesta final**: Negativo.",
+      "tokens_input": 35,
+      "tokens_output": 241,
+      "total_tokens": 276,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "El paquete llegó tarde",
+      "technique": "cot",
+      "output": "Para clasificar el texto \"El paquete llegó tarde\" como positivo o negativo, sigamos un proceso de análisis detallado:\n\n1. **Identificación de palabras clave**: \n   - La frase contiene la palabra \"tarde\". Esta palabra sugiere que hay un retraso en la entrega del paquete.\n\n2. **Contexto de la situación**:\n   - Generalmente, cuando se espera un paquete, la puntualidad es parte de la expectativa. Si un paquete llega tarde, esto suele implicar una insatisfacción.\n\n3. **Evaluación del impacto emocional**:\n   - La puntualidad es comúnmente valorada en contextos de entrega. Un retraso puede generar frustración o descontento, mientras que la puntualidad suele estar asociada a experiencias positivas.\n\n4. **Conclusión**:\n   - Dado que la llegada tardía del paquete es un evento negativo, afectando potencialmente la experiencia del destinatario, se puede concluir que el texto expresa un sentimiento negativo.\n\nPor lo tanto, la clasificación del texto \"El paquete llegó tarde\" es **negativa**.",
+      "tokens_input": 36,
+      "tokens_output": 223,
+      "total_tokens": 259,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Me gusta este producto",
+      "technique": "cot_limited",
+      "output": "El texto es positivo porque expresa una opinión favorable sobre un producto. La frase \"Me gusta\" indica satisfacción y aprecio, lo que sugiere que el hablante tiene una experiencia agradable o útil con él. No hay ninguna indicación de descontento o crítica, lo que refuerza la naturaleza positiva del comentario. \n\nRespuesta final: Positivo.",
+      "tokens_input": 42,
+      "tokens_output": 74,
+      "total_tokens": 116,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "Odio esperar",
+      "technique": "cot_limited",
+      "output": "El texto \"Odio esperar\" se clasifica como negativo. La expresión \"odio\" implica un fuerte sentimiento de desagrado o aversión hacia la acción de esperar, lo cual connota frustración o molestia. La elección de la palabra \"odio\" sugiere una reacción emocional intensa y negativa hacia la experiencia de la espera. En resumen, el contenido del mensaje refleja una experiencia desagradable y, por lo tanto, su naturaleza es claramente negativa.\n\nRespuesta final: Negativo.",
+      "tokens_input": 41,
+      "tokens_output": 99,
+      "total_tokens": 140,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "El paquete llegó tarde",
+      "technique": "cot_limited",
+      "output": "El texto se clasifica como negativo. La expresión \"El paquete llegó tarde\" implica una insatisfacción o inconveniente relacionado con la entrega, lo que genera una experiencia negativa para el remitente o destinatario. La puntualidad en la entrega es un aspecto apreciado en el servicio, y su ausencia puede provocar frustración. No hay mención de un aspecto positivo en la frase, lo que refuerza la percepción negativa. \n\nRespuesta final: Negativo.",
+      "tokens_input": 42,
+      "tokens_output": 94,
+      "total_tokens": 136,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "Me gusta este producto",
+      "technique": "structured_prompting_json",
+      "output": "Positivo",
+      "tokens_input": 34,
+      "tokens_output": 2,
+      "total_tokens": 36,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "Odio esperar",
+      "technique": "structured_prompting_json",
+      "output": "Negativo",
+      "tokens_input": 33,
+      "tokens_output": 2,
+      "total_tokens": 35,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.3,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.4,
+        "claridad_comunicacional": 0.65,
+        "profundidad_conceptual": 0.0,
+        "calidad": 0.51
+      }
+    },
+    {
+      "input": "El paquete llegó tarde",
+      "technique": "structured_prompting_json",
+      "output": "Negativo",
+      "tokens_input": 34,
+      "tokens_output": 2,
+      "total_tokens": 36,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.7
+      }
+    },
+    {
+      "input": "Me gusta este producto",
+      "technique": "role_prompting",
+      "output": "El texto \"Me gusta este producto\" se clasifica como positivo.",
+      "tokens_input": 34,
+      "tokens_output": 14,
+      "total_tokens": 48,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.71
+      }
+    },
+    {
+      "input": "Odio esperar",
+      "technique": "role_prompting",
+      "output": "El texto se clasifica como negativo. La expresión \"odio\" denota una fuerte aversión hacia la acción de esperar, lo que transmite una sensación negativa.",
+      "tokens_input": 33,
+      "tokens_output": 33,
+      "total_tokens": 66,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.72
+      }
+    },
+    {
+      "input": "El paquete llegó tarde",
+      "technique": "role_prompting",
+      "output": "El sentimiento del texto \"El paquete llegó tarde\" se clasifica como negativo.",
+      "tokens_input": 34,
+      "tokens_output": 16,
+      "total_tokens": 50,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.75
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 1674,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 62,
+        "tokens_output": 26,
+        "total_tokens": 88,
+        "avg_calidad_promedio": 0.72,
+        "avg_calidad_gpt4o": 0.67,
+        "avg_calidad_claude": 0.78,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.8,
+          "claridad_comunicacional": 0.8,
+          "profundidad_conceptual": 0.3
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.007614,
+          "claude": 0.008864,
+          "promedio": 0.008182
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 152,
+        "tokens_output": 6,
+        "total_tokens": 158,
+        "avg_calidad_promedio": 0.62,
+        "avg_calidad_gpt4o": 0.52,
+        "avg_calidad_claude": 0.73,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.58,
+          "claridad_comunicacional": 0.72,
+          "profundidad_conceptual": 0.2
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.003291,
+          "claude": 0.00462,
+          "promedio": 0.003924
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 107,
+        "tokens_output": 658,
+        "total_tokens": 765,
+        "avg_calidad_promedio": 1.0,
+        "avg_calidad_gpt4o": 1.0,
+        "avg_calidad_claude": 1.0,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 1.0,
+          "profundidad_conceptual": 1.0
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.001307,
+          "claude": 0.001307,
+          "promedio": 0.001307
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 125,
+        "tokens_output": 267,
+        "total_tokens": 392,
+        "avg_calidad_promedio": 0.9,
+        "avg_calidad_gpt4o": 0.93,
+        "avg_calidad_claude": 0.88,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.9,
+          "profundidad_conceptual": 0.7
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.002372,
+          "claude": 0.002245,
+          "promedio": 0.002296
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 101,
+        "tokens_output": 6,
+        "total_tokens": 107,
+        "avg_calidad_promedio": 0.62,
+        "avg_calidad_gpt4o": 0.52,
+        "avg_calidad_claude": 0.73,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.58,
+          "claridad_comunicacional": 0.72,
+          "profundidad_conceptual": 0.2
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.00486,
+          "claude": 0.006822,
+          "promedio": 0.005794
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 101,
+        "tokens_output": 63,
+        "total_tokens": 164,
+        "avg_calidad_promedio": 0.73,
+        "avg_calidad_gpt4o": 0.69,
+        "avg_calidad_claude": 0.77,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.75,
+          "claridad_comunicacional": 0.8,
+          "profundidad_conceptual": 0.37
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.004207,
+          "claude": 0.004695,
+          "promedio": 0.004451
+        }
+      }
+    }
+  }
+}

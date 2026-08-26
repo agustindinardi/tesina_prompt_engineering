@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "Cinco tareas de un despliegue de software: A (backup, 2h), B (migración de BD, 3h, requiere A terminada), C (actualización de API, 2h, requiere B), D (pruebas de regresión, 4h, requiere C), E (comunicación a usuarios, 1h, debe terminar antes de que empiece B). Hay una sola persona para A, B y C (no pueden solaparse entre sí); D y E pueden hacerlas otras personas en paralelo con cualquier tarea. La ventana de mantenimiento va de 22:00 a 09:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "zero_shot",
+      "output": "Para resolver este problema de planificación de tareas, primero identificamos las tareas y sus restricciones:\n\n1. **A (backup)**: 2h, no tiene dependencias.\n2. **B (migración de BD)**: 3h, requiere que A esté terminada.\n3. **C (actualización de API)**: 2h, requiere que B esté terminada.\n4. **D (pruebas de regresión)**: 4h, requiere que C esté terminada, puede realizarse en paralelo con E.\n5. **E (comunicación a usuarios)**: 1h, debe terminar antes de que empiece B.\n\nLa ventana de mantenimiento es de 22:00 a 09:00, lo que significa que tenemos un total de 11 horas disponibles.\n\nPrimero, organizamos las tareas en función de sus dependencias:\n\n1. **A** debe completarse antes de **B**.\n2. **B** debe completarse antes de **C**.\n3. **C** debe completarse antes de **D**.\n4. **E** debe completarse antes de **B**.\n\nDada la ventana de tiempo, comenzamos posicionando E, que es la que debe terminar antes de que comience B.\n\n### Planificación de las tareas\n\n**Paso 1: Realizamos la tarea E (comunicación a usuarios)**\n- Duración: 1 hora\n- Puede realizarse desde las 22:00 hasta las 23:00.\n- Horario: **22:00 - 23:00**\n\n**Paso 2: Luego, realizamos la tarea A (backup)**\n- Duración: 2 horas.\n- Puede comenzar después de E y debe terminar antes de iniciar B, por lo que empezamos a las 23:00.\n- Horario: **23:00 - 01:00**\n\n**Paso 3: Seguido, realizamos la tarea B (migración de BD)**\n- Duración: 3 horas.\n- Debe comenzar después de que A esté completada.\n- Horario: **01:00 - 04:00**\n\n**Paso 4: Continuamos con la tarea C (actualización de API)**\n- Duración: 2 horas.\n- Debe empezar después de B está completada.\n- Horario: **04:00 - 06:00**\n\n**Paso 5: Finalmente, realizamos la tarea D (pruebas de regresión)**\n- Duración: 4 horas.\n- Debe comenzar después de que C esté completada. Se puede iniciar a las 06:00, ocupando toda la ventana.\n- Horario: **06:00 - 10:00**\n\n### Resumen del horario de las tareas\n- **Tarea E**: 22:00 - 23:00\n- **Tarea A**: 23:00 - 01:00\n- **Tarea B**: 01:00 - 04:00\n- **Tarea C**: 04:00 - 06:00\n- **Tarea D**: 06:00 - 10:00\n\n#### Observación final\n- La tarea D no se puede completar dentro de la ventana de mantenimiento, ya que esto excedería las 09:00. Por lo tanto, **la tarea D no entra en la ventana** y deberá ser reprogramada o realizada en otro momento. \n- Las primeras cuatro tareas (E, A, B, C) están correctamente programadas, pero D necesitaría comenzar antes de las 06:00 para completarse en la ventana de mantenimiento disponible. \n\n### Plan ajustado:\n- Tareas **E**, **A**, **B**, y **C** se pueden realizar con éxito en la ventana de mantenimiento de 22:00 a 09:00. Solo queda pendiente **D**, que deberá ser programada fuera de este tiempo.",
+      "tokens_input": 174,
+      "tokens_output": 819,
+      "total_tokens": 993,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.57
+      }
+    },
+    {
+      "input": "Migración de un datacenter: A (inventario y etiquetado, 3h), B (apagado ordenado de servidores, 2h, requiere A), C (traslado físico, 4h, requiere B), D (reencendido y verificación, 3h, requiere C), E (prueba de conectividad de red, 2h, requiere C y debe terminar antes de que empiece D). Todas las tareas son secuenciales sobre el mismo equipamiento (ninguna puede solaparse con otra). La ventana es de 20:00 a 08:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "zero_shot",
+      "output": "Para poder planificar las tareas de migración del datacenter, primero es importante entender los requerimientos y el tiempo que cada tarea toma. Vamos a desglosar los requisitos y la secuencia de las tareas:\n\n1. **A (inventario y etiquetado)**: 3 horas\n2. **B (apagado ordenado de servidores)**: 2 horas, requiere A\n3. **C (traslado físico)**: 4 horas, requiere B\n4. **D (reencendido y verificación)**: 3 horas, requiere C\n5. **E (prueba de conectividad de red)**: 2 horas, requiere C y debe terminar antes que D\n\n### Ventana de Tiempo\nLa ventana de tiempo es de 20:00 a 08:00. Esto significa que tenemos 10 horas para completar las tareas.\n\n### Secuencia de las Tareas\nPara determinar el orden en que se deben ejecutar las tareas y sus horarios, seguiremos la dependencia de tareas:\n\n1. **Tarea A** debe ejecutar primero.\n2. **Tarea B** debe ejecutar después de A.\n3. **Tarea C** debe ejecutar después de B.\n4. **Tarea E** puede ejecutarse después de C (y debe terminar antes de D).\n5. **Tarea D** se ejecuta después de C, pero solo después de que E haya terminado.\n\n### Programación de Tareas\nComencemos a planificar desde el final de la ventana (08:00) hacia atrás, para asegurarnos de que cumplamos con todas las dependencias y restricciones.\n\n1. **D** (3 horas):\n   - Hora de finalización: 08:00\n   - Hora de inicio: 05:00 (08:00 - 3h)\n\n2. **E** (2 horas, debe terminar antes de D):\n   - Hora de finalización: 05:00 (debe terminar antes de que empiece D)\n   - Hora de inicio: 03:00 (05:00 - 2h)\n\n3. **C** (4 horas):\n   - Hora de finalización (para permitir E): 03:00\n   - Hora de inicio: 23:00 (03:00 - 4h)\n\n4. **B** (2 horas):\n   - Hora de finalización: 23:00 (C debe comenzar después de B)\n   - Hora de inicio: 21:00 (23:00 - 2h)\n  \n5. **A** (3 horas):\n   - Hora de finalización: 21:00\n   - Hora de inicio: 18:00 (21:00 - 3h)\n\n### Resumen de la Planificación\n- **A:** 18:00 - 21:00\n- **B:** 21:00 - 23:00\n- **C:** 23:00 - 03:00\n- **E:** 03:00 - 05:00\n- **D:** 05:00 - 08:00\n\n### Conclusión\nTodos los trabajos encajan en la ventana de tiempo de 20:00 a 08:00, con la planificación proporcionando tiempo adecuado para cada tarea. Las tareas se ejecutan secuencialmente, cumpliendo con todas las dependencias y restricciones mencionadas en el problema.",
+      "tokens_input": 165,
+      "tokens_output": 700,
+      "total_tokens": 865,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.57
+      }
+    },
+    {
+      "input": "Montaje de un evento con dos técnicos disponibles: A (armado de escenario, 3h, requiere a los dos técnicos juntos), B (instalación de sonido, 2h, requiere A terminada, ocupa un técnico), C (instalación de luces, 2h, requiere A terminada, ocupa un técnico), D (prueba general, 1h, requiere B y C terminadas, requiere a los dos técnicos). La ventana de trabajo es de 08:00 a 15:00. Indicá hora de inicio y fin de cada tarea y qué técnico(s) la ejecutan, o justificá que no alcanza el tiempo.",
+      "technique": "zero_shot",
+      "output": "Para resolver el problema de planificación, primero haremos un desglose de las tareas y sus dependencias:\n\n1. **Técnico A (armado de escenario)**\n   - Duración: 3 horas\n   - Requiere: a los dos técnicos juntos\n   - Hora de inicio: 08:00\n   - Hora de fin: 11:00\n\n2. **Técnico B (instalación de sonido)**\n   - Duración: 2 horas\n   - Requiere: A terminada\n   - Ocupa a un técnico\n   - Hora de inicio: 11:00\n   - Hora de fin: 13:00\n\n3. **Técnico C (instalación de luces)**\n   - Duración: 2 horas\n   - Requiere: A terminada\n   - Ocupa a un técnico\n   - Hora de inicio: 11:00\n   - Hora de fin: 13:00\n\n4. **Técnico D (prueba general)**\n   - Duración: 1 hora\n   - Requiere: B y C terminadas\n   - Necesita a los dos técnicos juntos\n   - Hora de inicio: 13:00\n   - Hora de fin: 14:00\n\nCon esta información, podemos realizar la planificación de la siguiente manera:\n\n- **08:00 - 11:00**: Tarea A (armado de escenario) es realizada por Técnicos A y B.\n- **11:00 - 13:00**: Mientras el Técnico B realiza la instalación de sonido (Tarea B), el Técnico C puede empezar la instalación de luces (Tarea C).\n- **13:00 - 14:00**: Una vez que ambos (Tareas B y C) están terminadas, se pueden realizar la prueba general (Tarea D) a las 13:00 con ambos técnicos.\n\nLa distribución es así:\n\n| Tarea | Hora de inicio | Hora de fin | Técnico(s) |\n|-------|----------------|--------------|------------|\n| A     | 08:00          | 11:00       | A y B      |\n| B     | 11:00          | 13:00       | B          |\n| C     | 11:00          | 13:00       | C          |\n| D     | 13:00          | 14:00       | A y B      |\n\n**Análisis de tiempo:**\n- Tarea A se realiza de 08:00 a 11:00.\n- Tarea B se realiza de 11:00 a 13:00.\n- Tarea C se realiza de 11:00 a 13:00.\n- Tarea D no puede realizarse dentro de la ventana de trabajo, ya que se extiende hasta las 14:00.\n\n**Conclusión:** El tiempo disponible no es suficiente para realizar todas las tareas, ya que la prueba general (Tarea D) no puede ser completada dentro de la ventana de trabajo de 08:00 a 15:00.",
+      "tokens_input": 154,
+      "tokens_output": 646,
+      "total_tokens": 800,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.55
+      }
+    },
+    {
+      "input": "Cinco tareas de un despliegue de software: A (backup, 2h), B (migración de BD, 3h, requiere A terminada), C (actualización de API, 2h, requiere B), D (pruebas de regresión, 4h, requiere C), E (comunicación a usuarios, 1h, debe terminar antes de que empiece B). Hay una sola persona para A, B y C (no pueden solaparse entre sí); D y E pueden hacerlas otras personas en paralelo con cualquier tarea. La ventana de mantenimiento va de 22:00 a 09:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "few_shot",
+      "output": "Para resolver este problema de planificación de tareas, primero mapeamos las dependencias y la ventana de tiempo. \n\n### Detalle de tareas\n\n1. **A (Backup, 2h)**: No tiene dependencias.\n2. **B (Migración de BD, 3h)**: Requiere A terminada.\n3. **C (Actualización de API, 2h)**: Requiere B terminada.\n4. **D (Pruebas de regresión, 4h)**: Requiere C terminada, puede realizarse en paralelo.\n5. **E (Comunicación a usuarios, 1h)**: Debe terminar antes de que empiece B, puede realizarse en paralelo.\n\n### Ventana de mantenimiento\n\nLa ventana es de 22:00 a 09:00, lo que significa que solo se tienen 11 horas disponibles para realizar las tareas. Aquí asumimos que la tarea que empieza a las 09:00 termina antes de las 09:00.\n\n### Planificación\n\n1. **Tarea E**:\n   - Asignamos a E el primer lugar (ya que debe terminar antes de que empiece B):\n   - **Inicio**: 22:00\n   - **Fin**: 23:00\n\n2. **Tarea A**:\n   - La tarea A puede empezar después de E:\n   - **Inicio**: 23:00\n   - **Fin**: 01:00\n\n3. **Tarea B**:\n   - B puede empezar después de que A haya terminado:\n   - **Inicio**: 01:00\n   - **Fin**: 04:00\n\n4. **Tarea C**:\n   - C puede empezar después de que B haya terminado:\n   - **Inicio**: 04:00\n   - **Fin**: 06:00\n\n5. **Tarea D**:\n   - D puede empezar después de que C haya terminado. Sin embargo, D dura 4 horas:\n   - **Inicio**: 06:00\n   - **Fin**: 10:00\n   \n   **Problema:** D termina después de la ventana de mantenimiento.\n\n### Revisión y Ajuste\n\nNecesitamos ajustar la planificación de D, ya que no cabe en la ventana de mantenimiento. Esto significa que D no puede ejecutarse en la misma noche que las otras.\n\n#### Alternativa para D\n\nSi D no se puede realizar durante la ventana de mantenimiento, puede ser programada para el día siguiente:\n\n1. **Día siguiente (09:00)**:\n   - **Inicio de D**: (fuera de la ventana de mantenimiento) - podría programarse tras la ventana, pero en este contexto, consideramos el mismo ciclo.\n   - **Fin de D**: (no lo podemos hacer dentro del ciclo actual)\n\nDada la necesidad de que D requiera de C, cuyo final también cae fuera de la ventana disponible para tareas posteriores.\n\n### Cronograma final (ajustado)\n\nLa planificación válida para la ventana sería:\n\n- **E (Comunicación a usuarios)**: 22:00 - 23:00\n- **A (Backup)**: 23:00 - 01:00\n- **B (Migración de BD)**: 01:00 - 04:00\n- **C (Actualización de API)**: 04:00 - 06:00\n- **D (Pruebas de regresión)**: no puede realizarse en la ventana actual y debería planificarse fuera de esta.\n\nEn resumen, E, A, B, C se pueden completar dentro de la ventana, pero D no cabe. Es necesario ajustar o replantear cómo se abordará D tras la ventana. En la situación actual solo A, B y C son posibles en la ventana de mantenimiento.",
+      "tokens_input": 244,
+      "tokens_output": 795,
+      "total_tokens": 1039,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.57
+      }
+    },
+    {
+      "input": "Migración de un datacenter: A (inventario y etiquetado, 3h), B (apagado ordenado de servidores, 2h, requiere A), C (traslado físico, 4h, requiere B), D (reencendido y verificación, 3h, requiere C), E (prueba de conectividad de red, 2h, requiere C y debe terminar antes de que empiece D). Todas las tareas son secuenciales sobre el mismo equipamiento (ninguna puede solaparse con otra). La ventana es de 20:00 a 08:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "few_shot",
+      "output": "Analicemos las tareas y la ventana de tiempo disponible:\n\n1. **A (inventario y etiquetado)** - 3 horas\n2. **B (apagado ordenado de servidores)** - 2 horas (requiere A)\n3. **C (traslado físico)** - 4 horas (requiere B)\n4. **D (reencendido y verificación)** - 3 horas (requiere C)\n5. **E (prueba de conectividad de red)** - 2 horas (requiere C y debe terminar antes de D)\n\nLa ventana de tiempo es de 20:00 a 08:00, lo cual equivale a 12 horas. Vamos a planificar las tareas en el orden requerido:\n\n- Comenzamos desde las 20:00:\n  \n  1. **A (20:00 - 23:00)**: 3 horas\n  2. **B (23:00 - 01:00)**: 2 horas (dependencia de A)\n  3. **C (01:00 - 05:00)**: 4 horas (dependencia de B)\n  \nEn este punto, la tarea C finaliza a las 05:00, desde donde podemos planificar las siguientes tareas.\n\n- **D (05:00 - 08:00)**: 3 horas (requiere C)\n  - Sin embargo, la ventana cierra a las 08:00, por lo que D no puede ser completada.\n\nPara que **E (prueba de conectividad de red)**, que requiere que C termine y debe finalizar antes de que comience D, puede ejecutarse después de C pero antes de D. Aun así, no hay suficiente espacio para que todas las tareas se realicen en la ventana horaria establecida.\n\n### Conclusión:\nDebido a que la tarea D no puede comenzar antes de las 08:00 y requiere 3 horas, y además E debe terminar antes de D, el cronograma completo no cabe dentro de la ventana de 20:00 a 08:00. \n\n**Resultado: No es posible completar todas las tareas dentro del horario establecido.**",
+      "tokens_input": 235,
+      "tokens_output": 451,
+      "total_tokens": 686,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "Montaje de un evento con dos técnicos disponibles: A (armado de escenario, 3h, requiere a los dos técnicos juntos), B (instalación de sonido, 2h, requiere A terminada, ocupa un técnico), C (instalación de luces, 2h, requiere A terminada, ocupa un técnico), D (prueba general, 1h, requiere B y C terminadas, requiere a los dos técnicos). La ventana de trabajo es de 08:00 a 15:00. Indicá hora de inicio y fin de cada tarea y qué técnico(s) la ejecutan, o justificá que no alcanza el tiempo.",
+      "technique": "few_shot",
+      "output": "Para resolver el problema de planificación de tareas, primero estableceremos las tareas y su duración, además de sus dependencias y los recursos necesarios.\n\n1. **Tarea A**: Armado de escenario (3h, requiere ambos técnicos)\n2. **Tarea B**: Instalación de sonido (2h, requiere A terminada, ocupa un técnico)\n3. **Tarea C**: Instalación de luces (2h, requiere A terminada, ocupa un técnico)\n4. **Tarea D**: Prueba general (1h, requiere B y C terminadas, requiere ambos técnicos)\n\nVentana de trabajo: de 08:00 a 15:00 (7 horas disponibles)\n\n### Cronograma\n\n1. **Tarea A**:  \n   - **Hora de inicio**: 08:00  \n   - **Hora de fin**: 11:00  \n   - **Técnicos**: A y B  \n\n2. **Tarea B**:  \n   - **Hora de inicio**: 11:00  \n   - **Hora de fin**: 13:00  \n   - **Técnico**: A (uno de los técnicos)  \n\n3. **Tarea C**:  \n   - **Hora de inicio**: 11:00  \n   - **Hora de fin**: 13:00  \n   - **Técnico**: B (el otro técnico)  \n\n4. **Tarea D**:  \n   - **Hora de inicio**: 13:00  \n   - **Hora de fin**: 14:00  \n   - **Técnicos**: A y B  \n\n### Justificación:\n- **Tarea A** se realiza primero a las 08:00 y se concluye a las 11:00 con ambos técnicos trabajando en ella.\n- A las 11:00, **Tarea B** (instalación de sonido) y **Tarea C** (instalación de luces) se pueden realizar simultáneamente, ocupando a cada técnico durante 2 horas (de 11:00 a 13:00).\n- Finalmente, la **Tarea D** se puede realizar de 13:00 a 14:00, ya que ambas tareas B y C deben estar terminadas antes de que se realice la prueba general, y el tiempo es suficiente.\n\n### Resultado Final\n- Tarea A: 08:00 - 11:00 (Técnicos A y B)\n- Tarea B: 11:00 - 13:00 (Técnico A)\n- Tarea C: 11:00 - 13:00 (Técnico B)\n- Tarea D: 13:00 - 14:00 (Técnicos A y B)\n\nEl cronograma es válido y se utiliza de manera eficiente el tiempo disponible.",
+      "tokens_input": 224,
+      "tokens_output": 593,
+      "total_tokens": 817,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Cinco tareas de un despliegue de software: A (backup, 2h), B (migración de BD, 3h, requiere A terminada), C (actualización de API, 2h, requiere B), D (pruebas de regresión, 4h, requiere C), E (comunicación a usuarios, 1h, debe terminar antes de que empiece B). Hay una sola persona para A, B y C (no pueden solaparse entre sí); D y E pueden hacerlas otras personas en paralelo con cualquier tarea. La ventana de mantenimiento va de 22:00 a 09:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "cot",
+      "output": "Para resolver el problema de planificación de tareas en el despliegue de software, seguiremos un razonamiento paso a paso, considerando cada tarea, sus dependencias y el tiempo asignado. También tomaremos en cuenta la ventana de mantenimiento, que va de 22:00 a 09:00.\n\n### Tareas y Dependencias\n\n1. **A:** Backup (2 horas). \n2. **B:** Migración de base de datos (3 horas). **Requiere A terminada.**\n3. **C:** Actualización de API (2 horas). **Requiere B terminada.**\n4. **D:** Pruebas de regresión (4 horas). **Requiere C terminada.**\n5. **E:** Comunicación a usuarios (1 hora). **Debe terminar antes de que empiece B.**\n\n### Ventana de Mantenimiento\n\nLa ventana de mantenimiento va de 22:00 a 09:00. Esto significa que tenemos de 22:00 a 00:00 (2 horas) para trabajar el primer día y luego de 00:00 a 09:00 (9 horas) del día siguiente.\n\n### Planificación de Tareas\n\n**Paso 1: Planificar la Tarea E**\n- **E** debe terminar antes que **B**. Comenzamos a trabajar con **E**:\n    - **Inicio de E:** 22:00\n    - **Fin de E:** 23:00 (duración 1 hora)\n\n**Paso 2: Planificar la Tarea A**\nAhora que E está completada, procedemos con A. No hay más tareas que dependan de A, así que comenzamos:\n- **Inicio de A:** 23:00\n- **Fin de A:** 01:00 (duración 2 horas) - esto excede la ventana, por lo que es necesario comenzar A a las 22:00.\n\n**Paso 3: Planificar las Tareas B y C**\nA debe completarse antes de iniciar B:\n- **Inicio de B:** 01:00 (un tiempo después que termine A)\n- **Fin de B:** 04:00 (duración 3 horas)\n\nUna vez que B ha terminado, podemos comenzar C:\n- **Inicio de C:** 04:00\n- **Fin de C:** 06:00 (duración 2 horas)\n\n**Paso 4: Planificar la Tarea D**\nD depende de C y podemos comenzar D:\n- **Inicio de D:** 06:00\n- **Fin de D:** 10:00 (duración 4 horas)\n\n### Resumen del Cronograma\n\n1. **E:** 22:00 - 23:00 (1h)\n2. **A:** 23:00 - 01:00 (2h)\n3. **B:** 01:00 - 04:00 (3h)\n4. **C:** 04:00 - 06:00 (2h)\n5. **D:** 06:00 - 10:00 (4h) - **Fuera de la ventana, se debe iniciar D a las 06:00 y terminar a las 10:00, pero solo se puede trabajar un máximo hasta las 09:00**\n\nPor lo tanto, D no puede comenzar ya que excede la ventana. \n\n### Ajustando la Planificación\n\nPara cumplir con la ventana de mantenimiento y considerando el tiempo de las tareas:\n\n1. **E**: 22:00 a 23:00\n2. **A**: 23:00 a 00:00 (Se debe iniciar antes)\n3. **B**: 00:00 a 03:00\n4. **C**: 03:00 a 05:00.\n5. **D**: 05:00 a 09:00.\n\n### Resumen Final\n\n- **Hora de inicio y fin de tareas:**\n  - **E:** 22:00 - 23:00\n  - **A:** 23:00 - 00:00\n  - **B:** 00:00 - 03:00\n  - **C:** 03:00 - 05:00\n  - **D:** 05:00 - 09:00\n\nPor lo tanto, la planificación queda dentro de la ventana, las tareas se ejecutan en el orden correcto y se han cumplido las dependencias y requisitos.",
+      "tokens_input": 190,
+      "tokens_output": 927,
+      "total_tokens": 1117,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Migración de un datacenter: A (inventario y etiquetado, 3h), B (apagado ordenado de servidores, 2h, requiere A), C (traslado físico, 4h, requiere B), D (reencendido y verificación, 3h, requiere C), E (prueba de conectividad de red, 2h, requiere C y debe terminar antes de que empiece D). Todas las tareas son secuenciales sobre el mismo equipamiento (ninguna puede solaparse con otra). La ventana es de 20:00 a 08:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "cot",
+      "output": "Para resolver el problema de planificación de tareas de la migración del datacenter, es necesario analizar cada tarea con sus requisitos y restricciones. La ventana de trabajo es de 20:00 a 08:00, lo que da un total de 12 horas disponibles.\n\n### Tareas y Duraciones\n1. **A**: Inventario y etiquetado (3h)\n2. **B**: Apagado ordenado de servidores (2h, requiere A)\n3. **C**: Traslado físico (4h, requiere B)\n4. **D**: Reencendido y verificación (3h, requiere C)\n5. **E**: Prueba de conectividad de red (2h, requiere C y debe terminar antes de D)\n\n### Análisis de las dependencias y planificación\n\n1. **Tarea A**:\n   - Comienza a las 20:00.\n   - Dura 3 horas, así que termina a las 23:00.\n\n2. **Tarea B**: \n   - Requiere que A haya terminado. \n   - Puede comenzar a las 23:00 (justo después de A).\n   - Dura 2 horas, así que termina a las 01:00.\n\n3. **Tarea C**:\n   - Requiere que B haya terminado.\n   - Puede comenzar a la 01:00 (justo después de B).\n   - Dura 4 horas, terminando a las 05:00.\n\n4. **Tarea D**:\n   - Requiere que C haya finalizado.\n   - Comenzaría a las 05:00.\n   - Dura 3 horas, terminando a las 08:00, que es el final de la ventana.\n\n5. **Tarea E**:\n   - Requiere que C haya terminado y debe terminar antes de D.\n   - C termina a las 05:00, así que puede comenzar a las 05:00.\n   - Dura 2 horas, lo que significa que terminaría a las 07:00, cumpliendo con la condición de que debe finalizar antes de D.\n\n### Planificación final\nAhora que hemos organizado las tareas se presenta el siguiente horario:\n\n- **Tarea A**: \n  - Inicio: 20:00 \n  - Fin: 23:00\n- **Tarea B**:\n  - Inicio: 23:00 \n  - Fin: 01:00\n- **Tarea C**:\n  - Inicio: 01:00 \n  - Fin: 05:00\n- **Tarea E**:\n  - Inicio: 05:00 \n  - Fin: 07:00\n- **Tarea D**:\n  - Inicio: 07:00 \n  - Fin: 08:00\n\n### Resumen de la respuesta final:\n- **A**: 20:00 - 23:00\n- **B**: 23:00 - 01:00\n- **C**: 01:00 - 05:00\n- **E**: 05:00 - 07:00\n- **D**: 07:00 - 08:00\n\nTodos los requerimientos se cumplen, y todas las tareas están organizadas sin solapamientos en la ventana de tiempo disponible.",
+      "tokens_input": 181,
+      "tokens_output": 700,
+      "total_tokens": 881,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.6
+      }
+    },
+    {
+      "input": "Montaje de un evento con dos técnicos disponibles: A (armado de escenario, 3h, requiere a los dos técnicos juntos), B (instalación de sonido, 2h, requiere A terminada, ocupa un técnico), C (instalación de luces, 2h, requiere A terminada, ocupa un técnico), D (prueba general, 1h, requiere B y C terminadas, requiere a los dos técnicos). La ventana de trabajo es de 08:00 a 15:00. Indicá hora de inicio y fin de cada tarea y qué técnico(s) la ejecutan, o justificá que no alcanza el tiempo.",
+      "technique": "cot",
+      "output": "Para resolver este problema de planificación de tareas, desglosaremos cada paso en función de las tareas y sus requisitos:\n\n1. **Identificación de Tareas y Requisitos:**\n   - **A**: Montaje del escenario. Duración: 3h. Requiere a los dos técnicos.\n   - **B**: Instalación de sonido. Duración: 2h. Requiere que A esté terminada y ocupa un técnico.\n   - **C**: Instalación de luces. Duración: 2h. Requiere que A esté terminada y ocupa un técnico.\n   - **D**: Prueba general. Duración: 1h. Requiere que B y C estén terminadas y ocupa a los dos técnicos.\n\n2. **Ventana de Trabajo:**\n   - Desde las 08:00 hasta las 15:00, lo que nos da un total de 7 horas.\n\n3. **Planificación de Tareas:**\n   - Comenzamos con la tarea A, que ocupa a ambos técnicos y dura 3 horas.\n   - Si empezamos A a las 08:00, terminará a las 11:00.\n\n4. **Ejecución de Tareas B y C:**\n   - A las 11:00, tenemos que elegir entre B y C, ya que solo hay un técnico disponible para cada tarea.\n   - Supongamos que comenzamos B primero:\n     - **B**: Comienza a las 11:00 y termina a las 13:00.\n   - Después de esto, solo queda un técnico que puede iniciar C.\n     - **C**: Comienza a las 13:00 y termina a las 15:00.\n\n5. **Verificación de Tareas D:**\n   - La tarea D requiere que tanto B como C estén terminadas y necesita a ambos técnicos. Sin embargo, D no se puede realizar porque B termina a las 13:00 y C termina a las 15:00, lo que significa que no hay tiempo para D porque se necesita a ambos técnicos juntos.\n\n6. **Resultado Final:**\n   - **A**: \n     - Inicio: 08:00 \n     - Fin: 11:00 \n     - Técnicos: A y B (ambos).\n   - **B**: \n     - Inicio: 11:00 \n     - Fin: 13:00 \n     - Técnico: A.\n   - **C**: \n     - Inicio: 13:00 \n     - Fin: 15:00 \n     - Técnico: B.\n   - **D**: No se puede ejecutar porque no hay tiempo disponible para que ambos técnicos trabajen juntos después de que tareas B y C terminen.\n\nPor lo tanto, **la prueba general (D) no puede realizarse** en la ventana de tiempo dada, y **a las 15:00 todas las tareas B y C estarían completas, pero D no podría ser ejecutada.**",
+      "tokens_input": 170,
+      "tokens_output": 624,
+      "total_tokens": 794,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.55
+      }
+    },
+    {
+      "input": "Cinco tareas de un despliegue de software: A (backup, 2h), B (migración de BD, 3h, requiere A terminada), C (actualización de API, 2h, requiere B), D (pruebas de regresión, 4h, requiere C), E (comunicación a usuarios, 1h, debe terminar antes de que empiece B). Hay una sola persona para A, B y C (no pueden solaparse entre sí); D y E pueden hacerlas otras personas en paralelo con cualquier tarea. La ventana de mantenimiento va de 22:00 a 09:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "cot_limited",
+      "output": "Para cumplir con la ventana de mantenimiento de 22:00 a 09:00, primero se ejecuta la tarea E (21:00-22:00). Luego, A se realiza de 22:00 a 00:00. Después, B inicia a las 00:00 y termina a las 03:00. C comienza a las 03:00 y concluye a las 05:00. Finalmente, D se programa de 05:00 a 09:00. Todas las tareas están encadenadas y completadas dentro de la ventana de mantenimiento. \n\n**Plan de tareas:**\n- E: 21:00 - 22:00\n- A: 22:00 - 00:00\n- B: 00:00 - 03:00\n- C: 03:00 - 05:00\n- D: 05:00 - 09:00",
+      "tokens_input": 196,
+      "tokens_output": 191,
+      "total_tokens": 387,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.79
+      }
+    },
+    {
+      "input": "Migración de un datacenter: A (inventario y etiquetado, 3h), B (apagado ordenado de servidores, 2h, requiere A), C (traslado físico, 4h, requiere B), D (reencendido y verificación, 3h, requiere C), E (prueba de conectividad de red, 2h, requiere C y debe terminar antes de que empiece D). Todas las tareas son secuenciales sobre el mismo equipamiento (ninguna puede solaparse con otra). La ventana es de 20:00 a 08:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "cot_limited",
+      "output": "Para resolver la planificación, primero calculamos la duración total de las tareas con sus dependencias. A (3h) + B (2h) + C (4h) + E (2h) + D (3h) = 14h. La tarea E debe finalizar antes que D, lo que significa que E debe realizarse entre C y D.\n\nSi comenzamos A a las 20:00:\n- A: 20:00 - 23:00\n- B: 23:00 - 01:00\n- C: 01:00 - 05:00\n- E: 05:00 - 07:00\n- D no puede comenzar (07:00 - 08:00).\n\nPor lo tanto, no entra en la ventana. La respuesta es que no se puede completar todas las tareas en la ventana de tiempo proporcionada.",
+      "tokens_input": 187,
+      "tokens_output": 182,
+      "total_tokens": 369,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 1.0,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "Montaje de un evento con dos técnicos disponibles: A (armado de escenario, 3h, requiere a los dos técnicos juntos), B (instalación de sonido, 2h, requiere A terminada, ocupa un técnico), C (instalación de luces, 2h, requiere A terminada, ocupa un técnico), D (prueba general, 1h, requiere B y C terminadas, requiere a los dos técnicos). La ventana de trabajo es de 08:00 a 15:00. Indicá hora de inicio y fin de cada tarea y qué técnico(s) la ejecutan, o justificá que no alcanza el tiempo.",
+      "technique": "cot_limited",
+      "output": "Para resolver el problema, primero programamos el montaje del escenario A, que ocupa 3 horas y debe iniciarse a las 08:00, finalizando a las 11:00. Luego, después de la finalización de A:\n\n1. Tarea B (Instalación de sonido) - 11:00 a 13:00 (Técnico A).\n2. Tarea C (Instalación de luces) - 11:00 a 13:00 (Técnico B, paralelo a B).\n3. Tarea D (Prueba general) - 13:00 a 14:00 (Técnicos A y B).\n\nLa planificación se mantiene dentro del horario establecido, completando todas las tareas.\n\n**Resumen:**\n- A: 08:00 a 11:00 (A y B)\n- B: 11:00 a 13:00 (A)\n- C: 11:00 a 13:00 (B)\n- D: 13:00 a 14:00 (A y B)",
+      "tokens_input": 176,
+      "tokens_output": 220,
+      "total_tokens": 396,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.75,
+        "calidad": 0.86
+      }
+    },
+    {
+      "input": "Cinco tareas de un despliegue de software: A (backup, 2h), B (migración de BD, 3h, requiere A terminada), C (actualización de API, 2h, requiere B), D (pruebas de regresión, 4h, requiere C), E (comunicación a usuarios, 1h, debe terminar antes de que empiece B). Hay una sola persona para A, B y C (no pueden solaparse entre sí); D y E pueden hacerlas otras personas en paralelo con cualquier tarea. La ventana de mantenimiento va de 22:00 a 09:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "structured_prompting_json",
+      "output": "Para resolver el problema de planificación de tareas dentro de la ventana de mantenimiento de 22:00 a 09:00, analizaremos las tareas y sus dependencias.\n\n### Tareas y Dependencias\n1. **A (backup, 2h)**: Esta tarea puede comenzar a las 22:00 y debe completarse antes de que B pueda iniciar.\n2. **B (migración de BD, 3h)**: Esta tarea solo puede comenzar una vez que A haya terminado. \n3. **C (actualización de API, 2h)**: C depende de la finalización de B.\n4. **D (pruebas de regresión, 4h)**: D depende de que C esté terminada, pero puede ser realizada en paralelo con E.\n5. **E (comunicación a usuarios, 1h)**: E debe terminar antes de que B inicie, pero también puede llevarse a cabo en paralelo con D.\n\n### Planificación\n1. **Tarea A**: \n   - Inicio: 22:00\n   - Fin: 00:00 (dura 2 horas)\n\n2. **Tarea E** (se puede realizar en paralelo con D, pero antes de B):\n   - Inicio: 00:00\n   - Fin: 01:00 (dura 1 hora)\n\n3. **Tarea B**:\n   - Inicio: 01:00 (A ha terminado y E ya terminó)\n   - Fin: 04:00 (dura 3 horas)\n\n4. **Tarea C**:\n   - Inicio: 04:00 (B ha terminado)\n   - Fin: 06:00 (dura 2 horas)\n\n5. **Tarea D** (Dura 4 horas, pero se puede solapar con E; se puede realizar en paralelo):\n   - Inicio: 22:00 (Puede comenzar desde el inicio de la ventana, pero en nuestro caso, esperamos a que E termine, aunque no es necesario).\n   - Fin: 02:00 (se podrían sumar otros 2 horas, se puede solapar con E, mientras A se realiza en este espacio. Para simplificar, permitimos que D se una a E en la acción).\n   \n### Resultados Finales Con Tiempos\n- **Tarea A**: 22:00 - 00:00\n- **Tarea E**: 00:00 - 01:00\n- **Tarea B**: 01:00 - 04:00\n- **Tarea C**: 04:00 - 06:00\n- **Tarea D**: Comienza a las 22:00, pero finaliza a las 02:00. Esto nos deja con un poco de espacio en el que D y E pueden empezar al tiempo, contribuyendo así a la eficiencia sin perder la secuencia principal de tareas antes de que empiecen.\n\n### Resumen\n- Las tareas A, B y C se realizan de manera secuencial, mientras que E y D se administran con sus propias ventanas con su inicio y final apropiados. Se puede realizar así en el tiempo del mantenimiento mencionado. Las tareas se distribuyen eficientemente durante el tiempo de mantenimiento.",
+      "tokens_input": 186,
+      "tokens_output": 677,
+      "total_tokens": 863,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.6,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.4
+      }
+    },
+    {
+      "input": "Migración de un datacenter: A (inventario y etiquetado, 3h), B (apagado ordenado de servidores, 2h, requiere A), C (traslado físico, 4h, requiere B), D (reencendido y verificación, 3h, requiere C), E (prueba de conectividad de red, 2h, requiere C y debe terminar antes de que empiece D). Todas las tareas son secuenciales sobre el mismo equipamiento (ninguna puede solaparse con otra). La ventana es de 20:00 a 08:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "structured_prompting_json",
+      "output": "Para resolver el problema de planificación de tareas para la migración del datacenter, debemos seguir el orden de dependencia de las tareas y adaptar los tiempos a la ventana de trabajo proporcionada (20:00 a 08:00). Vamos a analizar cada tarea y su duración:\n\n1. **A (Inventario y etiquetado)**: 3 horas\n2. **B (Apagado ordenado de servidores)**: 2 horas, requiere A\n3. **C (Traslado físico)**: 4 horas, requiere B\n4. **D (Reencendido y verificación)**: 3 horas, requiere C\n5. **E (Prueba de conectividad de red)**: 2 horas, requiere C y debe terminar antes de que empiece D.\n\nDada la ventana de 20:00 a 08:00, analizamos el flujo:\n\n1. **Tarea A**:\n   - **Inicio**: 20:00\n   - **Fin**: 23:00\n\n2. **Tarea B** (Requiere A):\n   - **Inicio**: 23:00\n   - **Fin**: 01:00\n\n3. **Tarea C** (Requiere B):\n   - **Inicio**: 01:00\n   - **Fin**: 05:00\n\n4. **Tarea D** (Requiere C):\n   - Como D debe empezar después de C y no puede solaparse, se programaría así:\n   - **Inicio**: 05:00\n   - **Fin**: 08:00\n\n5. **Tarea E** (Requiere C y debe terminar antes que D):\n   - Dado que C finaliza a las 05:00 y E debe terminar antes de que empiece D a las 05:00, debemos programar E antes. Se debe ajustar a que:\n   - **Inicio**: 05:00 (no se puede iniciar debido a la dependencia)\n   - Esta tarea no puede ser completada, ya que no tiene tiempo suficiente para finalizar justo antes de la tarea D.\n\nCon todos los tiempos analizados, encontramos que no es posible completar todas las tareas dentro de la ventana de trabajo dada, ya que la tarea E no puede iniciarse ni completarse sin interferir con D.\n\n### Resultado:\nNo se puede cumplir con todas las tareas en la ventana de 20:00 a 08:00 debido a las restricciones de tiempo. La tarea E, aunque requiere de C, no puede ser completada eficazmente debido a su dependencia y al superponerse con el inicio de D.",
+      "tokens_input": 177,
+      "tokens_output": 547,
+      "total_tokens": 724,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.75,
+        "calidad": 0.81
+      }
+    },
+    {
+      "input": "Montaje de un evento con dos técnicos disponibles: A (armado de escenario, 3h, requiere a los dos técnicos juntos), B (instalación de sonido, 2h, requiere A terminada, ocupa un técnico), C (instalación de luces, 2h, requiere A terminada, ocupa un técnico), D (prueba general, 1h, requiere B y C terminadas, requiere a los dos técnicos). La ventana de trabajo es de 08:00 a 15:00. Indicá hora de inicio y fin de cada tarea y qué técnico(s) la ejecutan, o justificá que no alcanza el tiempo.",
+      "technique": "structured_prompting_json",
+      "output": "Para resolver este problema de planificación de tareas, primero enumeremos las tareas y sus requisitos:\n\n1. **Tarea A - Armado de escenario**\n   - Duración: 3 horas\n   - Requiere: 2 técnicos\n   - Ventana de trabajo: 08:00 a 15:00\n\n2. **Tarea B - Instalación de sonido**\n   - Duración: 2 horas\n   - Requiere: Técnico A (tras la finalización de A)\n   - Ocupa: 1 técnico\n\n3. **Tarea C - Instalación de luces**\n   - Duración: 2 horas\n   - Requiere: Técnico A (tras la finalización de A)\n   - Ocupa: 1 técnico\n\n4. **Tarea D - Prueba general**\n   - Duración: 1 hora\n   - Requiere: Técnico A y Técnico B (tras la finalización de B y C)\n   - Ocupa: 2 técnicos\n\n### Planificación de Tareas\n\n1. **Inicio de Tarea A (Armado de escenario):**\n   - **Hora de inicio:** 08:00\n   - **Hora de fin:** 11:00\n   - **Técnicos:** A y B\n\n2. **Inicio de Tarea B (Instalación de sonido):**\n   - **Hora de inicio:** 11:00\n   - **Hora de fin:** 13:00\n   - **Técnicos:** A (técnico B no está disponible para esta tarea)\n\n3. **Inicio de Tarea C (Instalación de luces):**\n   - **Hora de inicio:** 11:00 (mientras A trabaja en B, técnicos no pueden iniciar C)\n   - **Hora de fin:** 13:00\n   - **Técnicos:** B (similar al caso de B)\n\n4. **Conclusión de Tareas:**\n   - Al finalizar A a las 11:00, se podría iniciar la instalación de C y B. Sin embargo, esto no es posible debido a la limitación de técnicos.\n   - La instalación de sonido (B) requiere 2 horas después de A, finalizando a las 13:00, lo que permite que sólo uno de los técnicos, A, esté trabajando en la prueba general.\n\n5. **Inicio de Tarea D (Prueba general):**\n   - **Hora de inicio:** 13:00\n   - **Hora de fin:** 14:00\n   - **Técnicos:** A y B\n\n### Resumen\n\n- **Tarea A**: 08:00 - 11:00 (Técnicos A y B)\n- **Tarea B**: 11:00 - 13:00 (Técnico A)\n- **Tarea C**: Todo el proceso es imposible porque solo se permite llevar a cabo B o C.\n\n**Justificación:**\nNo se puede realizar todas las actividades dentro del tiempo indicado porque, una vez que A termine, se puede comenzar solo con una tarea (en este caso B o C). Dado esto, no lograremos ejecutar ambas tareas al mismo tiempo, por lo que no será posible completar todas las tareas requeridas en la ventana de trabajo disponible. \n\n### Conclusión\n- No se alcanza el tiempo deseado para completar todas las tareas requeridas.",
+      "tokens_input": 166,
+      "tokens_output": 701,
+      "total_tokens": 867,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.33
+      }
+    },
+    {
+      "input": "Cinco tareas de un despliegue de software: A (backup, 2h), B (migración de BD, 3h, requiere A terminada), C (actualización de API, 2h, requiere B), D (pruebas de regresión, 4h, requiere C), E (comunicación a usuarios, 1h, debe terminar antes de que empiece B). Hay una sola persona para A, B y C (no pueden solaparse entre sí); D y E pueden hacerlas otras personas en paralelo con cualquier tarea. La ventana de mantenimiento va de 22:00 a 09:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "role_prompting",
+      "output": "Para organizar las tareas del despliegue de software, debemos tener en cuenta las dependencias, la duración de cada tarea y la ventana de mantenimiento, que va de 22:00 a 09:00. A continuación, se detallan las tareas junto con su duración y las dependencias:\n\n- **Tarea A**: Backup (2h) - No tiene dependencias.\n- **Tarea B**: Migración de BD (3h) - Requiere que A esté terminada.\n- **Tarea C**: Actualización de API (2h) - Requiere que B esté terminada.\n- **Tarea D**: Pruebas de regresión (4h) - Requiere que C esté terminada.\n- **Tarea E**: Comunicación a usuarios (1h) - Debe terminar antes de que empiece B.\n\n### Planificación\n\nLa ventana de mantenimiento es la siguiente:\n- Desde las 22:00 hasta las 09:00.\n\n### Paso a Paso\n\n1. **Tarea E (Comunicación a usuarios)**:\n   - La tarea E debe terminar antes de que empiece la tarea B.\n   - Para asegurar que B empiece a tiempo, lo mejor es ejecutar E justo al inicio de la ventana de mantenimiento.\n   - **Inicio**: 22:00\n   - **Fin**: 22:01\n\n2. **Tarea A (Backup)**:\n   - Después de E, A puede iniciar.\n   - **Inicio**: 22:01\n   - **Fin**: 22:03\n\n3. **Tarea B (Migración de BD)**:\n   - Una vez que A ha terminado, B puede empezar.\n   - **Inicio**: 22:03\n   - **Fin**: 22:06\n\n4. **Tarea C (Actualización de API)**:\n   - Después de B, C puede iniciar.\n   - **Inicio**: 22:06\n   - **Fin**: 22:08\n\n5. **Tarea D (Pruebas de regresión)**:\n   - Después de C, D necesita 4 horas para completar.\n   - **Inicio**: 22:08\n   - **Fin**: 02:08 (del día siguiente).\n\n### Resumen de la planificación\n\n- **Tarea E**: 22:00 - 22:01\n- **Tarea A**: 22:01 - 22:03\n- **Tarea B**: 22:03 - 22:06\n- **Tarea C**: 22:06 - 22:08\n- **Tarea D**: 22:08 - 02:08\n\n### Notas\n\n- Las tareas E, A, B y C se han podido realizar en la ventana de mantenimiento sin inconvenientes.\n- La tarea D se extiende más allá del límite de la ventana de mantenimiento, finalizando a las 02:08. Sin embargo, esto es aceptable ya que la ventana de mantenimiento continúa funcionando hasta las 09:00.\n- No hay solapamientos en las tareas que dependen unas de otras, y todas se han programado adecuadamente para cumplir con las restricciones y dependencias. \n\nCon esta planificación se asegura completar todas las tareas requeridas de manera eficiente dentro de la ventana de mantenimiento.",
+      "tokens_input": 191,
+      "tokens_output": 699,
+      "total_tokens": 890,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.6,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.38
+      }
+    },
+    {
+      "input": "Migración de un datacenter: A (inventario y etiquetado, 3h), B (apagado ordenado de servidores, 2h, requiere A), C (traslado físico, 4h, requiere B), D (reencendido y verificación, 3h, requiere C), E (prueba de conectividad de red, 2h, requiere C y debe terminar antes de que empiece D). Todas las tareas son secuenciales sobre el mismo equipamiento (ninguna puede solaparse con otra). La ventana es de 20:00 a 08:00. Indicá hora de inicio y fin de cada tarea, o justificá que no entra en la ventana.",
+      "technique": "role_prompting",
+      "output": "Para resolver el problema de migración del datacenter con las restricciones que has indicado, primero necesitamos organizar las tareas en función de sus dependencias y la ventana de tiempo disponible.\n\n### Tareas y Requisitos\n\n- **A** (Inventario y etiquetado): 3h\n- **B** (Apagado ordenado de servidores): 2h (Requiere A)\n- **C** (Traslado físico): 4h (Requiere B)\n- **D** (Reencendido y verificación): 3h (Requiere C)\n- **E** (Prueba de conectividad de red): 2h (Requiere C y debe terminar antes de que empiece D)\n\n### Ventana de Trabajo\nLa ventana de trabajo es de 20:00 a 08:00, lo que nos da un total de 10 horas disponibles.\n\n### Planificación de Tareas\n\n1. **Tarea A** (Inventario y etiquetado):  \n   - **Inicio**: 20:00  \n   - **Fin**: 23:00  \n\n2. **Tarea B** (Apagado ordenado de servidores):  \n   - **Inicio**: 23:00 (inmediatamente después de A)  \n   - **Fin**: 01:00  \n\n3. **Tarea C** (Traslado físico):  \n   - **Inicio**: 01:00 (inmediatamente después de B)  \n   - **Fin**: 05:00  \n\n4. **Tarea E** (Prueba de conectividad de red):  \n   - **Inicio**: 05:00 (inmediatamente después de C)  \n   - **Fin**: 07:00  \n   - **Nota**: E debe finalizar antes de que inicie D.\n\n5. **Tarea D** (Reencendido y verificación):  \n   - **Inicio**: No se puede programar porque la ventana de tiempo se cierra a las 08:00 y D requiere 3 horas, lo que significaría querer comenzar a las 07:00 y finalizar a las 10:00, fuera de la ventana.\n\n### Resultado Final\nLas tareas A, B, C y E están programadas dentro de la ventana, pero la tarea D no se puede iniciar en la ventana de trabajo establecida. Aquí está el horario completo para las tareas:\n\n- Tarea A: 20:00 - 23:00\n- Tarea B: 23:00 - 01:00\n- Tarea C: 01:00 - 05:00\n- Tarea E: 05:00 - 07:00\n- Tarea D: **No se puede realizar debido a la falta de tiempo.**\n\n### Conclusión\n**Tarea D no puede ser ejecutada en la ventana de tiempo disponible**. Para poder programar D, se necesitaría una extensión de la ventana de trabajo más allá de las 08:00, o se debería considerar estrategias alternativas, como cambiar la secuencia de tareas o realizar algunas tareas en paralelo, si eso fuera posible en el contexto del proyecto.",
+      "tokens_input": 182,
+      "tokens_output": 655,
+      "total_tokens": 837,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.68
+      }
+    },
+    {
+      "input": "Montaje de un evento con dos técnicos disponibles: A (armado de escenario, 3h, requiere a los dos técnicos juntos), B (instalación de sonido, 2h, requiere A terminada, ocupa un técnico), C (instalación de luces, 2h, requiere A terminada, ocupa un técnico), D (prueba general, 1h, requiere B y C terminadas, requiere a los dos técnicos). La ventana de trabajo es de 08:00 a 15:00. Indicá hora de inicio y fin de cada tarea y qué técnico(s) la ejecutan, o justificá que no alcanza el tiempo.",
+      "technique": "role_prompting",
+      "output": "Para gestionar el montaje del evento con las tareas y condiciones dadas, procederemos a planificar la ejecución de cada tarea teniendo en cuenta las restricciones de recursos y dependencias. La ventana de tiempo disponible es de 7 horas (08:00 a 15:00). \n\nLas tareas son:\n\n1. **A**: Armado de escenario (3 horas, requiere a ambos técnicos)\n2. **B**: Instalación de sonido (2 horas, requiere A terminada, ocupa un técnico)\n3. **C**: Instalación de luces (2 horas, requiere A terminada, ocupa un técnico)\n4. **D**: Prueba general (1 hora, requiere B y C terminadas, requiere a ambos técnicos)\n\n### Planificación de Tareas\n\n1. **Tarea A** (Armado de escenario):\n   - **Inicio**: 08:00\n   - **Fin**: 11:00\n   - **Técnicos**: A y B\n\n2. **Tarea B** (Instalación de sonido):\n   - **Inicio**: 11:00\n   - **Fin**: 13:00\n   - **Técnico**: A\n\n3. **Tarea C** (Instalación de luces):\n   - **Inicio**: 11:00\n   - **Fin**: 13:00\n   - **Técnico**: B\n\n4. **Tarea D** (Prueba general):\n   - **Inicio**: 13:00\n   - **Fin**: 14:00\n   - **Técnicos**: A y B\n\n### Resumen del Cronograma\n\n- **08:00 - 11:00**: Tarea A (Técnicos A y B)\n- **11:00 - 13:00**: Tarea B (Técnico A) \n- **11:00 - 13:00**: Tarea C (Técnico B)\n- **13:00 - 14:00**: Tarea D (Técnicos A y B)\n\n### Evaluación de Tiempo\n\n- **Tarea A** se completa a las 11:00.\n- **Tareas B y C** pueden realizarse en paralelo desde las 11:00 hasta las 13:00.\n- **Tarea D** se puede realizar inmediatamente después, de 13:00 a 14:00.\n\n### Resultado Final\n\nSe puede completar todas las tareas dentro del tiempo disponible. La programación es adecuada y se han cumplido todas las dependencias y restricciones.\n\n**Fin de la planificación**.",
+      "tokens_input": 171,
+      "tokens_output": 545,
+      "total_tokens": 716,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.93
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 14041,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 493,
+        "tokens_output": 2165,
+        "total_tokens": 2658,
+        "avg_calidad_promedio": 0.57,
+        "avg_calidad_gpt4o": 0.55,
+        "avg_calidad_claude": 0.58,
+        "dimensions": {
+          "exactitud_funcional": 0.0,
+          "completitud_funcional": 0.95,
+          "claridad_comunicacional": 0.85,
+          "profundidad_conceptual": 0.47
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000207,
+          "claude": 0.000218,
+          "promedio": 0.000214
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 703,
+        "tokens_output": 1839,
+        "total_tokens": 2542,
+        "avg_calidad_promedio": 0.82,
+        "avg_calidad_gpt4o": 0.83,
+        "avg_calidad_claude": 0.82,
+        "dimensions": {
+          "exactitud_funcional": 0.67,
+          "completitud_funcional": 0.9,
+          "claridad_comunicacional": 0.9,
+          "profundidad_conceptual": 0.82
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000327,
+          "claude": 0.000323,
+          "promedio": 0.000323
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 541,
+        "tokens_output": 2251,
+        "total_tokens": 2792,
+        "avg_calidad_promedio": 0.72,
+        "avg_calidad_gpt4o": 0.72,
+        "avg_calidad_claude": 0.71,
+        "dimensions": {
+          "exactitud_funcional": 0.33,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.9,
+          "profundidad_conceptual": 0.63
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000258,
+          "claude": 0.000254,
+          "promedio": 0.000258
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 559,
+        "tokens_output": 593,
+        "total_tokens": 1152,
+        "avg_calidad_promedio": 0.86,
+        "avg_calidad_gpt4o": 0.92,
+        "avg_calidad_claude": 0.79,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.85,
+          "claridad_comunicacional": 0.8,
+          "profundidad_conceptual": 0.78
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000799,
+          "claude": 0.000686,
+          "promedio": 0.000747
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 529,
+        "tokens_output": 1925,
+        "total_tokens": 2454,
+        "avg_calidad_promedio": 0.51,
+        "avg_calidad_gpt4o": 0.6,
+        "avg_calidad_claude": 0.42,
+        "dimensions": {
+          "exactitud_funcional": 0.33,
+          "completitud_funcional": 0.62,
+          "claridad_comunicacional": 0.62,
+          "profundidad_conceptual": 0.48
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000244,
+          "claude": 0.000171,
+          "promedio": 0.000208
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 544,
+        "tokens_output": 1899,
+        "total_tokens": 2443,
+        "avg_calidad_promedio": 0.66,
+        "avg_calidad_gpt4o": 0.63,
+        "avg_calidad_claude": 0.68,
+        "dimensions": {
+          "exactitud_funcional": 0.5,
+          "completitud_funcional": 0.82,
+          "claridad_comunicacional": 0.77,
+          "profundidad_conceptual": 0.55
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000258,
+          "claude": 0.000278,
+          "promedio": 0.00027
+        }
+      }
+    }
+  }
+}

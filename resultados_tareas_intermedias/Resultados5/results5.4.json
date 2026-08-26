@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "Un comercio aplica primero un 20% de descuento sobre un producto de $250. Luego agrega un impuesto del 21%. Si el cliente paga en efectivo recibe además un descuento adicional del 5% sobre el precio final. ¿Cuánto termina pagando?",
+      "technique": "zero_shot",
+      "output": "Para resolver el problema, seguiremos los pasos en el orden indicado:\n\n1. **Calcular el descuento del 20% sobre el producto de $250:**\n   \\[\n   \\text{Descuento} = 250 \\times 0.20 = 50\n   \\]\n   \\[\n   \\text{Precio después del descuento} = 250 - 50 = 200\n   \\]\n\n2. **Agregar el impuesto del 21%:**\n   \\[\n   \\text{Impuesto} = 200 \\times 0.21 = 42\n   \\]\n   \\[\n   \\text{Precio después del impuesto} = 200 + 42 = 242\n   \\]\n\n3. **Calcular el descuento adicional del 5% por pago en efectivo:**\n   \\[\n   \\text{Descuento adicional} = 242 \\times 0.05 = 12.10\n   \\]\n   \\[\n   \\text{Precio final} = 242 - 12.10 = 229.90\n   \\]\n\nPor lo tanto, el cliente termina pagando **$229.90**.",
+      "tokens_input": 66,
+      "tokens_output": 236,
+      "total_tokens": 302,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.82
+      }
+    },
+    {
+      "input": "Una cooperativa recibe una donación de $36.000 que debe repartirse entre tres escuelas según la cantidad de estudiantes. La Escuela A tiene 180 alumnos, la Escuela B tiene 240 alumnos y la Escuela C tiene 300 alumnos. ¿Cuánto dinero recibe cada escuela?",
+      "technique": "zero_shot",
+      "output": "Para resolver el problema, primero necesitamos determinar cómo se reparte la donación de $36,000 entre las tres escuelas en función de su número de estudiantes.\n\n1. **Sumar el número total de estudiantes**:\n   - Escuela A: 180 estudiantes\n   - Escuela B: 240 estudiantes\n   - Escuela C: 300 estudiantes\n\n   Total de estudiantes = 180 + 240 + 300 = 720 estudiantes.\n\n2. **Calcular el monto que corresponde a cada estudiante**:\n   \\[\n   \\text{Monto por estudiante} = \\frac{\\text{Total de la donación}}{\\text{Total de estudiantes}} = \\frac{36,000}{720} = 50.\n   \\]\n\n3. **Calcular la cantidad que recibe cada escuela**:\n   - **Escuela A**: \n   \\[\n   180 \\, \\text{estudiantes} \\times 50 = 9,000.\n   \\]\n   - **Escuela B**: \n   \\[\n   240 \\, \\text{estudiantes} \\times 50 = 12,000.\n   \\]\n   - **Escuela C**: \n   \\[\n   300 \\, \\text{estudiantes} \\times 50 = 15,000.\n   \\]\n\n4. **Resumen de los montos que recibe cada escuela**:\n   - Escuela A: $9,000\n   - Escuela B: $12,000\n   - Escuela C: $15,000\n\nPor lo tanto, la Escuela A recibe $9,000, la Escuela B recibe $12,000 y la Escuela C recibe $15,000.",
+      "tokens_input": 72,
+      "tokens_output": 346,
+      "total_tokens": 418,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.82
+      }
+    },
+    {
+      "input": "Una empresa reparte un bono de $48.000 entre tres empleados según las horas trabajadas durante el mes. Ana trabajó 120 horas, Bruno 150 horas y Carla 210 horas. ¿Cuánto recibe cada uno?",
+      "technique": "zero_shot",
+      "output": "Para resolver este problema, primero debemos determinar el total de horas trabajadas por los tres empleados. Luego, podemos calcular el monto que recibe cada uno en base a las horas que trabajaron.\n\n1. **Suma total de horas trabajadas:**\n   - Ana: 120 horas\n   - Bruno: 150 horas\n   - Carla: 210 horas\n\n   Suma total = 120 + 150 + 210 = 480 horas.\n\n2. **Calcular el pago por hora:**\n   El bono total es de $48,000. Entonces, el pago por hora se calcula de la siguiente manera:\n\n   Pago por hora = Total del bono / Total de horas trabajadas\n   \\( \\text{Pago por hora} = \\frac{48,000}{480} = 100 \\) dólares por hora.\n\n3. **Calcular cuánto recibe cada empleado:**\n   \n   - **Ana:**\n     \\( 120 \\text{ horas} \\times 100 \\text{ dólares/hora} = 12,000 \\text{ dólares} \\).\n   \n   - **Bruno:**\n     \\( 150 \\text{ horas} \\times 100 \\text{ dólares/hora} = 15,000 \\text{ dólares} \\).\n   \n   - **Carla:**\n     \\( 210 \\text{ horas} \\times 100 \\text{ dólares/hora} = 21,000 \\text{ dólares} \\).\n\n4. **Resultados:**\n   - Ana recibe: **$12,000**.\n   - Bruno recibe: **$15,000**.\n   - Carla recibe: **$21,000**.\n\nPor lo tanto, los montos que recibe cada empleado son:\n\n- Ana: $12,000\n- Bruno: $15,000\n- Carla: $21,000",
+      "tokens_input": 62,
+      "tokens_output": 378,
+      "total_tokens": 440,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "Un comercio aplica primero un 20% de descuento sobre un producto de $250. Luego agrega un impuesto del 21%. Si el cliente paga en efectivo recibe además un descuento adicional del 5% sobre el precio final. ¿Cuánto termina pagando?",
+      "technique": "few_shot",
+      "output": "Vamos a resolver el problema paso a paso:\n\n1. **Calcular el 20% de descuento sobre el precio inicial de $250:**\n   \\[\n   \\text{Descuento} = 250 \\times 0.20 = 50\n   \\]\n   \\[\n   \\text{Precio después del descuento} = 250 - 50 = 200\n   \\]\n\n2. **Calcular el impuesto del 21% sobre el precio después del descuento de $200:**\n   \\[\n   \\text{Impuesto} = 200 \\times 0.21 = 42\n   \\]\n   \\[\n   \\text{Precio después del impuesto} = 200 + 42 = 242\n   \\]\n\n3. **Calcular el 5% de descuento adicional sobre el precio final de $242 (por pagar en efectivo):**\n   \\[\n   \\text{Descuento adicional} = 242 \\times 0.05 = 12.1\n   \\]\n   \\[\n   \\text{Precio final después del descuento adicional} = 242 - 12.1 = 229.9\n   \\]\n\nPor lo tanto, el cliente termina pagando **$229.90**.",
+      "tokens_input": 121,
+      "tokens_output": 254,
+      "total_tokens": 375,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.75,
+        "calidad": 0.9
+      }
+    },
+    {
+      "input": "Una cooperativa recibe una donación de $36.000 que debe repartirse entre tres escuelas según la cantidad de estudiantes. La Escuela A tiene 180 alumnos, la Escuela B tiene 240 alumnos y la Escuela C tiene 300 alumnos. ¿Cuánto dinero recibe cada escuela?",
+      "technique": "few_shot",
+      "output": "Primero, necesitamos calcular el total de alumnos en las tres escuelas:\n\n- Escuela A: 180 alumnos\n- Escuela B: 240 alumnos\n- Escuela C: 300 alumnos\n\nTotal de alumnos = 180 + 240 + 300 = **720 alumnos**\n\nAhora, calculamos cuánto le corresponde a cada escuela en función de su número de alumnos.\n\nPrimero, determinamos la cantidad de dinero que recibe cada alumno:\n\nDonación total = $36,000\n\nDinero por alumno = $36,000 / 720 = **$50**\n\nAhora, multiplicamos el dinero por alumno por el número de alumnos de cada escuela:\n\n- Escuela A: 180 alumnos x $50/alumno = **$9,000**\n- Escuela B: 240 alumnos x $50/alumno = **$12,000**\n- Escuela C: 300 alumnos x $50/alumno = **$15,000**\n\nPor lo tanto, la cantidad de dinero que recibe cada escuela es:\n\n- **Escuela A: $9,000**\n- **Escuela B: $12,000**\n- **Escuela C: $15,000**",
+      "tokens_input": 127,
+      "tokens_output": 234,
+      "total_tokens": 361,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.82
+      }
+    },
+    {
+      "input": "Una empresa reparte un bono de $48.000 entre tres empleados según las horas trabajadas durante el mes. Ana trabajó 120 horas, Bruno 150 horas y Carla 210 horas. ¿Cuánto recibe cada uno?",
+      "technique": "few_shot",
+      "output": "Para repartir el bono de $48,000 entre Ana, Bruno y Carla según las horas trabajadas, primero debemos calcular el total de horas trabajadas por los tres empleados.\n\n1. **Suma de horas trabajadas:**\n   - Ana: 120 horas\n   - Bruno: 150 horas\n   - Carla: 210 horas\n\n   Total de horas = 120 + 150 + 210 = 480 horas\n\n2. **Calcular el valor por hora:**\n   - Bono total = $48,000\n   - Valor por hora = Bono total / Total de horas trabajadas\n   - Valor por hora = $48,000 / 480 = $100 por hora\n\n3. **Calcular cuánto recibe cada uno:**\n   - Ana: 120 horas * $100/hora = $12,000\n   - Bruno: 150 horas * $100/hora = $15,000\n   - Carla: 210 horas * $100/hora = $21,000\n\n4. **Resultados finales:**\n   - Ana recibe: $12,000\n   - Bruno recibe: $15,000\n   - Carla recibe: $21,000\n\nAsí que, Ana recibe $12,000, Bruno $15,000 y Carla $21,000.",
+      "tokens_input": 117,
+      "tokens_output": 267,
+      "total_tokens": 384,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.82
+      }
+    },
+    {
+      "input": "Un comercio aplica primero un 20% de descuento sobre un producto de $250. Luego agrega un impuesto del 21%. Si el cliente paga en efectivo recibe además un descuento adicional del 5% sobre el precio final. ¿Cuánto termina pagando?",
+      "technique": "cot",
+      "output": "Para resolver el problema, vamos a calcular el precio final en varios pasos. A continuación, describo el razonamiento detallado:\n\n1. **Calcular el primer descuento del 20%:**\n   - El precio original del producto es \\$250.\n   - El descuento del 20% se calcula como:\n     \\[\n     \\text{Descuento} = 250 \\times 0.20 = 50\n     \\]\n   - Entonces, el precio después del primer descuento es:\n     \\[\n     \\text{Precio después del descuento} = 250 - 50 = 200\n     \\]\n\n2. **Agregar el impuesto del 21% sobre el precio con descuento:**\n   - El impuesto del 21% se calcula sobre el nuevo precio (que ya tiene el descuento):\n     \\[\n     \\text{Impuesto} = 200 \\times 0.21 = 42\n     \\]\n   - Entonces, el precio después de agregar el impuesto es:\n     \\[\n     \\text{Precio total después del impuesto} = 200 + 42 = 242\n     \\]\n\n3. **Calcular el descuento adicional del 5% por pago en efectivo:**\n   - El descuento adicional del 5% se aplica sobre el precio total después del impuesto:\n     \\[\n     \\text{Descuento adicional} = 242 \\times 0.05 = 12.10\n     \\]\n   - Así que el precio final que paga el cliente es:\n     \\[\n     \\text{Precio final} = 242 - 12.10 = 229.90\n     \\]\n\nFinalmente, el cliente termina pagando **\\$229.90**.",
+      "tokens_input": 81,
+      "tokens_output": 348,
+      "total_tokens": 429,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Una cooperativa recibe una donación de $36.000 que debe repartirse entre tres escuelas según la cantidad de estudiantes. La Escuela A tiene 180 alumnos, la Escuela B tiene 240 alumnos y la Escuela C tiene 300 alumnos. ¿Cuánto dinero recibe cada escuela?",
+      "technique": "cot",
+      "output": "Para resolver este problema, seguiremos los siguientes pasos:\n\n1. **Calcular el total de estudiantes en las tres escuelas**: \n   Para ello, sumamos el número de alumnos de cada escuela:\n   \\[\n   \\text{Total de estudiantes} = 180 + 240 + 300 = 720 \\text{ alumnos}\n   \\]\n\n2. **Determinar la parte que corresponde a cada escuela**: \n   La donación total de $36.000 se debe repartir de manera proporcional a la cantidad de estudiantes de cada escuela. Para ello, calculamos cuánto dinero corresponde a cada alumno:\n   \\[\n   \\text{Dinero por alumno} = \\frac{36.000}{720} = 50 \\text{ dólares por alumno}\n   \\]\n\n3. **Calcular cuánto recibe cada escuela**:\n   - **Escuela A**: Tiene 180 alumnos, por lo tanto, recibe:\n   \\[\n   \\text{Dinero para Escuela A} = 180 \\times 50 = 9.000 \\text{ dólares}\n   \\]\n\n   - **Escuela B**: Tiene 240 alumnos, por lo tanto, recibe:\n   \\[\n   \\text{Dinero para Escuela B} = 240 \\times 50 = 12.000 \\text{ dólares}\n   \\]\n\n   - **Escuela C**: Tiene 300 alumnos, por lo tanto, recibe:\n   \\[\n   \\text{Dinero para Escuela C} = 300 \\times 50 = 15.000 \\text{ dólares}\n   \\]\n\n4. **Verificación**:\n   Para asegurarnos de que la distribución es correcta, sumamos las cantidades que recibe cada escuela:\n   \\[\n   9.000 + 12.000 + 15.000 = 36.000 \\text{ dólares}\n   \\]\n   Esto confirma que la distribución es correcta.\n\nAsí que, la respuesta final es:\n- Escuela A recibe **$9,000**.\n- Escuela B recibe **$12,000**.\n- Escuela C recibe **$15,000**.",
+      "tokens_input": 87,
+      "tokens_output": 434,
+      "total_tokens": 521,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "Una empresa reparte un bono de $48.000 entre tres empleados según las horas trabajadas durante el mes. Ana trabajó 120 horas, Bruno 150 horas y Carla 210 horas. ¿Cuánto recibe cada uno?",
+      "technique": "cot",
+      "output": "Para resolver el problema, seguimos los siguientes pasos:\n\n1. **Determinar el total de horas trabajadas**:\n   - Ana trabajó: 120 horas\n   - Bruno trabajó: 150 horas\n   - Carla trabajó: 210 horas\n\n   Ahora sumamos todas las horas trabajadas:\n   \\[\n   \\text{Total de horas} = 120 + 150 + 210 = 480 \\text{ horas}\n   \\]\n\n2. **Calcular la tasa por hora**:\n   El bono total a repartir es de $48.000. Para determinar cuánto se paga por cada hora trabajada, dividimos el bono total entre el total de horas trabajadas:\n   \\[\n   \\text{Tasa por hora} = \\frac{48.000}{480} = 100 \\text{ dólares por hora}\n   \\]\n\n3. **Calcular cuánto recibe cada empleado**:\n   Ahora, multiplicamos la cantidad de horas trabajadas por cada empleado por la tasa por hora.\n\n   - **Ana**:\n   \\[\n   \\text{Pago de Ana} = 120 \\text{ horas} \\times 100 = 12.000 \\text{ dólares}\n   \\]\n\n   - **Bruno**:\n   \\[\n   \\text{Pago de Bruno} = 150 \\text{ horas} \\times 100 = 15.000 \\text{ dólares}\n   \\]\n\n   - **Carla**:\n   \\[\n   \\text{Pago de Carla} = 210 \\text{ horas} \\times 100 = 21.000 \\text{ dólares}\n   \\]\n\n4. **Verificar la suma de los pagos**:\n   Sumamos los pagos para asegurarnos de que el total coincida con el bono:\n   \\[\n   12.000 + 15.000 + 21.000 = 48.000\n   \\]\n   La suma es correcta.\n\nPor lo tanto, la distribución final es:\n- Ana recibe: **$12.000**\n- Bruno recibe: **$15.000**\n- Carla recibe: **$21.000**. \n\n**Respuesta final**:\n- Ana: $12.000\n- Bruno: $15.000\n- Carla: $21.000",
+      "tokens_input": 77,
+      "tokens_output": 468,
+      "total_tokens": 545,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Un comercio aplica primero un 20% de descuento sobre un producto de $250. Luego agrega un impuesto del 21%. Si el cliente paga en efectivo recibe además un descuento adicional del 5% sobre el precio final. ¿Cuánto termina pagando?",
+      "technique": "cot_limited",
+      "output": "Primero, aplicamos el 20% de descuento sobre $250: \n\n$250 - (20\\% \\times 250) = 250 - 50 = $200.\n\nLuego, agregamos el 21% de impuesto: \n\n$200 + (21\\% \\times 200) = 200 + 42 = $242.\n\nFinalmente, aplicamos el 5% de descuento por pago en efectivo: \n\n$242 - (5\\% \\times 242) = 242 - 12.1 = $229.90.\n\nPor lo tanto, el cliente termina pagando **$229.90**.",
+      "tokens_input": 87,
+      "tokens_output": 129,
+      "total_tokens": 216,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "Una cooperativa recibe una donación de $36.000 que debe repartirse entre tres escuelas según la cantidad de estudiantes. La Escuela A tiene 180 alumnos, la Escuela B tiene 240 alumnos y la Escuela C tiene 300 alumnos. ¿Cuánto dinero recibe cada escuela?",
+      "technique": "cot_limited",
+      "output": "Primero, calculamos el total de estudiantes: \\(180 + 240 + 300 = 720\\). Luego, encontramos el valor por estudiante dividiendo la donación total entre el total de alumnos: \\(36,000 / 720 = 50\\). Así, multiplicamos el número de alumnos de cada escuela por este valor:\n\n- Escuela A: \\(180 \\times 50 = 9,000\\)\n- Escuela B: \\(240 \\times 50 = 12,000\\)\n- Escuela C: \\(300 \\times 50 = 15,000\\)\n\nAsí, la Escuela A recibe $9,000, la Escuela B $12,000, y la Escuela C $15,000.\n\n**Respuesta final:** Escuela A: $9,000; Escuela B: $12,000; Escuela C: $15,000.",
+      "tokens_input": 93,
+      "tokens_output": 176,
+      "total_tokens": 269,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.6,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.7
+      }
+    },
+    {
+      "input": "Una empresa reparte un bono de $48.000 entre tres empleados según las horas trabajadas durante el mes. Ana trabajó 120 horas, Bruno 150 horas y Carla 210 horas. ¿Cuánto recibe cada uno?",
+      "technique": "cot_limited",
+      "output": "Primero, sumamos las horas trabajadas: \\(120 + 150 + 210 = 480\\) horas. Luego, determinamos el valor por hora dividiendo el bono total entre las horas totales: \\( \\frac{48,000}{480} = 100 \\) dólares por hora. Ahora, calculamos lo que recibe cada empleado multiplicando sus horas trabajadas por el valor por hora:\n\n- Ana: \\(120 \\times 100 = 12,000\\)\n- Bruno: \\(150 \\times 100 = 15,000\\)\n- Carla: \\(210 \\times 100 = 21,000\\)\n\nPor lo tanto, las cantidades son:\n- Ana: $12,000\n- Bruno: $15,000\n- Carla: $21,000.",
+      "tokens_input": 83,
+      "tokens_output": 164,
+      "total_tokens": 247,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "Un comercio aplica primero un 20% de descuento sobre un producto de $250. Luego agrega un impuesto del 21%. Si el cliente paga en efectivo recibe además un descuento adicional del 5% sobre el precio final. ¿Cuánto termina pagando?",
+      "technique": "structured_prompting_json",
+      "output": "Para resolver el problema, sigamos paso a paso:\n\n1. **Calcular el descuento del 20% sobre el precio de $250**:\n   \\[\n   \\text{Descuento} = 250 \\times 0.20 = 50\n   \\]\n   \\[\n   \\text{Precio después del descuento} = 250 - 50 = 200\n   \\]\n\n2. **Agregar el impuesto del 21% sobre el precio después del descuento**:\n   \\[\n   \\text{Impuesto} = 200 \\times 0.21 = 42\n   \\]\n   \\[\n   \\text{Precio después del impuesto} = 200 + 42 = 242\n   \\]\n\n3. **Calcular el descuento adicional del 5% por pagar en efectivo sobre el precio final**:\n   \\[\n   \\text{Descuento adicional} = 242 \\times 0.05 = 12.10\n   \\]\n   \\[\n   \\text{Precio final después del descuento adicional} = 242 - 12.10 = 229.90\n   \\]\n\nFinalmente, el cliente termina pagando **$229.90**.",
+      "tokens_input": 78,
+      "tokens_output": 245,
+      "total_tokens": 323,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "Una cooperativa recibe una donación de $36.000 que debe repartirse entre tres escuelas según la cantidad de estudiantes. La Escuela A tiene 180 alumnos, la Escuela B tiene 240 alumnos y la Escuela C tiene 300 alumnos. ¿Cuánto dinero recibe cada escuela?",
+      "technique": "structured_prompting_json",
+      "output": "Para resolver el problema de cómo repartir la donación de $36,000 entre las tres escuelas según la cantidad de estudiantes, primero debemos calcular el total de estudiantes y luego determinar la proporción que le corresponde a cada escuela.\n\n1. **Calcular el total de estudiantes**:\n\n   - Escuela A: 180 estudiantes\n   - Escuela B: 240 estudiantes\n   - Escuela C: 300 estudiantes\n\n   Total de estudiantes = 180 + 240 + 300 = 720 estudiantes\n\n2. **Calcular la parte que le corresponde a cada escuela**:\n\n   - Escuela A: \n     \\[\n     \\text{Monto para A} = \\left( \\frac{180}{720} \\right) \\times 36,000 = \\frac{1}{4} \\times 36,000 = 9,000\n     \\]\n\n   - Escuela B: \n     \\[\n     \\text{Monto para B} = \\left( \\frac{240}{720} \\right) \\times 36,000 = \\frac{1}{3} \\times 36,000 = 12,000\n     \\]\n\n   - Escuela C: \n     \\[\n     \\text{Monto para C} = \\left( \\frac{300}{720} \\right) \\times 36,000 = \\frac{5}{12} \\times 36,000 = 15,000\n     \\]\n\n3. **Resultados**:\n\n   - Escuela A: **$9,000**\n   - Escuela B: **$12,000**\n   - Escuela C: **$15,000**\n\nPor lo tanto, la Escuela A recibe $9,000, la Escuela B recibe $12,000 y la Escuela C recibe $15,000.",
+      "tokens_input": 84,
+      "tokens_output": 366,
+      "total_tokens": 450,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "Una empresa reparte un bono de $48.000 entre tres empleados según las horas trabajadas durante el mes. Ana trabajó 120 horas, Bruno 150 horas y Carla 210 horas. ¿Cuánto recibe cada uno?",
+      "technique": "structured_prompting_json",
+      "output": "Para resolver el problema, debemos calcular cuánto recibe cada empleado en función de las horas trabajadas. \n\nPrimero, sumamos las horas trabajadas por los tres empleados:\n\n- Horas de Ana: 120\n- Horas de Bruno: 150\n- Horas de Carla: 210\n\nTotal de horas trabajadas:\n\\[\n120 + 150 + 210 = 480 \\text{ horas}\n\\]\n\nAhora calculamos el valor por hora:\n\\[\n\\text{Valor por hora} = \\frac{\\text{Total del bono}}{\\text{Total de horas trabajadas}} = \\frac{48,000}{480} = 100 \\text{ (dólares por hora)}\n\\]\n\nAhora, calculamos cuánto recibe cada uno:\n\n- **Ana**: \n\\[\n\\text{Monto de Ana} = 120 \\text{ horas} \\times 100 \\text{ (dólares por hora)} = 12,000 \\text{ dólares}\n\\]\n\n- **Bruno**: \n\\[\n\\text{Monto de Bruno} = 150 \\text{ horas} \\times 100 \\text{ (dólares por hora)} = 15,000 \\text{ dólares}\n\\]\n\n- **Carla**: \n\\[\n\\text{Monto de Carla} = 210 \\text{ horas} \\times 100 \\text{ (dólares por hora)} = 21,000 \\text{ dólares}\n\\]\n\nPor lo tanto, los montos que recibe cada uno son:\n- Ana: **$12,000**\n- Bruno: **$15,000**\n- Carla: **$21,000**",
+      "tokens_input": 74,
+      "tokens_output": 345,
+      "total_tokens": 419,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "Un comercio aplica primero un 20% de descuento sobre un producto de $250. Luego agrega un impuesto del 21%. Si el cliente paga en efectivo recibe además un descuento adicional del 5% sobre el precio final. ¿Cuánto termina pagando?",
+      "technique": "role_prompting",
+      "output": "Para resolver el problema, vamos a seguir paso a paso todos los descuentos e impuestos aplicados:\n\n1. **Precio inicial del producto**: $250\n\n2. **Aplicar el primer descuento del 20%**:\n   \\[\n   \\text{Descuento} = 250 \\times 0.20 = 50\n   \\]\n   \\[\n   \\text{Precio después del descuento} = 250 - 50 = 200\n   \\]\n\n3. **Agregar el impuesto del 21% sobre el precio después del descuento**:\n   \\[\n   \\text{Impuesto} = 200 \\times 0.21 = 42\n   \\]\n   \\[\n   \\text{Precio después del impuesto} = 200 + 42 = 242\n   \\]\n\n4. **Aplicar el descuento adicional del 5% por pago en efectivo**:\n   \\[\n   \\text{Descuento adicional} = 242 \\times 0.05 = 12.1\n   \\]\n   \\[\n   \\text{Precio final después del descuento adicional} = 242 - 12.1 = 229.9\n   \\]\n\nPor lo tanto, el cliente termina pagando **$229.90**.",
+      "tokens_input": 74,
+      "tokens_output": 258,
+      "total_tokens": 332,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "Una cooperativa recibe una donación de $36.000 que debe repartirse entre tres escuelas según la cantidad de estudiantes. La Escuela A tiene 180 alumnos, la Escuela B tiene 240 alumnos y la Escuela C tiene 300 alumnos. ¿Cuánto dinero recibe cada escuela?",
+      "technique": "role_prompting",
+      "output": "Para resolver el problema, primero necesitamos determinar la cantidad total de alumnos en las tres escuelas. Luego, calcularemos el porcentaje que corresponde a cada escuela en base a su número de estudiantes. Finalmente, multiplicaremos este porcentaje por la donación total de $36,000 para encontrar cuánto recibe cada escuela.\n\n1. **Calculamos el total de alumnos**:\n   \\[\n   \\text{Total de alumnos} = \\text{Alumnos A} + \\text{Alumnos B} + \\text{Alumnos C} = 180 + 240 + 300 = 720\n   \\]\n\n2. **Calculamos la proporción de alumnos de cada escuela**:\n   - **Escuela A**:\n   \\[\n   \\text{Proporción A} = \\frac{180}{720} = \\frac{1}{4}\n   \\]\n\n   - **Escuela B**:\n   \\[\n   \\text{Proporción B} = \\frac{240}{720} = \\frac{1}{3}\n   \\]\n\n   - **Escuela C**:\n   \\[\n   \\text{Proporción C} = \\frac{300}{720} = \\frac{5}{12}\n   \\]\n\n3. **Calculamos cuánto recibe cada escuela**:\n   - **Dinero para la Escuela A**:\n   \\[\n   \\text{Dinero A} = 36,000 \\times \\frac{180}{720} = 36,000 \\times \\frac{1}{4} = 9,000\n   \\]\n\n   - **Dinero para la Escuela B**:\n   \\[\n   \\text{Dinero B} = 36,000 \\times \\frac{240}{720} = 36,000 \\times \\frac{1}{3} = 12,000\n   \\]\n\n   - **Dinero para la Escuela C**:\n   \\[\n   \\text{Dinero C} = 36,000 \\times \\frac{300}{720} = 36,000 \\times \\frac{5}{12} = 15,000\n   \\]\n\n4. **Resultados**:\n   - Escuela A recibe $9,000\n   - Escuela B recibe $12,000\n   - Escuela C recibe $15,000\n\nAsí, el dinero que recibe cada escuela es:\n- Escuela A: $9,000\n- Escuela B: $12,000\n- Escuela C: $15,000",
+      "tokens_input": 80,
+      "tokens_output": 514,
+      "total_tokens": 594,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "Una empresa reparte un bono de $48.000 entre tres empleados según las horas trabajadas durante el mes. Ana trabajó 120 horas, Bruno 150 horas y Carla 210 horas. ¿Cuánto recibe cada uno?",
+      "technique": "role_prompting",
+      "output": "Para resolver el problema, primero debemos calcular el total de horas trabajadas por los tres empleados y luego determinar la proporción que cada uno de ellos representa respecto al total de horas.\n\n1. **Calcular el total de horas trabajadas:**\n   - Horas de Ana: 120\n   - Horas de Bruno: 150\n   - Horas de Carla: 210\n\n   Total de horas = 120 + 150 + 210 = 480 horas.\n\n2. **Calcular la proporción que le corresponde a cada empleado:**\n   - Proporción de Ana: \\( \\frac{120}{480} \\)\n   - Proporción de Bruno: \\( \\frac{150}{480} \\)\n   - Proporción de Carla: \\( \\frac{210}{480} \\)\n\n3. **Repartir el bono de $48.000 según las proporciones:**\n   - Monto que recibe Ana: \n     \\[\n     \\text{Monto de Ana} = \\frac{120}{480} \\times 48,000 = 12,000.\n     \\]\n   - Monto que recibe Bruno: \n     \\[\n     \\text{Monto de Bruno} = \\frac{150}{480} \\times 48,000 = 15,000.\n     \\]\n   - Monto que recibe Carla: \n     \\[\n     \\text{Monto de Carla} = \\frac{210}{480} \\times 48,000 = 21,000.\n     \\]\n\nPor lo tanto, el reparto final es:\n- **Ana recibe:** $12,000\n- **Bruno recibe:** $15,000\n- **Carla recibe:** $21,000",
+      "tokens_input": 70,
+      "tokens_output": 355,
+      "total_tokens": 425,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 7050,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 200,
+        "tokens_output": 960,
+        "total_tokens": 1160,
+        "avg_calidad_promedio": 0.85,
+        "avg_calidad_gpt4o": 0.83,
+        "avg_calidad_claude": 0.86,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.75,
+          "profundidad_conceptual": 0.63
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000716,
+          "claude": 0.000741,
+          "promedio": 0.000733
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 365,
+        "tokens_output": 755,
+        "total_tokens": 1120,
+        "avg_calidad_promedio": 0.85,
+        "avg_calidad_gpt4o": 0.88,
+        "avg_calidad_claude": 0.82,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.75,
+          "profundidad_conceptual": 0.65
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000786,
+          "claude": 0.000732,
+          "promedio": 0.000759
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 245,
+        "tokens_output": 1250,
+        "total_tokens": 1495,
+        "avg_calidad_promedio": 0.99,
+        "avg_calidad_gpt4o": 0.97,
+        "avg_calidad_claude": 1.0,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 1.0,
+          "profundidad_conceptual": 0.95
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000649,
+          "claude": 0.000669,
+          "promedio": 0.000662
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 263,
+        "tokens_output": 469,
+        "total_tokens": 732,
+        "avg_calidad_promedio": 0.73,
+        "avg_calidad_gpt4o": 0.74,
+        "avg_calidad_claude": 0.72,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.7,
+          "claridad_comunicacional": 0.67,
+          "profundidad_conceptual": 0.57
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.001011,
+          "claude": 0.000984,
+          "promedio": 0.000997
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 236,
+        "tokens_output": 956,
+        "total_tokens": 1192,
+        "avg_calidad_promedio": 0.91,
+        "avg_calidad_gpt4o": 0.9,
+        "avg_calidad_claude": 0.93,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.9,
+          "profundidad_conceptual": 0.75
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000755,
+          "claude": 0.00078,
+          "promedio": 0.000763
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 224,
+        "tokens_output": 1127,
+        "total_tokens": 1351,
+        "avg_calidad_promedio": 0.94,
+        "avg_calidad_gpt4o": 0.95,
+        "avg_calidad_claude": 0.93,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.95,
+          "profundidad_conceptual": 0.8
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000703,
+          "claude": 0.000688,
+          "promedio": 0.000696
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "¿Cuál es la capital de Argentina?",
+      "technique": "zero_shot",
+      "output": "La capital de Argentina es Buenos Aires.",
+      "tokens_input": 21,
+      "tokens_output": 8,
+      "total_tokens": 29,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Francia?",
+      "technique": "zero_shot",
+      "output": "La capital de Francia es París.",
+      "tokens_input": 21,
+      "tokens_output": 7,
+      "total_tokens": 28,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.65,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de España?",
+      "technique": "zero_shot",
+      "output": "La capital de España es Madrid.",
+      "tokens_input": 21,
+      "tokens_output": 7,
+      "total_tokens": 28,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.65,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Argentina?",
+      "technique": "few_shot",
+      "output": "Buenos Aires",
+      "tokens_input": 60,
+      "tokens_output": 2,
+      "total_tokens": 62,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.6
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Francia?",
+      "technique": "few_shot",
+      "output": "La capital de Francia es París.",
+      "tokens_input": 60,
+      "tokens_output": 7,
+      "total_tokens": 67,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.65,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de España?",
+      "technique": "few_shot",
+      "output": "La capital de España es Madrid.",
+      "tokens_input": 60,
+      "tokens_output": 7,
+      "total_tokens": 67,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.65,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Argentina?",
+      "technique": "cot",
+      "output": "Para responder a la pregunta \"¿Cuál es la capital de Argentina?\", seguiré un razonamiento paso a paso:\n\n1. **Identificación del país**: Primero, identificamos que la pregunta se refiere a Argentina, un país situado en América del Sur.\n\n2. **Conocimiento geográfico**: Es fundamental conocer las capitales de los países. La capital de un país es la ciudad donde generalmente se encuentran los centros de gobierno y administración.\n\n3. **Análisis de información sobre Argentina**: Argentina es un país conocido en América del Sur, con Buenos Aires como su ciudad más prominente y relevante tanto cultural como políticamente.\n\n4. **Confirmación de la capital**: A través de mi conocimiento, puedo afirmar que Buenos Aires es efectivamente la capital de Argentina. Es reconocida no solo como la capital política, sino también como un importante centro cultural, económico y turístico.\n\n5. **Conclusión**: Después de llevar a cabo este razonamiento y verificar la información, puedo concluir con seguridad.\n\nLa respuesta final es: **Buenos Aires**.",
+      "tokens_input": 36,
+      "tokens_output": 214,
+      "total_tokens": 250,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Francia?",
+      "technique": "cot",
+      "output": "Para determinar la capital de Francia, sigamos un razonamiento paso a paso:\n\n1. **Identificar el país**: Primero, entendemos que estamos tratando con Francia, un país ubicado en Europa occidental.\n\n2. **Conocer las capitales**: La capital de un país es generalmente la ciudad donde se encuentra el gobierno nacional. Es común que las capitales sean conocidas a nivel mundial.\n\n3. **Referencias comunes**: Francia es un país de renombre con una ciudad que es especialmente famosa por su cultura, historia y monumentos. Esa ciudad también suele ser mencionada en libros, películas y medios de comunicación como la capital del país.\n\n4. **Confirmar datos**: Al revisar fuentes de información, como enciclopedias o bases de datos geográficas, constatamos que París es universalmente reconocida como la capital de Francia.\n\nCon base en este razonamiento, la respuesta final es:\n\nLa capital de Francia es París.",
+      "tokens_input": 36,
+      "tokens_output": 192,
+      "total_tokens": 228,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de España?",
+      "technique": "cot",
+      "output": "Para responder a la pregunta sobre la capital de España, podemos seguir los siguientes pasos:\n\n1. **Identificación de la pregunta**: La pregunta busca saber cuál es la capital de un país específico, en este caso, España.\n\n2. **Conocimiento previo**: Reflexiono sobre lo que sé acerca de España. Una de las primeras cosas que se aprende sobre un país es su capital, que es generalmente la ciudad donde se encuentra el gobierno y las instituciones centrales del país.\n\n3. **Confirmación de datos**: En el caso de España, la ciudad que generalmente se reconoce como su capital es Madrid. Madrid no solo es la ciudad más grande del país, sino que también es el centro cultural, económico y político de España.\n\n4. **Verificación**: Para asegurarme, puedo recordar que Madrid es también conocida por su relevancia en la historia y su influencia en la política y la economía europea.\n\n5. **Conclusión**: Basado en toda esta información, llego a la respuesta final.\n\nLa capital de España es **Madrid**.",
+      "tokens_input": 36,
+      "tokens_output": 215,
+      "total_tokens": 251,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Argentina?",
+      "technique": "cot_limited",
+      "output": "La capital de Argentina es Buenos Aires. Esta ciudad se estableció como la capital en 1880, y es el centro político, cultural y económico del país. Buenos Aires no solo alberga los principales organismos del gobierno, como la Casa Rosada, sino que también es un importante puerto y un centro de actividad comercial. Su población diversa y su herencia culturalla hacen una metrópoli única en América Latina.\n\nRespuesta final: Buenos Aires.",
+      "tokens_input": 42,
+      "tokens_output": 91,
+      "total_tokens": 133,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Francia?",
+      "technique": "cot_limited",
+      "output": "Para determinar la capital de un país, se considera la ciudad donde se encuentra el gobierno central y los principales edificios administrativos. En el caso de Francia, París es conocida como su capital. Además, es una ciudad histórica y culturalmente significativa, reconocida mundialmente. \n\nRespuesta final: París.",
+      "tokens_input": 42,
+      "tokens_output": 59,
+      "total_tokens": 101,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.81
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de España?",
+      "technique": "cot_limited",
+      "output": "La capital de España es Madrid. Este dato es fundamental en la geografía y la historia del país. Madrid no solo es el centro político, donde se ubican las instituciones gubernamentales, sino también un importante centro cultural y económico. Es conocida por su rica historia, arte y diversidad. Además, su ubicación en el centro de la península ibérica facilita el acceso a otras regiones del país, lo que refuerza su papel como capital. \n\n**Respuesta final:** Madrid.",
+      "tokens_input": 42,
+      "tokens_output": 98,
+      "total_tokens": 140,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Argentina?",
+      "technique": "structured_prompting_json",
+      "output": "La capital de Argentina es Buenos Aires.",
+      "tokens_input": 33,
+      "tokens_output": 8,
+      "total_tokens": 41,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Francia?",
+      "technique": "structured_prompting_json",
+      "output": "La capital de Francia es París.",
+      "tokens_input": 33,
+      "tokens_output": 7,
+      "total_tokens": 40,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.65,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de España?",
+      "technique": "structured_prompting_json",
+      "output": "La capital de España es Madrid.",
+      "tokens_input": 33,
+      "tokens_output": 7,
+      "total_tokens": 40,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.65,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Argentina?",
+      "technique": "role_prompting",
+      "output": "La capital de Argentina es Buenos Aires. Es una de las ciudades más grandes y pobladas de América del Sur y se encuentra ubicada en la costa este del país, a orillas del Río de la Plata. Buenos Aires es un importante centro cultural, político y económico de Argentina.",
+      "tokens_input": 30,
+      "tokens_output": 56,
+      "total_tokens": 86,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de Francia?",
+      "technique": "role_prompting",
+      "output": "La capital de Francia es París. Es conocida por su rica historia, su arquitectura emblemática como la Torre Eiffel, la Catedral de Notre-Dame y el Museo del Louvre, entre otros. París es también un importante centro cultural, económico y político en Europa y en el mundo.",
+      "tokens_input": 30,
+      "tokens_output": 55,
+      "total_tokens": 85,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "¿Cuál es la capital de España?",
+      "technique": "role_prompting",
+      "output": "La capital de España es Madrid. Es la ciudad más grande del país y un importante centro cultural, económico y político. Madrid está situada en el centro de la península ibérica y es conocida por su rica historia, museos, arquitectura y vida nocturna.",
+      "tokens_input": 30,
+      "tokens_output": 53,
+      "total_tokens": 83,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.82
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 1759,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 63,
+        "tokens_output": 22,
+        "total_tokens": 85,
+        "avg_calidad_promedio": 0.69,
+        "avg_calidad_gpt4o": 0.56,
+        "avg_calidad_claude": 0.82,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.72,
+          "claridad_comunicacional": 0.85,
+          "profundidad_conceptual": 0.2
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.006588,
+          "claude": 0.009647,
+          "promedio": 0.008118
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 180,
+        "tokens_output": 16,
+        "total_tokens": 196,
+        "avg_calidad_promedio": 0.64,
+        "avg_calidad_gpt4o": 0.48,
+        "avg_calidad_claude": 0.8,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.6,
+          "claridad_comunicacional": 0.82,
+          "profundidad_conceptual": 0.15
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.002449,
+          "claude": 0.004082,
+          "promedio": 0.003265
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 108,
+        "tokens_output": 621,
+        "total_tokens": 729,
+        "avg_calidad_promedio": 0.96,
+        "avg_calidad_gpt4o": 1.0,
+        "avg_calidad_claude": 0.92,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.95,
+          "profundidad_conceptual": 0.9
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.001372,
+          "claude": 0.001262,
+          "promedio": 0.001317
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 126,
+        "tokens_output": 248,
+        "total_tokens": 374,
+        "avg_calidad_promedio": 0.9,
+        "avg_calidad_gpt4o": 0.88,
+        "avg_calidad_claude": 0.93,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.95,
+          "claridad_comunicacional": 0.9,
+          "profundidad_conceptual": 0.75
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.002353,
+          "claude": 0.002487,
+          "promedio": 0.002406
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 99,
+        "tokens_output": 22,
+        "total_tokens": 121,
+        "avg_calidad_promedio": 0.69,
+        "avg_calidad_gpt4o": 0.56,
+        "avg_calidad_claude": 0.82,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.72,
+          "claridad_comunicacional": 0.85,
+          "profundidad_conceptual": 0.2
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.004628,
+          "claude": 0.006777,
+          "promedio": 0.005702
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 90,
+        "tokens_output": 164,
+        "total_tokens": 254,
+        "avg_calidad_promedio": 0.9,
+        "avg_calidad_gpt4o": 0.86,
+        "avg_calidad_claude": 0.95,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 0.95,
+          "claridad_comunicacional": 0.95,
+          "profundidad_conceptual": 0.72
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.003386,
+          "claude": 0.00374,
+          "promedio": 0.003543
+        }
+      }
+    }
+  }
+}

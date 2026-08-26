@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "The self-attention mechanism allows each token in a sequence to weigh the relevance of every other token when computing its own representation, rather than relying solely on fixed-size context windows as earlier recurrent architectures did. In practice, this is implemented through three learned projections—queries, keys, and values—whose dot products, scaled by the square root of the key dimension, are passed through a softmax function to produce attention weights. Stacking multiple attention heads in parallel lets the model attend to different types of relationships simultaneously, such as syntactic dependencies in one head and long-range semantic associations in another. This design choice, combined with residual connections and layer normalization, is what allows transformer-based models to scale to billions of parameters without suffering from the vanishing gradient problems that plagued earlier deep recurrent networks. However, the quadratic cost of self-attention with respect to sequence length remains a significant bottleneck for processing very long documents.",
+      "technique": "zero_shot",
+      "output": "El mecanismo de autoatención permite que cada token en una secuencia peso la relevancia de cada otro token al calcular su propia representación, en lugar de depender únicamente de ventanas de contexto de tamaño fijo como lo hacían las arquitecturas recurrentes anteriores. En la práctica, esto se implementa a través de tres proyecciones aprendidas: consultas, claves y valores, cuyos productos punto, escalados por la raíz cuadrada de la dimensión de la clave, se pasan a través de una función softmax para producir pesos de atención. Apilar múltiples cabezas de atención en paralelo permite al modelo atender diferentes tipos de relaciones simultáneamente, como dependencias sintácticas en una cabeza y asociaciones semánticas de largo alcance en otra. Esta elección de diseño, combinada con conexiones residuales y normalización de capas, es lo que permite a los modelos basados en transformadores escalar a miles de millones de parámetros sin sufrir los problemas de gradiente desvanecido que plagaron a las redes recurrentes profundas anteriores. Sin embargo, el costo cuadrático de la autoatención con respecto a la longitud de la secuencia sigue siendo un cuello de botella significativo para procesar documentos muy largos.",
+      "tokens_input": 201,
+      "tokens_output": 242,
+      "total_tokens": 443,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "Reinforcement learning from human feedback has become the dominant approach for aligning large language models with human preferences after pretraining. The process typically unfolds in three stages: first, human annotators rank multiple model outputs for the same prompt according to helpfulness, honesty, and harmlessness; second, these rankings are used to train a separate reward model that learns to predict which responses humans would prefer; and third, the original language model is fine-tuned using reinforcement learning, most commonly proximal policy optimization, to maximize the reward model's score. Critics of this pipeline point out that reward models can be gamed through a phenomenon known as reward hacking, where the policy learns to exploit quirks of the reward model rather than genuinely improving response quality. More recent alternatives, such as direct preference optimization, attempt to sidestep the need for a separate reward model entirely by reformulating the alignment objective as a classification problem over preference pairs, which simplifies the training pipeline considerably.",
+      "technique": "zero_shot",
+      "output": "El aprendizaje por refuerzo a partir de la retroalimentación humana se ha convertido en el enfoque dominante para alinear grandes modelos de lenguaje con las preferencias humanas después del preentrenamiento. El proceso típicamente se desarrolla en tres etapas: primero, los anotadores humanos clasifican múltiples salidas del modelo para el mismo aviso según su utilidad, honestidad y seguridad; segundo, estas clasificaciones se utilizan para entrenar un modelo de recompensa separado que aprende a predecir cuáles respuestas preferirían los humanos; y tercero, el modelo de lenguaje original se ajusta utilizando aprendizaje por refuerzo, siendo la optimización de políticas proximales la más común, para maximizar la puntuación del modelo de recompensa. Los críticos de este proceso señalan que los modelos de recompensa pueden ser manipulados a través de un fenómeno conocido como hacking de recompensa, donde la política aprende a explotar peculiaridades del modelo de recompensa en lugar de mejorar genuinamente la calidad de las respuestas. Alternativas más recientes, como la optimización directa de preferencias, intentan eludir por completo la necesidad de un modelo de recompensa separado reformulando el objetivo de alineación como un problema de clasificación sobre pares de preferencias, lo que simplifica considerablemente el proceso de entrenamiento.",
+      "tokens_input": 210,
+      "tokens_output": 252,
+      "total_tokens": 462,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.69
+      }
+    },
+    {
+      "input": "Empirical scaling laws suggest that a model's loss on held-out data decreases predictably as a power-law function of three factors: the number of parameters, the size of the training dataset, and the amount of compute used, measured in floating-point operations (FLOPs). A widely cited study found that for a fixed compute budget, the optimal allocation is roughly 20 training tokens per parameter, which implied that many earlier models in the 175B-to-540B parameter range were substantially undertrained relative to their size. This finding motivated a shift toward smaller, more heavily trained models that match or exceed the performance of larger predecessors while requiring far less compute at inference time. On standard benchmarks such as MMLU and HumanEval, this approach has closed much of the gap between models an order of magnitude apart in parameter count, though performance on tasks requiring genuine multi-step reasoning still correlates more strongly with scale than with training-token density alone.",
+      "technique": "zero_shot",
+      "output": "Las leyes de escalado empírico sugieren que la pérdida de un modelo en datos retenidos disminuye de manera predecible como una función de potencia de tres factores: el número de parámetros, el tamaño del conjunto de datos de entrenamiento y la cantidad de computación utilizada, medida en operaciones de punto flotante (FLOPs). Un estudio ampliamente citado encontró que, para un presupuesto de computación fijo, la asignación óptima es de aproximadamente 20 tokens de entrenamiento por parámetro, lo que implica que muchos modelos anteriores en el rango de 175B a 540B de parámetros estaban sustancialmente subentrenados en relación con su tamaño. Este hallazgo motivó un cambio hacia modelos más pequeños y entrenados de manera más intensiva que igualan o superan el rendimiento de sus predecesores más grandes, a la vez que requieren mucha menos computación en el tiempo de inferencia. En benchmarks estándar como MMLU y HumanEval, este enfoque ha cerrado gran parte de la brecha entre modelos que difieren en un orden de magnitud en el conteo de parámetros, aunque el rendimiento en tareas que requieren un razonamiento genuino de múltiples pasos todavía se correlaciona más fuertemente con la escala que con la densidad de tokens de entrenamiento únicamente.",
+      "tokens_input": 208,
+      "tokens_output": 264,
+      "total_tokens": 472,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "The self-attention mechanism allows each token in a sequence to weigh the relevance of every other token when computing its own representation, rather than relying solely on fixed-size context windows as earlier recurrent architectures did. In practice, this is implemented through three learned projections—queries, keys, and values—whose dot products, scaled by the square root of the key dimension, are passed through a softmax function to produce attention weights. Stacking multiple attention heads in parallel lets the model attend to different types of relationships simultaneously, such as syntactic dependencies in one head and long-range semantic associations in another. This design choice, combined with residual connections and layer normalization, is what allows transformer-based models to scale to billions of parameters without suffering from the vanishing gradient problems that plagued earlier deep recurrent networks. However, the quadratic cost of self-attention with respect to sequence length remains a significant bottleneck for processing very long documents.",
+      "technique": "few_shot",
+      "output": "El mecanismo de autoatención permite que cada token en una secuencia pese la relevancia de cada otro token al calcular su propia representación, en lugar de depender únicamente de ventanas de contexto de tamaño fijo como lo hacían las arquitecturas recurrentes anteriores. En la práctica, esto se implementa a través de tres proyecciones aprendidas: consultas, claves y valores, cuyos productos punto, escalados por la raíz cuadrada de la dimensión de la clave, se pasan a través de una función softmax para producir pesos de atención. Apilar múltiples cabezas de atención en paralelo permite al modelo atender diferentes tipos de relaciones simultáneamente, como dependencias sintácticas en una cabeza y asociaciones semánticas a largo plazo en otra. Esta elección de diseño, combinada con conexiones residuales y normalización de capas, es lo que permite que los modelos basados en transformadores escalen a miles de millones de parámetros sin sufrir los problemas de desvanecimiento del gradiente que aquejaron a las redes recurrentes profundas anteriores. Sin embargo, el costo cuadrático de la autoatención con respecto a la longitud de la secuencia sigue siendo un cuello de botella significativo para el procesamiento de documentos muy largos.",
+      "tokens_input": 254,
+      "tokens_output": 246,
+      "total_tokens": 500,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.84
+      }
+    },
+    {
+      "input": "Reinforcement learning from human feedback has become the dominant approach for aligning large language models with human preferences after pretraining. The process typically unfolds in three stages: first, human annotators rank multiple model outputs for the same prompt according to helpfulness, honesty, and harmlessness; second, these rankings are used to train a separate reward model that learns to predict which responses humans would prefer; and third, the original language model is fine-tuned using reinforcement learning, most commonly proximal policy optimization, to maximize the reward model's score. Critics of this pipeline point out that reward models can be gamed through a phenomenon known as reward hacking, where the policy learns to exploit quirks of the reward model rather than genuinely improving response quality. More recent alternatives, such as direct preference optimization, attempt to sidestep the need for a separate reward model entirely by reformulating the alignment objective as a classification problem over preference pairs, which simplifies the training pipeline considerably.",
+      "technique": "few_shot",
+      "output": "El aprendizaje por refuerzo a partir de la retroalimentación humana se ha convertido en el enfoque dominante para alinear grandes modelos de lenguaje con las preferencias humanas después del preentrenamiento. El proceso generalmente se desarrolla en tres etapas: primero, los anotadores humanos clasifican múltiples salidas del modelo para el mismo mensaje según su utilidad, honestidad e inofensividad; segundo, estas clasificaciones se utilizan para entrenar un modelo de recompensa separado que aprende a predecir qué respuestas preferirían los humanos; y tercero, el modelo de lenguaje original se ajusta mediante aprendizaje por refuerzo, comúnmente con la optimización de políticas proximales, para maximizar la puntuación del modelo de recompensa. Los críticos de este proceso señalan que los modelos de recompensa pueden ser manipulados a través de un fenómeno conocido como \"hackeo de recompensa\", donde la política aprende a explotar peculiaridades del modelo de recompensa en lugar de mejorar genuinamente la calidad de las respuestas. Alternativas más recientes, como la optimización directa de preferencias, intentan eludir por completo la necesidad de un modelo de recompensa separado al reformular el objetivo de alineación como un problema de clasificación sobre pares de preferencias, lo que simplifica considerablemente la tubería de entrenamiento.",
+      "tokens_input": 263,
+      "tokens_output": 256,
+      "total_tokens": 519,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "Empirical scaling laws suggest that a model's loss on held-out data decreases predictably as a power-law function of three factors: the number of parameters, the size of the training dataset, and the amount of compute used, measured in floating-point operations (FLOPs). A widely cited study found that for a fixed compute budget, the optimal allocation is roughly 20 training tokens per parameter, which implied that many earlier models in the 175B-to-540B parameter range were substantially undertrained relative to their size. This finding motivated a shift toward smaller, more heavily trained models that match or exceed the performance of larger predecessors while requiring far less compute at inference time. On standard benchmarks such as MMLU and HumanEval, this approach has closed much of the gap between models an order of magnitude apart in parameter count, though performance on tasks requiring genuine multi-step reasoning still correlates more strongly with scale than with training-token density alone.",
+      "technique": "few_shot",
+      "output": "Las leyes de escalado empíricas sugieren que la pérdida de un modelo en datos retenidos disminuye de manera predecible como una función de ley de potencias de tres factores: el número de parámetros, el tamaño del conjunto de datos de entrenamiento y la cantidad de cómputo utilizado, medido en operaciones en punto flotante (FLOPs). Un estudio ampliamente citado encontró que, para un presupuesto de cómputo fijo, la asignación óptima es aproximadamente 20 tokens de entrenamiento por parámetro, lo que implicaba que muchos modelos anteriores en el rango de 175B a 540B parámetros estaban sustancialmente subentrenados en relación a su tamaño. Este hallazgo motivó un cambio hacia modelos más pequeños y entrenados más intensamente que igualan o superan el rendimiento de sus predecesores más grandes, mientras requieren mucho menos cómputo en el momento de la inferencia. En benchmarks estándar como MMLU y HumanEval, este enfoque ha cerrado gran parte de la brecha entre modelos con una diferencia de orden de magnitud en el conteo de parámetros, aunque el rendimiento en tareas que requieren un razonamiento genuino de múltiples pasos todavía se correlaciona más fuertemente con la escala que con la densidad de tokens de entrenamiento por sí sola.",
+      "tokens_input": 261,
+      "tokens_output": 270,
+      "total_tokens": 531,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.8
+      }
+    },
+    {
+      "input": "The self-attention mechanism allows each token in a sequence to weigh the relevance of every other token when computing its own representation, rather than relying solely on fixed-size context windows as earlier recurrent architectures did. In practice, this is implemented through three learned projections—queries, keys, and values—whose dot products, scaled by the square root of the key dimension, are passed through a softmax function to produce attention weights. Stacking multiple attention heads in parallel lets the model attend to different types of relationships simultaneously, such as syntactic dependencies in one head and long-range semantic associations in another. This design choice, combined with residual connections and layer normalization, is what allows transformer-based models to scale to billions of parameters without suffering from the vanishing gradient problems that plagued earlier deep recurrent networks. However, the quadratic cost of self-attention with respect to sequence length remains a significant bottleneck for processing very long documents.",
+      "technique": "cot",
+      "output": "**Estrategia para la traducción:**\n\n1. **Comprensión del texto original:** Primero, leeré el texto para entender el tema principal y las ideas clave. El texto trata sobre el mecanismo de autoatención en arquitecturas de modelos de transformadores y su comparación con arquitecturas recurrentes anteriores.\n\n2. **Identificación de términos técnicos:** Reconoceré los términos específicos que requieren una traducción precisa, como \"self-attention mechanism\", \"tokens\", \"queries\", \"keys\", \"values\", \"softmax function\", \"attention weights\", \"attention heads\", \"syntactic dependencies\", \"semantic associations\", \"residual connections\", \"layer normalization\", y \"vanishing gradient problems\".\n\n3. **Traducción del texto por secciones:** Traduciré el texto de manera coherente y precisa por secciones, asegurándome de que el significado técnico se mantenga y que la terminología sea la correcta.\n\n4. **Revisión de la traducción:** Finalmente, revisaré el texto traducido para asegurarme de que fluya bien y sea comprensible en español.\n\n**Traducción completa:**\n\nEl mecanismo de autoatención permite que cada token en una secuencia pese la relevancia de cada otro token al calcular su propia representación, en lugar de depender únicamente de ventanas de contexto de tamaño fijo como lo hacían las arquitecturas recurrentes anteriores. En la práctica, esto se implementa a través de tres proyecciones aprendidas: consultas, claves y valores, cuyos productos punto, escalados por la raíz cuadrada de la dimensión de la clave, se pasan a través de una función softmax para producir pesos de atención. Apilar múltiples cabezales de atención en paralelo permite que el modelo atienda diferentes tipos de relaciones simultáneamente, como dependencias sintácticas en un cabezal y asociaciones semánticas de largo alcance en otro. Esta elección de diseño, combinada con conexiones residuales y normalización de capa, es lo que permite a los modelos basados en transformadores escalar a miles de millones de parámetros sin sufrir los problemas de gradiente que afectaban a las redes recurrentes profundas anteriores. Sin embargo, el costo cuadrático de la autoatención con respecto a la longitud de la secuencia sigue siendo un importante cuello de botella para procesar documentos muy largos.",
+      "tokens_input": 216,
+      "tokens_output": 473,
+      "total_tokens": 689,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Reinforcement learning from human feedback has become the dominant approach for aligning large language models with human preferences after pretraining. The process typically unfolds in three stages: first, human annotators rank multiple model outputs for the same prompt according to helpfulness, honesty, and harmlessness; second, these rankings are used to train a separate reward model that learns to predict which responses humans would prefer; and third, the original language model is fine-tuned using reinforcement learning, most commonly proximal policy optimization, to maximize the reward model's score. Critics of this pipeline point out that reward models can be gamed through a phenomenon known as reward hacking, where the policy learns to exploit quirks of the reward model rather than genuinely improving response quality. More recent alternatives, such as direct preference optimization, attempt to sidestep the need for a separate reward model entirely by reformulating the alignment objective as a classification problem over preference pairs, which simplifies the training pipeline considerably.",
+      "technique": "cot",
+      "output": "**Estrategia paso a paso para la traducción:**\n\n1. **Comprender el contenido**: Es fundamental entender el texto técnico en inglés antes de traducirlo. El texto habla sobre el aprendizaje por refuerzo a partir de la retroalimentación humana y los pasos involucrados en la alineación de modelos de lenguaje.\n\n2. **Identificar términos clave**: Identificar palabras y frases que son técnicas o específicas, como \"reinforcement learning\", \"reward model\", \"proximal policy optimization\", etc. Estos términos pueden requerir una traducción específica o un glosario técnico.\n\n3. **Dividir el texto en partes**: La estructura del texto permite dividirlo en partes, lo que facilita la traducción y ayuda a mantener el significado.\n\n4. **Traducir cada parte**: Traducir cada sección del texto de forma que conserve el significado técnico y sea comprensible en español.\n\n5. **Revisar la fluidez**: Una vez traducido, leer el texto en español para asegurarse de que fluya naturalmente y no contenga errores gramaticales.\n\n6. **Ajustes finales**: Hacer ajustes finales para asegurar que la terminología técnica sea adecuada y que el texto final sea claro para el lector.\n\nAquí está la traducción completa:\n\n**Traducción:**\n\nEl aprendizaje por refuerzo a partir de la retroalimentación humana se ha convertido en el enfoque dominante para alinear grandes modelos de lenguaje con las preferencias humanas después del preentrenamiento. El proceso generalmente se desarrolla en tres etapas: primero, los anotadores humanos clasifican múltiples salidas del modelo para el mismo aviso según su utilidad, honestidad e inofensividad; en segundo lugar, estas clasificaciones se utilizan para entrenar un modelo de recompensa independiente que aprende a predecir qué respuestas preferirían los humanos; y tercero, el modelo de lenguaje original se ajusta utilizando aprendizaje por refuerzo, siendo la optimización de políticas proximales el método más común, para maximizar la puntuación del modelo de recompensa. Los críticos de este proceso señalan que los modelos de recompensa pueden ser manipulados a través de un fenómeno conocido como 'manipulación de recompensa', donde la política aprende a explotar peculiaridades del modelo de recompensa en lugar de mejorar genuinamente la calidad de las respuestas. Alternativas más recientes, como la optimización de preferencias directa, intentan eludir la necesidad de un modelo de recompensa separado reformulando el objetivo de alineación como un problema de clasificación sobre pares de preferencias, lo que simplifica considerablemente el proceso de entrenamiento.",
+      "tokens_input": 225,
+      "tokens_output": 529,
+      "total_tokens": 754,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 1.0,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "Empirical scaling laws suggest that a model's loss on held-out data decreases predictably as a power-law function of three factors: the number of parameters, the size of the training dataset, and the amount of compute used, measured in floating-point operations (FLOPs). A widely cited study found that for a fixed compute budget, the optimal allocation is roughly 20 training tokens per parameter, which implied that many earlier models in the 175B-to-540B parameter range were substantially undertrained relative to their size. This finding motivated a shift toward smaller, more heavily trained models that match or exceed the performance of larger predecessors while requiring far less compute at inference time. On standard benchmarks such as MMLU and HumanEval, this approach has closed much of the gap between models an order of magnitude apart in parameter count, though performance on tasks requiring genuine multi-step reasoning still correlates more strongly with scale than with training-token density alone.",
+      "technique": "cot",
+      "output": "### Estrategia de traducción paso a paso:\n\n1. **Identificación de conceptos clave**: Primero, identificaré términos técnicos importantes y conceptos presentes en el texto que pueden tener traducciones específicas o de uso común en el ámbito de la inteligencia artificial y el aprendizaje automático.\n\n2. **División en oraciones**: Separaré el texto en oraciones para traducir más fácilmente cada parte y asegurarme de que el flujo del texto traducido sea coherente.\n\n3. **Traducción de términos técnicos**: Buscaré las traducciones más apropiadas para términos como \"empirical scaling laws\", \"parameters\", \"training dataset\", \"compute\", \"floating-point operations\", entre otros.\n\n4. **Redacción fluida**: Una vez que tenga todas las partes traducidas, las uniré de manera que el texto fluya naturalmente en español y mantenga el significado del original.\n\n5. **Revisión final**: Haré una revisión para corregir posibles errores y asegurar que la terminología utilizada sea precisa y adecuada para el contexto técnico.\n\n### Traducción completa:\n\nLas leyes de escalado empírico sugieren que la pérdida de un modelo en datos retenidos disminuye de manera predecible como una función de ley de potencias de tres factores: el número de parámetros, el tamaño del conjunto de datos de entrenamiento y la cantidad de computación utilizada, medida en operaciones de punto flotante (FLOPs). Un estudio ampliamente citado encontró que, para un presupuesto de cómputo fijo, la asignación óptima es de aproximadamente 20 tokens de entrenamiento por parámetro, lo que implica que muchos modelos anteriores en el rango de 175B a 540B parámetros estaban sustancialmente subentrenados en relación con su tamaño. Este hallazgo motivó un cambio hacia modelos más pequeños y entrenados más intensamente que igualan o superan el rendimiento de predecesores más grandes, mientras requieren mucho menos cómputo en el tiempo de inferencia. En benchmarks estándar como MMLU y HumanEval, este enfoque ha cerrado gran parte de la brecha entre modelos que difieren en órdenes de magnitud en el conteo de parámetros, aunque el rendimiento en tareas que requieren un razonamiento multistep genuino aún se correlaciona más fuertemente con la escala que con la densidad de tokens de entrenamiento por sí sola.",
+      "tokens_input": 223,
+      "tokens_output": 484,
+      "total_tokens": 707,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "The self-attention mechanism allows each token in a sequence to weigh the relevance of every other token when computing its own representation, rather than relying solely on fixed-size context windows as earlier recurrent architectures did. In practice, this is implemented through three learned projections—queries, keys, and values—whose dot products, scaled by the square root of the key dimension, are passed through a softmax function to produce attention weights. Stacking multiple attention heads in parallel lets the model attend to different types of relationships simultaneously, such as syntactic dependencies in one head and long-range semantic associations in another. This design choice, combined with residual connections and layer normalization, is what allows transformer-based models to scale to billions of parameters without suffering from the vanishing gradient problems that plagued earlier deep recurrent networks. However, the quadratic cost of self-attention with respect to sequence length remains a significant bottleneck for processing very long documents.",
+      "technique": "cot_limited",
+      "output": "Estrategia: Primero, identificaré los conceptos clave y la estructura del texto original en inglés para luego traducirlo al español manteniendo la precisión técnica. Me concentraré en asegurar que la terminología específica se traduzca correctamente y se conserve el sentido del texto original.\n\n**Traducción completa:**\n\nEl mecanismo de autoatención permite que cada token en una secuencia evalúe la relevancia de cada uno de los otros tokens al calcular su propia representación, en lugar de depender únicamente de ventanas de contexto de tamaño fijo como lo hacían las arquitecturas recurrentes anteriores. En la práctica, esto se implementa a través de tres proyecciones aprendidas: consultas, claves y valores, cuyos productos punto, escalados por la raíz cuadrada de la dimensión de la clave, son pasados a través de una función softmax para producir pesos de atención. Apilar múltiples cabezales de atención en paralelo permite que el modelo atienda diferentes tipos de relaciones simultáneamente, como dependencias sintácticas en un cabezal y asociaciones semánticas de largo alcance en otro. Esta elección de diseño, combinada con conexiones residuales y normalización de capas, es lo que permite a los modelos basados en transformadores escalar a miles de millones de parámetros sin sufrir problemas de desvanecimiento del gradiente que afectaron a las redes recurrentes profundas anteriores. Sin embargo, el costo cuadrático de la autoatención con respecto a la longitud de la secuencia sigue siendo un cuello de botella significativo para procesar documentos muy largos.",
+      "tokens_input": 221,
+      "tokens_output": 314,
+      "total_tokens": 535,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.85
+      }
+    },
+    {
+      "input": "Reinforcement learning from human feedback has become the dominant approach for aligning large language models with human preferences after pretraining. The process typically unfolds in three stages: first, human annotators rank multiple model outputs for the same prompt according to helpfulness, honesty, and harmlessness; second, these rankings are used to train a separate reward model that learns to predict which responses humans would prefer; and third, the original language model is fine-tuned using reinforcement learning, most commonly proximal policy optimization, to maximize the reward model's score. Critics of this pipeline point out that reward models can be gamed through a phenomenon known as reward hacking, where the policy learns to exploit quirks of the reward model rather than genuinely improving response quality. More recent alternatives, such as direct preference optimization, attempt to sidestep the need for a separate reward model entirely by reformulating the alignment objective as a classification problem over preference pairs, which simplifies the training pipeline considerably.",
+      "technique": "cot_limited",
+      "output": "**Estrategia**: Realicé una traducción cuidadosa, asegurando que los términos técnicos y los conceptos clave se mantuvieran claros. Evité simplificaciones para no perder el significado y usé un lenguaje técnico apropiado al contexto.\n\n**Traducción**:\n\nEl aprendizaje por refuerzo a partir de la retroalimentación humana se ha convertido en el enfoque dominante para alinear grandes modelos de lenguaje con las preferencias humanas después del preentrenamiento. El proceso generalmente se desarrolla en tres etapas: primero, los anotadores humanos clasifican múltiples salidas del modelo para el mismo aviso de acuerdo con su utilidad, honestidad y falta de perjuicio; segundo, estas clasificaciones se utilizan para entrenar un modelo de recompensa separado que aprende a predecir qué respuestas preferirían los humanos; y tercero, el modelo de lenguaje original se ajusta utilizando aprendizaje por refuerzo, comúnmente optimización de políticas proximales, para maximizar la puntuación del modelo de recompensa. Los críticos de este proceso señalan que los modelos de recompensa pueden ser manipulados a través de un fenómeno conocido como “hackeo de recompensa”, donde la política aprende a explotar las peculiaridades del modelo de recompensa en lugar de mejorar genuinamente la calidad de las respuestas. Alternativas más recientes, como la optimización directa de preferencias, intentan evitar la necesidad de un modelo de recompensa separado reformulando el objetivo de alineación como un problema de clasificación sobre pares de preferencias, lo que simplifica considerablemente la tubería de entrenamiento.",
+      "tokens_input": 230,
+      "tokens_output": 311,
+      "total_tokens": 541,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "Empirical scaling laws suggest that a model's loss on held-out data decreases predictably as a power-law function of three factors: the number of parameters, the size of the training dataset, and the amount of compute used, measured in floating-point operations (FLOPs). A widely cited study found that for a fixed compute budget, the optimal allocation is roughly 20 training tokens per parameter, which implied that many earlier models in the 175B-to-540B parameter range were substantially undertrained relative to their size. This finding motivated a shift toward smaller, more heavily trained models that match or exceed the performance of larger predecessors while requiring far less compute at inference time. On standard benchmarks such as MMLU and HumanEval, this approach has closed much of the gap between models an order of magnitude apart in parameter count, though performance on tasks requiring genuine multi-step reasoning still correlates more strongly with scale than with training-token density alone.",
+      "technique": "cot_limited",
+      "output": "Estrategia: Primero, identifico y traduzco los términos específicos del texto técnico. Luego, me aseguro de que la traducción mantenga la precisión y claridad del contenido original, evitando interpretaciones que puedan alterar el sentido técnico.\n\nTraducción completa:\n\nLas leyes de escalado empírico sugieren que la pérdida de un modelo en datos retenidos disminuye de manera predecible como una función de potencia de tres factores: el número de parámetros, el tamaño del conjunto de datos de entrenamiento y la cantidad de cómputo utilizada, medida en operaciones de punto flotante (FLOPs). Un estudio ampliamente citado encontró que, para un presupuesto de cómputo fijo, la asignación óptima es de aproximadamente 20 tokens de entrenamiento por parámetro, lo que implicaba que muchos modelos anteriores en el rango de 175B a 540B de parámetros estaban considerablemente subentrenados en relación con su tamaño. Este hallazgo motivó un cambio hacia modelos más pequeños y entrenados más intensamente que igualan o superan el rendimiento de predecesores más grandes mientras requieren mucho menos cómputo en el momento de inferencia. En benchmarks estándar como MMLU y HumanEval, este enfoque ha cerrado gran parte de la brecha entre modelos con una diferencia de orden de magnitud en el conteo de parámetros, aunque el rendimiento en tareas que requieren razonamiento genuino en múltiples pasos aún se correlaciona más fuertemente con la escala que con la densidad de tokens de entrenamiento sola.",
+      "tokens_input": 228,
+      "tokens_output": 314,
+      "total_tokens": 542,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "The self-attention mechanism allows each token in a sequence to weigh the relevance of every other token when computing its own representation, rather than relying solely on fixed-size context windows as earlier recurrent architectures did. In practice, this is implemented through three learned projections—queries, keys, and values—whose dot products, scaled by the square root of the key dimension, are passed through a softmax function to produce attention weights. Stacking multiple attention heads in parallel lets the model attend to different types of relationships simultaneously, such as syntactic dependencies in one head and long-range semantic associations in another. This design choice, combined with residual connections and layer normalization, is what allows transformer-based models to scale to billions of parameters without suffering from the vanishing gradient problems that plagued earlier deep recurrent networks. However, the quadratic cost of self-attention with respect to sequence length remains a significant bottleneck for processing very long documents.",
+      "technique": "structured_prompting_json",
+      "output": "El mecanismo de auto-atención permite que cada token en una secuencia pondera la relevancia de cada otro token al calcular su propia representación, en lugar de depender únicamente de ventanas de contexto de tamaño fijo como lo hacían las arquitecturas recurrentes anteriores. En la práctica, esto se implementa a través de tres proyecciones aprendidas: consultas, claves y valores, cuyos productos punto, escalados por la raíz cuadrada de la dimensión de la clave, son pasados a través de una función softmax para producir pesos de atención. Apilar múltiples cabezas de atención en paralelo permite que el modelo atienda diferentes tipos de relaciones simultáneamente, como dependencias sintácticas en una cabeza y asociaciones semánticas de largo alcance en otra. Esta elección de diseño, combinada con conexiones residuales y normalización de capas, es lo que permite a los modelos basados en transformadores escalar a miles de millones de parámetros sin sufrir los problemas de desvanecimiento del gradiente que afectaban a las redes recurrentes profundas anteriores. Sin embargo, el costo cuadrático de la auto-atención con respecto a la longitud de la secuencia sigue siendo un cuello de botella significativo para procesar documentos muy largos.",
+      "tokens_input": 213,
+      "tokens_output": 248,
+      "total_tokens": 461,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "Reinforcement learning from human feedback has become the dominant approach for aligning large language models with human preferences after pretraining. The process typically unfolds in three stages: first, human annotators rank multiple model outputs for the same prompt according to helpfulness, honesty, and harmlessness; second, these rankings are used to train a separate reward model that learns to predict which responses humans would prefer; and third, the original language model is fine-tuned using reinforcement learning, most commonly proximal policy optimization, to maximize the reward model's score. Critics of this pipeline point out that reward models can be gamed through a phenomenon known as reward hacking, where the policy learns to exploit quirks of the reward model rather than genuinely improving response quality. More recent alternatives, such as direct preference optimization, attempt to sidestep the need for a separate reward model entirely by reformulating the alignment objective as a classification problem over preference pairs, which simplifies the training pipeline considerably.",
+      "technique": "structured_prompting_json",
+      "output": "El aprendizaje por refuerzo a partir de la retroalimentación humana se ha convertido en el enfoque dominante para alinear grandes modelos de lenguaje con las preferencias humanas después del preentrenamiento. El proceso se desarrolla típicamente en tres etapas: primero, anotadores humanos clasifican múltiples salidas del modelo para el mismo aviso de acuerdo a su utilidad, honestidad e inocuidad; segundo, estas clasificaciones se utilizan para entrenar un modelo de recompensa separado que aprende a predecir qué respuestas preferirían los humanos; y tercero, el modelo de lenguaje original se ajusta utilizando el aprendizaje por refuerzo, comúnmente mediante optimización de políticas proximal, para maximizar la puntuación del modelo de recompensa. Los críticos de este proceso señalan que los modelos de recompensa pueden ser manipulados a través de un fenómeno conocido como hacking de recompensa, donde la política aprende a explotar peculiaridades del modelo de recompensa en lugar de mejorar genuinamente la calidad de las respuestas. Alternativas más recientes, como la optimización directa de preferencias, intentan eludir la necesidad de un modelo de recompensa separado totalizando el objetivo de alineación como un problema de clasificación sobre pares de preferencias, lo que simplifica considerablemente el proceso de entrenamiento.",
+      "tokens_input": 222,
+      "tokens_output": 250,
+      "total_tokens": 472,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3,
+        "calidad": 0.51
+      }
+    },
+    {
+      "input": "Empirical scaling laws suggest that a model's loss on held-out data decreases predictably as a power-law function of three factors: the number of parameters, the size of the training dataset, and the amount of compute used, measured in floating-point operations (FLOPs). A widely cited study found that for a fixed compute budget, the optimal allocation is roughly 20 training tokens per parameter, which implied that many earlier models in the 175B-to-540B parameter range were substantially undertrained relative to their size. This finding motivated a shift toward smaller, more heavily trained models that match or exceed the performance of larger predecessors while requiring far less compute at inference time. On standard benchmarks such as MMLU and HumanEval, this approach has closed much of the gap between models an order of magnitude apart in parameter count, though performance on tasks requiring genuine multi-step reasoning still correlates more strongly with scale than with training-token density alone.",
+      "technique": "structured_prompting_json",
+      "output": "Las leyes empíricas de escalamiento sugieren que la pérdida de un modelo en datos retenidos disminuye de manera predecible como una función de ley de potencia de tres factores: el número de parámetros, el tamaño del conjunto de datos de entrenamiento y la cantidad de computación utilizada, medida en operaciones de punto flotante (FLOPs). Un estudio ampliamente citado encontró que, para un presupuesto de computación fijo, la asignación óptima es de aproximadamente 20 tokens de entrenamiento por parámetro, lo que implicaba que muchos modelos anteriores en el rango de 175B a 540B parámetros estaban sustancialmente subentrenados en relación con su tamaño. Este hallazgo motivó un cambio hacia modelos más pequeños y entrenados de manera más intensiva que igualan o superan el rendimiento de sus predecesores más grandes, mientras requieren considerablemente menos computación en tiempo de inferencia. En benchmarks estándar como MMLU y HumanEval, este enfoque ha cerrado gran parte de la brecha entre modelos que difieren en un orden de magnitud en el conteo de parámetros, aunque el rendimiento en tareas que requieren un verdadero razonamiento de múltiples pasos aún se correlaciona más fuertemente con la escala que con la densidad de tokens de entrenamiento por sí sola.",
+      "tokens_input": 220,
+      "tokens_output": 264,
+      "total_tokens": 484,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.0,
+        "claridad_comunicacional": 0.0,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.35,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.38
+      }
+    },
+    {
+      "input": "The self-attention mechanism allows each token in a sequence to weigh the relevance of every other token when computing its own representation, rather than relying solely on fixed-size context windows as earlier recurrent architectures did. In practice, this is implemented through three learned projections—queries, keys, and values—whose dot products, scaled by the square root of the key dimension, are passed through a softmax function to produce attention weights. Stacking multiple attention heads in parallel lets the model attend to different types of relationships simultaneously, such as syntactic dependencies in one head and long-range semantic associations in another. This design choice, combined with residual connections and layer normalization, is what allows transformer-based models to scale to billions of parameters without suffering from the vanishing gradient problems that plagued earlier deep recurrent networks. However, the quadratic cost of self-attention with respect to sequence length remains a significant bottleneck for processing very long documents.",
+      "technique": "role_prompting",
+      "output": "El mecanismo de autoatención permite que cada token en una secuencia evalúe la relevancia de cada otro token al calcular su propia representación, en lugar de depender únicamente de ventanas de contexto de tamaño fijo como lo hacían las arquitecturas recurrentes anteriores. En la práctica, esto se implementa a través de tres proyecciones aprendidas: consultas, claves y valores, cuyos productos punto, escalados por la raíz cuadrada de la dimensión de la clave, se pasan a través de una función softmax para producir pesos de atención. Apilar múltiples cabezas de atención en paralelo permite que el modelo atienda a diferentes tipos de relaciones simultáneamente, como dependencias sintácticas en una cabeza y asociaciones semánticas a largo alcance en otra. Esta elección de diseño, combinada con conexiones residuales y normalización de capas, es lo que permite a los modelos basados en transformadores escalar a miles de millones de parámetros sin sufrir los problemas de gradientes que afectaron a las redes recurrentes profundas anteriores. Sin embargo, el costo cuadrático de la autoatención respecto a la longitud de la secuencia sigue siendo un cuello de botella significativo para el procesamiento de documentos muy largos.",
+      "tokens_input": 209,
+      "tokens_output": 243,
+      "total_tokens": 452,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.69
+      }
+    },
+    {
+      "input": "Reinforcement learning from human feedback has become the dominant approach for aligning large language models with human preferences after pretraining. The process typically unfolds in three stages: first, human annotators rank multiple model outputs for the same prompt according to helpfulness, honesty, and harmlessness; second, these rankings are used to train a separate reward model that learns to predict which responses humans would prefer; and third, the original language model is fine-tuned using reinforcement learning, most commonly proximal policy optimization, to maximize the reward model's score. Critics of this pipeline point out that reward models can be gamed through a phenomenon known as reward hacking, where the policy learns to exploit quirks of the reward model rather than genuinely improving response quality. More recent alternatives, such as direct preference optimization, attempt to sidestep the need for a separate reward model entirely by reformulating the alignment objective as a classification problem over preference pairs, which simplifies the training pipeline considerably.",
+      "technique": "role_prompting",
+      "output": "El aprendizaje por refuerzo a partir de retroalimentación humana se ha convertido en el enfoque dominante para alinear grandes modelos de lenguaje con las preferencias humanas después del preentrenamiento. El proceso generalmente se desarrolla en tres etapas: primero, los anotadores humanos clasifican múltiples salidas del modelo para el mismo aviso según su utilidad, honestidad y ausencia de daño; en segundo lugar, estas clasificaciones se utilizan para entrenar un modelo de recompensa separado que aprende a predecir cuáles respuestas preferirían los humanos; y tercero, el modelo de lenguaje original se ajusta utilizando aprendizaje por refuerzo, siendo la optimización de políticas proximales la más común, para maximizar la puntuación del modelo de recompensa. Los críticos de este proceso señalan que los modelos de recompensa pueden ser manipulados a través de un fenómeno conocido como \"hackeo de recompensas\", donde la política aprende a explotar peculiaridades del modelo de recompensa en lugar de mejorar genuinamente la calidad de las respuestas. Alternativas más recientes, como la optimización de preferencias directa, intentan evitar completamente la necesidad de un modelo de recompensa separado reformulando el objetivo de alineación como un problema de clasificación sobre pares de preferencias, lo que simplifica considerablemente el proceso de entrenamiento.",
+      "tokens_input": 218,
+      "tokens_output": 255,
+      "total_tokens": 473,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.71
+      }
+    },
+    {
+      "input": "Empirical scaling laws suggest that a model's loss on held-out data decreases predictably as a power-law function of three factors: the number of parameters, the size of the training dataset, and the amount of compute used, measured in floating-point operations (FLOPs). A widely cited study found that for a fixed compute budget, the optimal allocation is roughly 20 training tokens per parameter, which implied that many earlier models in the 175B-to-540B parameter range were substantially undertrained relative to their size. This finding motivated a shift toward smaller, more heavily trained models that match or exceed the performance of larger predecessors while requiring far less compute at inference time. On standard benchmarks such as MMLU and HumanEval, this approach has closed much of the gap between models an order of magnitude apart in parameter count, though performance on tasks requiring genuine multi-step reasoning still correlates more strongly with scale than with training-token density alone.",
+      "technique": "role_prompting",
+      "output": "Las leyes de escalado empíricas sugieren que la pérdida de un modelo en datos retenidos disminuye de manera predecible como una función de ley de potencias en función de tres factores: el número de parámetros, el tamaño del conjunto de datos de entrenamiento y la cantidad de cálculo utilizado, medida en operaciones en coma flotante (FLOPs). Un estudio ampliamente citado encontró que, para un presupuesto de cálculo fijo, la asignación óptima es de aproximadamente 20 tokens de entrenamiento por parámetro, lo que implicaba que muchos modelos anteriores en el rango de 175B a 540B parámetros estaban sustancialmente subentrenados en relación con su tamaño. Este hallazgo motivó un cambio hacia modelos más pequeños y con un entrenamiento más intensivo que igualan o superan el rendimiento de predecesores más grandes, a la vez que requieren mucho menos cálculo en el tiempo de inferencia. En benchmarks estándar como MMLU y HumanEval, este enfoque ha cerrado gran parte de la brecha entre modelos que difieren en un orden de magnitud en la cuenta de parámetros, aunque el rendimiento en tareas que requieren un razonamiento genuino de varios pasos aún se correlaciona más fuertemente con la escala que con la densidad de tokens de entrenamiento por sí sola.",
+      "tokens_input": 216,
+      "tokens_output": 265,
+      "total_tokens": 481,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.0,
+        "claridad_comunicacional": 0.0,
+        "profundidad_conceptual": 0.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.35,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.25,
+        "profundidad_conceptual": 0.15,
+        "calidad": 0.31
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 9518,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 619,
+        "tokens_output": 758,
+        "total_tokens": 1377,
+        "avg_calidad_promedio": 0.67,
+        "avg_calidad_gpt4o": 0.65,
+        "avg_calidad_claude": 0.69,
+        "dimensions": {
+          "exactitud_funcional": 0.7,
+          "completitud_funcional": 0.85,
+          "claridad_comunicacional": 0.7,
+          "profundidad_conceptual": 0.43
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000472,
+          "claude": 0.000501,
+          "promedio": 0.000487
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 778,
+        "tokens_output": 772,
+        "total_tokens": 1550,
+        "avg_calidad_promedio": 0.85,
+        "avg_calidad_gpt4o": 0.9,
+        "avg_calidad_claude": 0.81,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.85,
+          "profundidad_conceptual": 0.57
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000581,
+          "claude": 0.000523,
+          "promedio": 0.000548
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 664,
+        "tokens_output": 1486,
+        "total_tokens": 2150,
+        "avg_calidad_promedio": 0.96,
+        "avg_calidad_gpt4o": 1.0,
+        "avg_calidad_claude": 0.92,
+        "dimensions": {
+          "exactitud_funcional": 0.95,
+          "completitud_funcional": 0.95,
+          "claridad_comunicacional": 0.95,
+          "profundidad_conceptual": 1.0
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000465,
+          "claude": 0.000428,
+          "promedio": 0.000447
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 679,
+        "tokens_output": 939,
+        "total_tokens": 1618,
+        "avg_calidad_promedio": 0.78,
+        "avg_calidad_gpt4o": 0.72,
+        "avg_calidad_claude": 0.85,
+        "dimensions": {
+          "exactitud_funcional": 0.9,
+          "completitud_funcional": 0.9,
+          "claridad_comunicacional": 0.7,
+          "profundidad_conceptual": 0.63
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000445,
+          "claude": 0.000525,
+          "promedio": 0.000482
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 655,
+        "tokens_output": 762,
+        "total_tokens": 1417,
+        "avg_calidad_promedio": 0.52,
+        "avg_calidad_gpt4o": 0.37,
+        "avg_calidad_claude": 0.67,
+        "dimensions": {
+          "exactitud_funcional": 0.57,
+          "completitud_funcional": 0.7,
+          "claridad_comunicacional": 0.52,
+          "profundidad_conceptual": 0.28
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000261,
+          "claude": 0.000473,
+          "promedio": 0.000367
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 643,
+        "tokens_output": 763,
+        "total_tokens": 1406,
+        "avg_calidad_promedio": 0.57,
+        "avg_calidad_gpt4o": 0.43,
+        "avg_calidad_claude": 0.71,
+        "dimensions": {
+          "exactitud_funcional": 0.58,
+          "completitud_funcional": 0.73,
+          "claridad_comunicacional": 0.55,
+          "profundidad_conceptual": 0.42
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000306,
+          "claude": 0.000505,
+          "promedio": 0.000405
+        }
+      }
+    }
+  }
+}

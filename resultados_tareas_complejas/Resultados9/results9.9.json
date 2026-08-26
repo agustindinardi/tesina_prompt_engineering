@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "Esta función pasa todos los tests del equipo, pero en producción se detectaron dos problemas: a veces devuelve rachas más cortas que las reales (incluso 0 cuando hubo días calurosos), y además, al procesar datos de una nueva estación, a veces devuelve una racha que en realidad corresponde a otra estación procesada antes en la misma corrida del proceso batch. Encontrá ambos problemas, explicá con un ejemplo concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se proceso una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el ultimo calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n    racha_maxima = 0\n    racha_actual = 0\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```",
+      "technique": "zero_shot",
+      "output": "La función que has proporcionado contiene dos problemas principales, que pueden llevar a resultados incorrectos en producción:\n\n1. **Rachas cortas y retorno de 0 cuando hay días calurosos**: Si la serie de temperaturas termina con un valor superior al umbral, la racha actual se puede considerar como finalizada antes de actualizar la racha máxima. Esto puede resultar en una racha máxima que no se cuenta correctamente o incluso en un retorno de 0 si no se maneja correctamente el final de la lista de temperaturas.\n\n2. **Reutilización incorrecta de resultados de estaciones anteriores**: La variable `ultimo_resultado_por_umbral` se utiliza para guardar el último resultado de racha para un umbral específico. Sin embargo, si las rachas no se manejan adecuadamente para cada nueva lista de temperaturas, se puede devolver un resultado que no corresponde a la estación actual, especialmente si estuvieran usando un mismo umbral para diferentes estaciones sin resetear el estado de `ultimo_resultado_por_umbral`.\n\n### Ejemplos de los problemas:\n\n- **Ejemplo de racha corta**:\n  Si ingresamos la lista de temperaturas `[30, 31, 32, 30]` con un umbral de `30`:\n  - La racha actual contaría 3 (de `31` a `32`), pero terminando en `30` se reiniciará. \n  - Sin embargo, no se cuenta si la temperatura final está por encima del umbral, se podría finalizar la racha sin incluirla en la cuenta máxima.\n\n- **Ejemplo de reutilización incorrecta**:\n  Si se procesan datos de dos estaciones consecutivas (por ejemplo, estación A y estación B) en la misma corrida y la primera incluye una temperatura solo igual al umbral, el resultado podría confundirse y dar lugar a que la estación B reciba el resultado de la estación A si no se gestiona correctamente el estado de `ultimo_resultado_por_umbral`.\n\n### Correcciones:\n\nVamos a realizar las siguientes modificaciones en la función:\n\n1. Aseguraremos que se cuente la racha final incluso si termina la lista de temperaturas con valores por encima del umbral.\n2. Cada vez que se llame a la función, utilizaremos un diccionario separado o instanciando el último resultado por umbral para cada llamada, para evitar entrelazamientos de datos entre distintas estaciones.\n\nAquí tienes la versión corregida de la función:\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral=None):\n    if ultimo_resultado_por_umbral is None:\n        ultimo_resultado_por_umbral = {}\n    \n    if not temperaturas:\n        return 0\n\n    racha_maxima = 0\n    racha_actual = 0\n    \n    # Iteramos sobre las temperaturas\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            racha_maxima = max(racha_maxima, racha_actual)\n            racha_actual = 0\n\n    # Validamos la racha final después del último elemento\n    racha_maxima = max(racha_maxima, racha_actual)\n\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    \n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```\n\n### Cambios Principales:\n\n- Al final del bucle, se verifica y actualiza `racha_maxima` considerando `racha_actual`, asegurando que si se termina la lista en una racha creciente, esta se cuente adecuadamente.\n- `ultimo_resultado_por_umbral` se inicializa como `None` para permitir que la función se llame de manera independiente y evitar contaminación del estado entre invocaciones.\n\nDe esta manera, la función ahora debe comportarse correctamente en todas las situaciones, suministrando la racha máxima correcta sin importar el estado de ejecuciones anteriores o la forma en que se ingrese la data.",
+      "tokens_input": 391,
+      "tokens_output": 853,
+      "total_tokens": 1244,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "Esta función pasó QA, pero en producción aparecieron dos problemas: algunas notificaciones vencidas o canceladas siguen enviándose cuando hay varias seguidas en la cola, y además las notificaciones con estado 'rechazada' nunca se eliminan pese a que el equipo espera que también se saquen de la cola. Encontrá ambos problemas, explicá con qué datos falla cada uno y por qué QA no los detectó, y corregilos.\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que estan vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    for notificacion in cola:\n        if notificacion[\"estado\"] in (\"vencida\", \"cancelada\"):\n            cola.remove(notificacion)\n            eliminados += 1\n    return eliminados\n```",
+      "technique": "zero_shot",
+      "output": "He encontrado los problemas en la función `depurar_cola_de_envios` y he explicado por qué ocurrieron y cómo los podemos corregir.\n\n### Problemas detectados\n\n1. **Notificaciones vencidas o canceladas siguen enviándose**: \n   - **Descripción**: Cuando se eliminan elementos de una lista mientras se itera sobre ella, puede causar que algunos elementos no sean revisados adecuadamente, ya que los índices cambian a medida que se eliminan elementos. Esto significa que una notificación \"vencida\" o \"cancelada\" podría ser omitida.\n   - **Datos que fallan**: Si hay múltiples notificaciones consecutivas, al eliminar una de ellas, el índice de la lista cambia. Por ejemplo, si la lista tiene las notificaciones 'A' (vencida), 'B' (activa) y 'C' (cancelada), al eliminar 'A', 'B' será la siguiente notificación, saltando la revisión de 'C'.\n   - **Por qué QA no lo detectó**: QA probablemente probó con casos donde las notificaciones no se eliminaban o estaban distribuidas de tal manera que no generaran conflictos al eliminar en la iteración, o solo se usaron ejemplos con una sola notificación.\n\n2. **Notificaciones con estado 'rechazada' nunca se eliminan**:\n   - **Descripción**: La lógica actual no considera el estado 'rechazada' para la eliminación. Esto significa que a pesar de que son consideradas como no activas, están quedando en la cola.\n   - **Datos que fallan**: Si la cola tiene notificaciones con estado 'rechazada', permanecerán intactas en la cola tras ejecutar la función.\n   - **Por qué QA no lo detectó**: Es probable que los casos de prueba no incluyeran notificaciones con estado 'rechazada', lo cual permitió pasar las pruebas sin detectar este problema.\n\n### Corrección\n\nPara corregir ambos problemas, podemos utilizar una lista de comprensión para filtrar los elementos que queremos eliminar al final, evitando mutar la lista original durante la iteración. También se incluirá el estado 'rechazada' en la condición de eliminación.\n\nAquí está la versión corregida de la función:\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que están vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    estados_a_eliminar = {\"vencida\", \"cancelada\", \"rechazada\"}\n    \n    # Contamos los elementos eliminados\n    eliminados = sum(1 for notificacion in cola if notificacion[\"estado\"] in estados_a_eliminar)\n    \n    # Filtramos la cola, quedándonos solo con las activas\n    cola[:] = [notificacion for notificacion in cola if notificacion[\"estado\"] not in estados_a_eliminar]\n    \n    return eliminados\n```\n\n### Explicación de la solución:\n\n- Usamos un conjunto `estados_a_eliminar` para definir qué estados deben ser eliminados, incluyendo \"vencida\", \"cancelada\" y \"rechazada\".\n- Contamos cuántas notificaciones serán eliminadas usando una expresión generadora.\n- Luego, creamos una nueva lista que solo incluye las notificaciones con estados no incluidos en `estados_a_eliminar`.\n- Al utilizar `cola[:] = [...]` se modifica la lista in place como se requería.",
+      "tokens_input": 225,
+      "tokens_output": 749,
+      "total_tokens": 974,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.8
+      }
+    },
+    {
+      "input": "Este módulo pasa los tests de creación y de cálculo básico, pero en producción aparecieron dos problemas distintos: (1) algunos clientes con varios pedidos en el mismo mes terminan facturados de menos, y (2) al correr el proceso de un mes nuevo, algunos clientes arrastran el monto facturado del mes anterior. Encontrá ambos problemas, explicá con un caso concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache={}):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        if cliente in cache:\n            resultado[cliente] = cache[cliente]\n            continue\n        total = resultado.get(cliente, 0)\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        total += monto\n        resultado[cliente] = total\n        cache[cliente] = total\n    return resultado\n```",
+      "technique": "zero_shot",
+      "output": "Los problemas identificados en el módulo son:\n\n1. **Clientes con varios pedidos en el mismo mes facturados de menos:** Este problema se puede producir porque se está utilizando un `cache` para evitar recalcular el total facturado para un cliente que ya ha sido procesado en el mismo batch. Sin embargo, esto significa que si hay más de un pedido para un cliente, solo se considerará el primero y no se adicionará correctamente el monto de los otros pedidos.\n\n2. **Clientes que arrastran el monto facturado del mes anterior:** Este problema ocurre debido a que el `cache` se está manteniendo en memoria a través de las invocaciones del método, lo que significa que la información de los clientes no se reinicia al inicio de un nuevo mes. Al usar el mismo `cache`, los totales facturados se acumulan y no se reinician.\n\n### Ejemplo de cada problema:\n\n- **Problema 1:** Supongamos que tenemos los siguientes pedidos para un cliente en un mes:\n    ```python\n    pedidos = [\n        {\"cliente\": \"Cliente A\", \"monto\": 150},\n        {\"cliente\": \"Cliente A\", \"monto\": 200}\n    ]\n    ```\n  En este caso, el resultado final no incluiría el segundo pedido porque se utiliza el `cache` para evitar la recalibración de ese cliente.\n\n- **Problema 2:** Supongamos que invocamos la función en dos meses consecutivos:\n    ```python\n    pedidos_mes_1 = [{\"cliente\": \"Cliente B\", \"monto\": 300}]\n    pedidos_mes_2 = [{\"cliente\": \"Cliente B\", \"monto\": 100}]\n    ```\n   Al ejecutar primero el mes 1 y luego el mes 2, el cliente \"Cliente B\" tendrá un monto acumulado entre los dos meses debido al uso persistente del `cache`.\n\n### Corrección de los problemas:\n\n1. **No mantener el `cache` entre invocaciones para un nuevo mes.**\n2. **Remover el uso del `cache` o resetearlo antes de cada ejecución para cada cliente.** En lugar de usar `cache`, simplemente acumularemos el total directamente.\n  \nAquí está la versión corregida del código:\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    No emplea un cache para que cada mes sea independiente.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        \n        # Inicializa el total para el cliente si no existe\n        total = resultado.get(cliente, 0)\n        \n        # Aplica descuento si corresponde\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n            \n        # Suma el monto al total del cliente\n        total += monto\n        \n        # Guarda el resultado en el diccionario\n        resultado[cliente] = total\n    \n    return resultado\n```\n\n### Conclusión\nCon esta implementación, el total facturado por cliente se calcula de manera correcta para todos los pedidos del mes dado, evitando arrastrar saldos de meses anteriores y asegurando que cada pedido se suma adecuadamente al total del cliente.",
+      "tokens_input": 294,
+      "tokens_output": 718,
+      "total_tokens": 1012,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.75,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.66
+      }
+    },
+    {
+      "input": "Esta función pasa todos los tests del equipo, pero en producción se detectaron dos problemas: a veces devuelve rachas más cortas que las reales (incluso 0 cuando hubo días calurosos), y además, al procesar datos de una nueva estación, a veces devuelve una racha que en realidad corresponde a otra estación procesada antes en la misma corrida del proceso batch. Encontrá ambos problemas, explicá con un ejemplo concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se proceso una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el ultimo calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n    racha_maxima = 0\n    racha_actual = 0\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```",
+      "technique": "few_shot",
+      "output": "Tu código tiene dos problemas principales:\n\n1. **Problema de Rachas Inexactas**: Cuando la secuencia de temperaturas termina con un valor superior al umbral, la racha actual no se actualiza adecuadamente antes de finalizar el bucle. Esto puede resultar en un valor de racha más corto de lo que realmente debería ser.\n   \n   **Ejemplo**: Considera la siguiente lista de temperaturas y umbral:\n   ```python\n   temperaturas = [20, 31, 32, 33, 25, 31]\n   umbral = 30\n   ```\n   En este caso, al final de la iteración, `racha_actual` es 3, pero el bloque que actualiza `racha_maxima` solo se ejecuta cuando `temp` es menor o igual a `umbral`. Por lo tanto, al final de la lista, no se verifica si la última `racha_actual` debe actualizar `racha_maxima`.\n\n2. **Problema de Compartir el Estado de `ultimo_resultado_por_umbral`**: El diccionario `ultimo_resultado_por_umbral` se está usando como un valor predeterminado mutable. Esto significa que si `racha_mas_larga` se llama múltiples veces, este diccionario conservará el estado entre las llamadas, lo que puede llevar a resultados incorrectos.\n\n   **Ejemplo**: Si llamamos a la función con diferentes listas y umbrales, el resultado anterior se puede mezclar con el nuevo. Por ejemplo:\n   ```python\n   racha_mas_larga([20, 35, 30, 25], 30)  # Retorna 1\n   racha_mas_larga([30, 32, 33], 30)       # Debería retornar 3, pero podría devolver 1 si el último resultado fue 1.\n   ```\n\n### Corrección del Código:\nAquí está la versión corregida del código considerando ambos problemas:\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral=None):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n    \n    Si ya se procesó una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el último calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if ultimo_resultado_por_umbral is None:\n        ultimo_resultado_por_umbral = {}\n    \n    if not temperaturas:\n        return 0\n    \n    racha_maxima = 0\n    racha_actual = 0\n    \n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            # Actualizar racha_maxima si la racha actual es mayor\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            # Reiniciar racha actual\n            racha_actual = 0\n            \n    # Verificar al final si la última racha es la más larga\n    if racha_actual > racha_maxima:\n        racha_maxima = racha_actual\n\n    # Actualizar el último resultado por umbral\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    \n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```\n\n### Resumen de Cambios:\n- Se añadió un chequeo al final del bucle para asegurarse de que se actualice `racha_maxima` si la racha final es la más larga.\n- Se cambió el tratamiento de `ultimo_resultado_por_umbral` para que sea `None` por defecto, en lugar de un diccionario mutable, para evitar el problema de compartir el estado entre llamadas.",
+      "tokens_input": 498,
+      "tokens_output": 871,
+      "total_tokens": 1369,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "Esta función pasó QA, pero en producción aparecieron dos problemas: algunas notificaciones vencidas o canceladas siguen enviándose cuando hay varias seguidas en la cola, y además las notificaciones con estado 'rechazada' nunca se eliminan pese a que el equipo espera que también se saquen de la cola. Encontrá ambos problemas, explicá con qué datos falla cada uno y por qué QA no los detectó, y corregilos.\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que estan vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    for notificacion in cola:\n        if notificacion[\"estado\"] in (\"vencida\", \"cancelada\"):\n            cola.remove(notificacion)\n            eliminados += 1\n    return eliminados\n```",
+      "technique": "few_shot",
+      "output": "En el código proporcionado, hay dos problemas que pueden causar que las notificaciones vencidas o canceladas no se eliminen correctamente, y otro problema adicional relacionado con las notificaciones rechazadas. Vamos a describir ambos problemas, los casos que los disparan y por qué QA no los detectó.\n\n### Problema 1: Eliminación de notificaciones vencidas y canceladas\n\n**Descripción del problema:** \nCuando se usa `cola.remove(notificacion)`, se está modificando la lista `cola` mientras se está iterando sobre ella. Esto puede llevar a que algunas notificaciones se \"salteen\" en el proceso de eliminación. Si una notificación se elimina, la siguiente notificación en la iteración se desplaza a la posición de la notificación eliminada, y por lo tanto no será evaluada.\n\n**Caso que lo dispara:** \nPor ejemplo, si tenemos la siguiente cola:\n```python\ncola = [\n    {\"estado\": \"activa\"},\n    {\"estado\": \"vencida\"},\n    {\"estado\": \"activa\"},\n    {\"estado\": \"cancelada\"}\n]\n```\nLa iteración se comportará de la siguiente manera:\n1. Evaluamos `{\"estado\": \"activa\"}` (se mantiene).\n2. Evaluamos `{\"estado\": \"vencida\"}` (se elimina).\n3. La siguiente notificación que será evaluada es `{\"estado\": \"cancelada\"}` que se saltea porque ahora está en la posición de la notificación que fue eliminada.\n\n**Por qué QA no los detectó:** \nEs probable que QA no haya probado con varias notificaciones alternadas y no identificó este comportamiento, ya que con listas con solo un par de elementos la eliminación podría haber funcionado como se esperaba.\n\n### Problema 2: Notificaciones rechazadas\n\n**Descripción del problema:** \nEl código no contempla la eliminación de notificaciones con estado \"rechazada\". Este estado no está incluido en la condición de eliminación.\n\n**Caso que lo dispara:** \nSi la cola incluye una notificación con estado \"rechazada\": \n```python\ncola = [\n    {\"estado\": \"rechazada\"},\n    {\"estado\": \"activa\"},\n]\n```\nEn este caso, la notificación con estado \"rechazada\" no se eliminará, y el equipo espera que efectivamente sí se elimine.\n\n**Por qué QA no los detectó:** \nEl equipo de pruebas puede no haber considerado los casos de notificaciones \"rechazadas\" como un escenario crítico, o simplemente no hubo suficiente cobertura de prueba para asegurar que todas las posibles transiciones de estado se verificaran.\n\n### Corrección del código\n\nPara solucionar estos problemas, se puede crear una nueva lista que contenga solo las notificaciones que se desean conservar. Después, reemplazaremos el contenido de la cola original con la nueva lista. También se incluirá la lógica para la eliminación de las que tienen estado \"rechazado\".\n\nAquí te muestro cómo quedaría el código corregido:\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que estan vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    # Filtramos las notificaciones que no deben ser eliminadas.\n    cola_filtrada = []\n    for notificacion in cola:\n        if notificacion[\"estado\"] in (\"vencida\", \"cancelada\", \"rechazada\"):\n            eliminados += 1\n        else:\n            cola_filtrada.append(notificacion)\n    \n    # Reemplazamos el contenido de la cola original.\n    cola[:] = cola_filtrada\n    return eliminados\n```\n\nCon esta solución, ahora el método eliminará correctamente todas las notificaciones que estén en los estados \"vencida\", \"cancelada\" o \"rechazada\", y no habrá problemas relacionados con la modificación de la lista mientras se itera.",
+      "tokens_input": 332,
+      "tokens_output": 845,
+      "total_tokens": 1177,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Este módulo pasa los tests de creación y de cálculo básico, pero en producción aparecieron dos problemas distintos: (1) algunos clientes con varios pedidos en el mismo mes terminan facturados de menos, y (2) al correr el proceso de un mes nuevo, algunos clientes arrastran el monto facturado del mes anterior. Encontrá ambos problemas, explicá con un caso concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache={}):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        if cliente in cache:\n            resultado[cliente] = cache[cliente]\n            continue\n        total = resultado.get(cliente, 0)\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        total += monto\n        resultado[cliente] = total\n        cache[cliente] = total\n    return resultado\n```",
+      "technique": "few_shot",
+      "output": "He analizado el código proporcionado y he identificado dos problemas (\"bugs\") distintos que pueden dar lugar a los problemas mencionados en la consigna.\n\n### Problema 1: Facturación de menos para clientes con varios pedidos en el mismo mes\n\n**Descripción del Bug:**\nSi un cliente tiene varios pedidos que se procesan en una misma llamada a la función, y el primer pedido se encuentra en el `cache`, el total facturado para ese cliente no se actualizará con las facturas siguientes. Esto significa que los pedidos adicionales no se sumarán al total, lo que puede resultar en una facturación incorrecta.\n\n**Caso que dispara el problema:**\nImagina que tienes las siguientes dos órdenes para el mismo cliente:\n\n```python\npedidos = [\n    {\"cliente\": \"Cliente A\", \"monto\": 120},\n    {\"cliente\": \"Cliente A\", \"monto\": 150}\n]\n```\n\nEn este caso, el primer pedido de \"Cliente A\" tiene un monto superior al umbral de descuento y se aplicará el 10% de descuento. El total se almacena en cache, pero el segundo pedido nunca se sumará al total de `resultado`, ya que el cliente ya está en el cache.\n\n**Corrección del Bug:**\nPara corregir esto, necesitamos asegurarnos de que el total se actualice en cada iteración, incluso si el cliente ya está en el cache. La corrección correcta consistirá en no cargar el total desde el cache, si ya existe un monto acumulado en `resultado`.\n\n### Problema 2: Arrastre del monto facturado del mes anterior\n\n**Descripción del Bug:**\nEl uso de un objeto `cache` mutable (diccionario) como valor predeterminado en el argumento `cache={}` puede llevar a comportamientos inesperados en llamadas sucesivas a la función `calcular_facturacion_mensual`. Dado que los diccionarios en Python se comportan por referencia y no por valor, los valores previos se mantendrán en el cache aunque ya se hayan procesado, lo que causará que los montos de facturación se arrastren entre diferentes ejecuciones.\n\n**Caso que dispara el problema:**\nSi ejecutas la función de nuevo con un nuevo conjunto de pedidos:\n\n```python\npedidos_2 = [\n    {\"cliente\": \"Cliente A\", \"monto\": 200},\n]\n```\n\nEl total facturado para \"Cliente A\" incluirá el monto del primer mes debido a que `cache` retiene información de llamadas previas. \n\n**Corrección del Bug:**\nPara evitar este comportamiento, es recomendable inicializar `cache` como `None` por defecto y crear un nuevo diccionario dentro de la función si cae en ese caso.\n\n### Código Corregido\n\nAquí está el código corregido que incluye las soluciones mencionadas:\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache=None):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    \"\"\"\n    if cache is None:\n        cache = {}\n    \n    resultado = {}\n    \n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        \n        # Aqui se verifica si ya tenemos el total facturado acumulado\n        total = resultado.get(cliente, 0)\n        \n        # Aplicamos el descuento si es necesario\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        \n        # Sumamos el monto (con o sin descuento) al total\n        total += monto\n        resultado[cliente] = total\n        \n        # Solo almacenamos el resultado en cache en caso de ser necesario\n        cache[cliente] = total\n    \n    return resultado\n```\n\nCon estas correcciones, evitamos que los clientes sean facturados de menos por pedidos múltiples y además, aseguramos que el proceso no arrastre montos de facturación de un mes a otro.",
+      "tokens_input": 401,
+      "tokens_output": 872,
+      "total_tokens": 1273,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Esta función pasa todos los tests del equipo, pero en producción se detectaron dos problemas: a veces devuelve rachas más cortas que las reales (incluso 0 cuando hubo días calurosos), y además, al procesar datos de una nueva estación, a veces devuelve una racha que en realidad corresponde a otra estación procesada antes en la misma corrida del proceso batch. Encontrá ambos problemas, explicá con un ejemplo concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se proceso una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el ultimo calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n    racha_maxima = 0\n    racha_actual = 0\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```",
+      "technique": "cot",
+      "output": "Vamos a analizar los dos problemas que se han mencionado:\n\n1. **Rachas más cortas que las reales**: Este problema ocurre cuando al final del bucle, la última racha (si es que hay una) no se está considerando adecuadamente. Si la última temperatura procesada es mayor que el umbral, es posible que `racha_actual` no se compare con `racha_maxima` antes de finalizar la función, lo que significa que podríamos perder contar la racha más larga que termina en el último día procesado.\n\n2. **Rachas incorrectas debido a reutilización de resultados previos**: Esto sucede porque `ultimo_resultado_por_umbral` es un diccionario que persiste entre diferentes invocaciones de la función en la misma corrida de proceso batch. Si se procesan datos de varias estaciones, podría suceder que un resultado almacenado de una estación anterior se use erróneamente para una nueva estación.\n\n**Ejemplo de problemas**:\n- **Racha corta**: Supongamos que tenemos la lista de temperaturas `[25, 32, 33, 30, 31]` y un umbral de `30`. En este caso, la última racha se encuentra antes de la temperatura 30 y no se contaría si no se hace una verificación al final de la función.\n- **Racha incorrecta**: Si se había procesado un conjunto anterior con el mismo umbral y se devolvió un 3, y luego se llama a la función para una nueva estación, también podría devolver un 3 aunque la nueva serie de temperaturas no contenga ninguna racha válida o tenga una diferente.\n\n**Correcciones**:\n1. Al final del procesamiento de las temperaturas, compararemos la última `racha_actual` con `racha_maxima`.\n2. Para evitar que los resultados de una estación se filtren a otra, deberíamos pasar `ultimo_resultado_por_umbral` como argumento a la función, asegurándonos de que no conserve estados de inicios de otras estaciones.\n\nLa función corregida quedaría así:\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral=None):\n    \"\"\"\n    Devuelve la longitud de la racha más larga de días consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se procesó una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el último calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n    \"\"\"\n    if ultimo_resultado_por_umbral is None:\n        ultimo_resultado_por_umbral = {}\n    \n    if not temperaturas:\n        return 0\n    \n    racha_maxima = 0\n    racha_actual = 0\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n            \n    # Considerar la última racha\n    if racha_actual > racha_maxima:\n        racha_maxima = racha_actual\n\n    # Reutilizar el último resultado si es necesario\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    \n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```\n\nCon estas modificaciones, la función ahora debería devolver resultados correctos tanto en términos de identificar la racha más larga correctamente como en evitar la contaminación de datos entre diferentes series de datos procesadas.",
+      "tokens_input": 414,
+      "tokens_output": 781,
+      "total_tokens": 1195,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "Esta función pasó QA, pero en producción aparecieron dos problemas: algunas notificaciones vencidas o canceladas siguen enviándose cuando hay varias seguidas en la cola, y además las notificaciones con estado 'rechazada' nunca se eliminan pese a que el equipo espera que también se saquen de la cola. Encontrá ambos problemas, explicá con qué datos falla cada uno y por qué QA no los detectó, y corregilos.\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que estan vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    for notificacion in cola:\n        if notificacion[\"estado\"] in (\"vencida\", \"cancelada\"):\n            cola.remove(notificacion)\n            eliminados += 1\n    return eliminados\n```",
+      "technique": "cot",
+      "output": "### Razonamiento\n\nEn la función `depurar_cola_de_envios`, se están eliminando notificaciones de la cola basándose en su estado. Sin embargo, hay dos problemas que están causando que no se comporte como se espera:\n\n1. **Problema de notificaciones vencidas o canceladas que siguen enviándose**:\n   Cuando se elimina un elemento de una lista mientras se itera sobre ella, se pueden omitir elementos y causar comportamientos inesperados. Esto ocurre porque al eliminar un elemento, la longitud de la lista cambia y los índices de los elementos restantes se desplazan, lo que puede hacer que se salte la verificación de algunos elementos.\n\n2. **Notificaciones con estado 'rechazada' que nunca se eliminan**:\n   La función actualmente no está considerando notificaciones con el estado 'rechazada', por lo que estas permanecen en la cola sin ser eliminadas. Este comportamiento no fue detectado en QA porque el caso de prueba probablemente no incluía notificaciones 'rechazadas'.\n\nPara corregir estos problemas, debemos asegurarnos de que se eliminen correctamente todos los estados no deseados, incluyendo 'rechazada', y evitar modificar la lista mientras la iteramos. Una forma eficaz de hacer esto es usar una lista de comprensión para crear una nueva lista con los elementos que queremos conservar.\n\n### Respuesta Final\n\nAquí está la versión corregida de la función:\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que están vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    estados_a_eliminar = {\"vencida\", \"cancelada\", \"rechazada\"}\n    # Crear una nueva lista que solo contenga las notificaciones no eliminadas\n    nueva_cola = [notificacion for notificacion in cola if notificacion[\"estado\"] not in estados_a_eliminar]\n    \n    # Contar el número de eliminados\n    eliminados = len(cola) - len(nueva_cola)\n    \n    # Modificar la cola in place\n    cola.clear()  # Limpiamos la cola original\n    cola.extend(nueva_cola)  # Añadimos las notificaciones activas\n\n    return eliminados\n```\n\n### Cambios realizados:\n- Se añadió 'rechazada' al conjunto de estados a eliminar.\n- Se utiliza una lista de comprensión para crear una nueva lista de notificaciones que no se deben eliminar.\n- Se utiliza el método `clear()` para limpiar la cola original antes de agregar únicamente las notificaciones activas.\n  \nCon estas correcciones, la función debería comportarse correctamente en producción y eliminar adecuadamente las notificaciones vencidas, canceladas o rechazadas, sin dejar elementos que deberían ser eliminados.",
+      "tokens_input": 248,
+      "tokens_output": 602,
+      "total_tokens": 850,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 1.0,
+        "calidad": 0.96
+      }
+    },
+    {
+      "input": "Este módulo pasa los tests de creación y de cálculo básico, pero en producción aparecieron dos problemas distintos: (1) algunos clientes con varios pedidos en el mismo mes terminan facturados de menos, y (2) al correr el proceso de un mes nuevo, algunos clientes arrastran el monto facturado del mes anterior. Encontrá ambos problemas, explicá con un caso concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache={}):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        if cliente in cache:\n            resultado[cliente] = cache[cliente]\n            continue\n        total = resultado.get(cliente, 0)\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        total += monto\n        resultado[cliente] = total\n        cache[cliente] = total\n    return resultado\n```",
+      "technique": "cot",
+      "output": "Primero, analicemos el código para identificar los problemas mencionados.\n\n### Problema 1: Facturación incorrecta para clientes con varios pedidos en el mismo mes\nCuando se procesan varios pedidos de un mismo cliente en el mismo mes, el cálculo de la facturación solo se realiza una vez y se guarda en el `cache`. Esto significa que si un cliente tiene múltiples pedidos, la facturación combinada se realiza correctamente, pero si existen pedidos adicionales en el mismo mes que deberían actualizar el total facturado, estos no se considerarán en el total, porque ya se apela a la memoria caché (`cache`) donde se registró un total previamente.\n\n**Caso concreto:**\nSi el cliente \"A\" tiene dos pedidos, uno de 120 y otro de 80 en el mismo mes, el cálculo correcto debería ser:\n- Pedido de 120 (10% de descuento) = 108\n- Pedido de 80 = 80\n- Total = 188\n\nSin embargo, si el cliente \"A\" ya tiene una entrada en `cache` (por ejemplo, se procesó un pedido anterior), todos los pedidos subsiguientes no se añadirán al total, ya que se utilizará el valor en `cache`, resultando en una facturación incorrecta.\n\n### Problema 2: Monto arrastrado del mes anterior\nSi el cálculo se realiza en meses consecutivos y se vuelve a calcular para el mismo cliente sin reiniciar el `cache`, no se restablece el total facturado. Esto provocará que se mantenga el valor anterior y se le añadan los nuevos pedidos, lo que resulta en un monto erróneo porque no se cuenta como un nuevo mes.\n\n**Caso concreto:**\nSi en diciembre el cliente \"B\" fue facturado con un monto total de 300 y se vuelve a calcular en enero con un nuevo pedido de 150, al ejecutar la función no debería comenzar desde 300, sino desde cero, y el total debería ser 150.\n\n### Correcciones\nPara resolver ambos problemas, es necesario:\n1. **Reiniciar el `cache` cada vez que se inicie un nuevo mes**. Esto evitará arrastrar facturaciones del mes anterior.\n2. **No evitar el cálculo basado en si ya hay un cliente en `cache`**. En su lugar, siempre debemos actualizar el `resultado` y el `cache` si un cliente tiene más de un pedido.\n\nAhora procedamos a corregir el código. Aquí está la versión corregida:\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache=None):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    `cache` debe ser None si se inicia un nuevo mes.\n    \"\"\"\n    if cache is None:\n        cache = {}\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        \n        # Si el cliente ya está en resultado, continúa sumando el nuevo pedido\n        total = resultado.get(cliente, 0)\n        \n        if monto > umbral_descuento:\n            monto *= 0.9  # Aplicar descuento si corresponde\n        \n        total += monto  # Sumar el monto de cada pedido\n        resultado[cliente] = total  # Guardar el total facturado\n        cache[cliente] = total  # Guardar en el cache\n\n    return resultado\n```\n\n### Resumen del Código Corregido\n1. Se inicializa `cache` como `None` en lugar de un diccionario vacío. De este modo, cuando se llama a la función para un nuevo mes, se reinicia el `cache`, evitando llevar los totales del mes anterior.\n2. Se eliminó la condición que evitaba recalcular clientes ya existentes en el `cache`. El cálculo se realiza en cada iteración, y se han introducido las actualizaciones apropiadas en el `resultado` y `cache`. \n\nCon estas modificaciones, cada cliente tendrá su facturación calculada de manera precisa y no se arrastrarán errores de meses anteriores.",
+      "tokens_input": 317,
+      "tokens_output": 905,
+      "total_tokens": 1222,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "Esta función pasa todos los tests del equipo, pero en producción se detectaron dos problemas: a veces devuelve rachas más cortas que las reales (incluso 0 cuando hubo días calurosos), y además, al procesar datos de una nueva estación, a veces devuelve una racha que en realidad corresponde a otra estación procesada antes en la misma corrida del proceso batch. Encontrá ambos problemas, explicá con un ejemplo concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se proceso una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el ultimo calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n    racha_maxima = 0\n    racha_actual = 0\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```",
+      "technique": "cot_limited",
+      "output": "Los dos problemas en la función se producen porque no se considera el caso en que la última racha puede ser la más larga (lo que puede llevar a reportar una racha incorrecta) y porque se reutiliza el resultado anterior sin verificar si hubo cambios en los resultados, lo que puede llevar a errores en el cálculo.\n\n**Problema 1**: Si la racha más larga termina al final de la lista, no se registra correctamente.\n\n**Problema 2**: Si una nueva estación tiene datos compatibles, se pueden mezclar resultados anteriores.\n\nVoy a corregir ambos problemas.\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    if not temperaturas:\n        return 0\n    racha_maxima = 0\n    racha_actual = 0\n    \n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            racha_maxima = max(racha_maxima, racha_actual)  # Actualizar racha máxima\n            racha_actual = 0\n            \n    racha_maxima = max(racha_maxima, racha_actual)  # Verificar al final de la lista\n\n    # Actualizar el resultado por umbral de forma independiente\n    if umbral not in ultimo_resultado_por_umbral or racha_maxima > ultimo_resultado_por_umbral[umbral]:\n        ultimo_resultado_por_umbral[umbral] = racha_maxima\n        \n    return racha_maxima\n```\n\nCon estos cambios, la función debería ahora reportar correctamente la racha más larga y evitar mezclar resultados de estaciones diferentes.",
+      "tokens_input": 421,
+      "tokens_output": 346,
+      "total_tokens": 767,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.0,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.25,
+        "completitud_funcional": 0.4,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.39
+      }
+    },
+    {
+      "input": "Esta función pasó QA, pero en producción aparecieron dos problemas: algunas notificaciones vencidas o canceladas siguen enviándose cuando hay varias seguidas en la cola, y además las notificaciones con estado 'rechazada' nunca se eliminan pese a que el equipo espera que también se saquen de la cola. Encontrá ambos problemas, explicá con qué datos falla cada uno y por qué QA no los detectó, y corregilos.\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que estan vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    for notificacion in cola:\n        if notificacion[\"estado\"] in (\"vencida\", \"cancelada\"):\n            cola.remove(notificacion)\n            eliminados += 1\n    return eliminados\n```",
+      "technique": "cot_limited",
+      "output": "Los problemas surgen porque se está modificando la lista `cola` mientras se itera sobre ella. Esto causa que algunos elementos no se evalúen correctamente, lo que puede explicar la persistencia de notificaciones vencidas o canceladas. Además, el estado 'rechazada' nunca se contempla en la eliminación.\n\nEn QA, probablemente se probaron casos aislados sin observar que las modificaciones en la iteración afectan el flujo. \n\nLa solución consiste en iterar sobre una copia de la lista o usar una comprensión de listas para evitar estos problemas, y garantizar que se eliminen también las 'rechazadas':\n\n```python\ndef depurar_cola_de_envios(cola):\n    eliminados = 0\n    # Usando comprensión de listas para reconstruir la cola\n    nuevos_elementos = [n for n in cola if n[\"estado\"] not in (\"vencida\", \"cancelada\", \"rechazada\")]\n    eliminados = len(cola) - len(nuevos_elementos)\n    cola[:] = nuevos_elementos  # Modificación in place\n    return eliminados\n```",
+      "tokens_input": 255,
+      "tokens_output": 225,
+      "total_tokens": 480,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.75,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.6,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.64
+      }
+    },
+    {
+      "input": "Este módulo pasa los tests de creación y de cálculo básico, pero en producción aparecieron dos problemas distintos: (1) algunos clientes con varios pedidos en el mismo mes terminan facturados de menos, y (2) al correr el proceso de un mes nuevo, algunos clientes arrastran el monto facturado del mes anterior. Encontrá ambos problemas, explicá con un caso concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache={}):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        if cliente in cache:\n            resultado[cliente] = cache[cliente]\n            continue\n        total = resultado.get(cliente, 0)\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        total += monto\n        resultado[cliente] = total\n        cache[cliente] = total\n    return resultado\n```",
+      "technique": "cot_limited",
+      "output": "El primer problema de facturación de menos se debe a que el cache interno utiliza el total acumulado del cliente pero no suma correctamente en caso de múltiples pedidos en el mismo mes. El segundo problema proviene del cache, que mantiene el total de meses anteriores, causando que algunos costos se arrastren.\n\nPara resolverlo, se debe eliminar el uso de cache dentro de la función, garantizando que cada llamada calcule de cero el monto para cada cliente en cada mes.\n\nAquí tienes la corrección:\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        total = resultado.get(cliente, 0)\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        total += monto\n        resultado[cliente] = total\n    return resultado\n```",
+      "tokens_input": 324,
+      "tokens_output": 248,
+      "total_tokens": 572,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.3
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.4,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.45
+      }
+    },
+    {
+      "input": "Esta función pasa todos los tests del equipo, pero en producción se detectaron dos problemas: a veces devuelve rachas más cortas que las reales (incluso 0 cuando hubo días calurosos), y además, al procesar datos de una nueva estación, a veces devuelve una racha que en realidad corresponde a otra estación procesada antes en la misma corrida del proceso batch. Encontrá ambos problemas, explicá con un ejemplo concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se proceso una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el ultimo calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n    racha_maxima = 0\n    racha_actual = 0\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```",
+      "technique": "structured_prompting_json",
+      "output": "Vamos a analizar el código de la función `racha_mas_larga` y buscar los bugs de lógica mencionados en el input, corregirlos y explicar los casos en los que se activan.\n\n### Problema 1: Rachas más cortas de lo real (incluyendo 0)\n\n**Descripción del problema**: La función puede devolver rachas más cortas que las reales o incluso 0, cuando debería haber días calurosos, debido a que la comparación final que actualiza `racha_maxima` solo se realiza si el último día no supera el umbral.\n\n**Caso que dispara este problema**: \nImagina el siguiente input:\n```python\ntemperaturas = [20, 31, 32, 33, 25, 29]\numbral = 30\n```\nCon este input, la función calculada debería devolver 3 (por los días 31, 32 y 33). Pero, en el ciclo, al llegar a 25 se resetearía `racha_actual` a 0 y no se compara correctamente después de salir del bucle, resultando en una `racha_maxima` de 0 si no se tenía un resultado previo mejor.\n\n**Corrección**: Se debe realizar una comparación adicional después del bucle para comparar `racha_actual` al final del procesamiento. \n\n### Problema 2: Resultado incorrecto debido a reutilización de `ultimo_resultado_por_umbral`\n\n**Descripción del problema**: Debido a la utilización de un diccionario `ultimo_resultado_por_umbral`, si se procesa otro conjunto de datos con el mismo umbral, se puede sobrescribir el valor de una racha máxima si no se está manejando correctamente el estado entre diferentes llamadas a la función.\n\n**Caso que dispara este problema**: Consideremos que estamos procesando datos de dos estaciones diferentes. En la primera llamada, tenemos:\n```python\ntemperaturas1 = [20, 31, 32, 33]\numbral1 = 30\nresultado1 = racha_mas_larga(temperaturas1, umbral1)\n```\nEsto da un resultado de 3. Luego, procesamos otra estación con:\n```python\ntemperaturas2 = [29, 30, 31]\numbral2 = 30\nresultado2 = racha_mas_larga(temperaturas2, umbral2)\n```\nEl problema radica en que, si se procesan múltiples estaciones en una sola corrida, los resultados se mezclarán a causa de la reutilización del diccionario, ocasionando un resultado incorrecto.\n\n### Código corregido\n\nAquí está el código corregido que aborda ambos problemas:\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se proceso una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el ultimo calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n    \n    racha_maxima = 0\n    racha_actual = 0\n    \n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n    \n    # Finaliza la comparación con racha_actual en caso de que termine con una racha\n    if racha_actual > racha_maxima:\n        racha_maxima = racha_actual\n\n    # Se verificará si ya se procesó anteriormente con este umbral\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    \n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```\n\n### Resumen de correcciones:\n1. Se añadió una comparación final de `racha_actual` después del bucle para asegurar que se registre la racha más larga en caso de que termine de contar rachas antes de un día que no supera el umbral.\n2. Se ha mantenido la lógica para asegurar que `ultimo_resultado_por_umbral` no dé resultados erróneos, aunque debería tener cuidado al usar esta configuración en un contexto de procesamiento por lotes.",
+      "tokens_input": 452,
+      "tokens_output": 986,
+      "total_tokens": 1438,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.6,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.53
+      }
+    },
+    {
+      "input": "Esta función pasó QA, pero en producción aparecieron dos problemas: algunas notificaciones vencidas o canceladas siguen enviándose cuando hay varias seguidas en la cola, y además las notificaciones con estado 'rechazada' nunca se eliminan pese a que el equipo espera que también se saquen de la cola. Encontrá ambos problemas, explicá con qué datos falla cada uno y por qué QA no los detectó, y corregilos.\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que estan vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    for notificacion in cola:\n        if notificacion[\"estado\"] in (\"vencida\", \"cancelada\"):\n            cola.remove(notificacion)\n            eliminados += 1\n    return eliminados\n```",
+      "technique": "structured_prompting_json",
+      "output": "Vamos a analizar la función `depurar_cola_de_envios` para identificar los problemas de lógica y corregirlos, explicando por qué ocurren y por qué no fueron detectados por QA.\n\n### Problemas Identificados\n\n1. **Notificaciones Vencidas o Canceladas no Eliminadas en Casos de Cola Densa**: \n   Cuando se eliminan elementos de una lista mientras se itera sobre ella, es posible que se salten elementos. Esto sucede porque, al eliminar un elemento, la lista se reduce y los índices cambian. Por lo tanto, una notificación que sigue a una notificación eliminada nunca se revisa.\n\n   **Caso específico**: Si la cola contiene notificaciones con estado:\n   ```python\n   cola = [{\"estado\": \"vencida\"}, {\"estado\": \"activa\"}, {\"estado\": \"cancelada\"}]\n   ```\n   En este caso, al eliminar la primera notificación (vencida), el segundo índice que era la notificación activa se convierte en el primero, y la iteración pasa al siguiente índice. Por lo tanto, la notificación cancelada nunca se revisa.\n\n2. **Notificaciones Rechazadas Nunca Eliminadas**:\n   La lógica actual sólo elige eliminar notificaciones con estado \"vencida\" o \"cancelada\", pero no considera las que están \"rechazadas\".\n\n   **Caso específico**: Si la cola tiene:\n   ```python\n   cola = [{\"estado\": \"vencida\"}, {\"estado\": \"rechazada\"}, {\"estado\": \"cancelada\"}]\n   ```\n   Aquí, la notificación con estado \"rechazada\" no se elimina. Esto se debe al hecho de que la lógica actual no detecta este estado.\n\n### Razón por la que QA no detectó los problemas:\n\n- **Pruebas Incompletas**: Es posible que en las pruebas realizadas no se hayan incluido escenarios donde múltiples notificaciones estén en la cola, ni se consideraron combinaciones de estados que manifestaran ambos problemas, como las notificaciones activas intercaladas con las que deberían ser eliminadas.\n\n### Solución\n\nVamos a reescribir la función para asegurarnos de que elimine correctamente todas las notificaciones de estados \"vencida\", \"cancelada\" o \"rechazada\", además de evitar modificar la lista mientras se itera sobre ella.\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que están vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    # Crear una nueva lista que contendrá solo las notificaciones que deben conservarse\n    cola_filtrada = []\n    \n    for notificacion in cola:\n        if notificacion[\"estado\"] not in (\"vencida\", \"cancelada\", \"rechazada\"):\n            cola_filtrada.append(notificacion)\n        else:\n            eliminados += 1\n    \n    # Reemplazar la cola original con la filtrada\n    cola.clear()\n    cola.extend(cola_filtrada)\n    \n    return eliminados\n```\n\n### Resumen de Cambios Realizados\n\n1. Evitamos la modificación de la lista original durante la iteración.\n2. Agregamos el estado \"rechazada\" a la condición de eliminación.\n3. Usamos `cola.clear()` y `cola.extend(cola_filtrada)` para reemplazar el contenido de la cola original, asegurando la correcta operación. \n\nCon esta nueva implementación, la función funcionará correctamente independientemente de la densidad de los datos en la cola o la combinación de estados.",
+      "tokens_input": 281,
+      "tokens_output": 783,
+      "total_tokens": 1064,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.75,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.71
+      }
+    },
+    {
+      "input": "Este módulo pasa los tests de creación y de cálculo básico, pero en producción aparecieron dos problemas distintos: (1) algunos clientes con varios pedidos en el mismo mes terminan facturados de menos, y (2) al correr el proceso de un mes nuevo, algunos clientes arrastran el monto facturado del mes anterior. Encontrá ambos problemas, explicá con un caso concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache={}):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        if cliente in cache:\n            resultado[cliente] = cache[cliente]\n            continue\n        total = resultado.get(cliente, 0)\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        total += monto\n        resultado[cliente] = total\n        cache[cliente] = total\n    return resultado\n```",
+      "technique": "structured_prompting_json",
+      "output": "El código proporcionado tiene dos problemas lógicos que provocan las situaciones descritas en el input. Vamos a desglosar cada problema, explicando el caso concreto que dispara cada uno y luego ofreciendo la corrección correspondiente.\n\n### Problema 1: Facturación incorrecta para clientes con varios pedidos en el mismo mes\n**Descripción del problema**: El código actual no suma correctamente los montos de los pedidos de un mismo cliente si este tiene varios pedidos en el mismo mes. Esto puede provocar que algunos clientes sean facturados de menos debido a que no se están acumulando correctamente sus montos.\n\n**Caso concreto que dispara el error**:\nSupón que el cliente \"A\" tiene dos pedidos en un mes:\n- Pedido 1: {\"cliente\": \"A\", \"monto\": 200}\n- Pedido 2: {\"cliente\": \"A\", \"monto\": 150}\n\nSegún la lógica actual, al procesar el primer pedido, se aplicará el descuento al monto porque supera el umbral:\n- Total después del Pedido 1: 200 * 0.9 = 180\n\nLuego, al procesar el segundo pedido, el monto del pedido se suma sin utilizar el valor actualizado del total para el cliente:\n- Total después del Pedido 2: 180 + 150 = 330 (pero debería ser 180 + 135 = 315)\n\n### Problema 2: Arrastrar el monto facturado del mes anterior\n**Descripción del problema**: El uso incorrecto de un cache global puede hacer que un cliente arrastre el monto facturado del mes anterior, ya que `cache` se utiliza para almacenar resultados de facturación entre llamadas, lo que no es correcto para cada mes.\n\n**Caso concreto que dispara el error**:\nSuponga que se ejecuta el cálculo para el cliente \"B\" en el mes de marzo y se guarda un total:\n- Total facturado para marzo: 250 (almacenado en caché)\nSi luego se llama a calcular_facturacion_mensual en abril con un nuevo conjunto de pedidos para el mismo cliente que suman 300, el resultado se le sumaría al existente, así:\n- Total facturado en abril: 250 (de marzo) + 300 = 550, lo que provocaría que \"B\" tenga más de lo que realmente facturó en abril.\n\n### Correcciones necesarias:\n1. **Suma correcta de múltiples pedidos**: Necesitamos asegurarnos de que se sumen correctamente todos los pedidos de un cliente en una ejecución.\n2. **Uso de cache local o para almacenar el resultado solo de la ejecución actual**: Reemplazar el cache global por un cache que se reinicie en cada ejecución para el mes actual.\n\n### Código corregido:\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    \"\"\"\n    resultado = {}\n    \n    # Eliminar el uso de cache para evitar arrastre de montos de meses anteriores.\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        \n        # Se evalúa y se suma el monto total por cliente\n        total = resultado.get(cliente, 0)\n        \n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        \n        total += monto\n        resultado[cliente] = total\n\n    return resultado\n```\n\n### Validación de cambios:\nAl aplicar las correcciones, el ejemplo mencionado (pedido para cliente \"A\" y cliente \"B\") ahora funcionarán correctamente:\n- Para el cliente \"A\", el total se calculará correctamente como 315.\n- Para el cliente \"B\", comenzará el mes de abril sin arrastrar el total de marzo.",
+      "tokens_input": 359,
+      "tokens_output": 819,
+      "total_tokens": 1178,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.61
+      }
+    },
+    {
+      "input": "Esta función pasa todos los tests del equipo, pero en producción se detectaron dos problemas: a veces devuelve rachas más cortas que las reales (incluso 0 cuando hubo días calurosos), y además, al procesar datos de una nueva estación, a veces devuelve una racha que en realidad corresponde a otra estación procesada antes en la misma corrida del proceso batch. Encontrá ambos problemas, explicá con un ejemplo concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha mas larga de dias consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si ya se proceso una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el ultimo calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n    racha_maxima = 0\n    racha_actual = 0\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n    return racha_maxima\n```",
+      "technique": "role_prompting",
+      "output": "He revisado el código y he localizado dos problemas que podrían estar causando los problemas que mencionas en producción.\n\n### Problema 1: Rachas más cortas inesperadas.\n\nEl primer problema se genera cuando la racha actual se considera para el racha máxima solo al final del bucle. Si la última temperatura procesada es mayor que el umbral, la `racha_actual` podría no ser comparada con la `racha_maxima` después de salir del bucle, lo que podría ocasionar que no se registre la racha más larga si no hay un valor que interrumpa la secuencia.\n\n#### Ejemplo:\nSi se pasa la lista de temperaturas `[15, 32, 33, 40]` con un `umbral` de `30`, la racha correcta es `3`, ya que los días 2, 3 y 4 tienen temperaturas mayores a 30. Sin embargo, el código actual solo considera el final de la lista, lo que puede producir errores si el último elemento es parte de la racha más larga.\n\n### Problema 2: Reutilización incorrecta de resultados anteriores.\n\nEl segundo problema surge cuando se reutiliza el `ultimo_resultado_por_umbral`. Al almacenar el resultado para un umbral específico y luego empezar a procesar nuevas temperaturas en la misma ejecución, el resultado anterior puede aplicarse aunque las nuevas temperaturas no alcanzan la misma racha, lo que puede dar lugar a un racha incorrecta en los días que se evalúan.\n\n#### Ejemplo:\nSi procesas primero `[10, 20, 30]` con un `umbral` de `25`, se guarda un `racha_maxima` de `1` para ese umbral. Si luego procesas `[10, 12, 14]` con el mismo umbral, el resultado será `1` por la reutilización, aunque en realidad no hay días que superen el umbral.\n\n### Correcciones:\n\nAquí está la versión corregida del código, con las mejoras necesarias para abordar ambos problemas:\n\n```python\ndef racha_mas_larga(temperaturas, umbral, ultimo_resultado_por_umbral={}):\n    \"\"\"\n    Devuelve la longitud de la racha más larga de días consecutivos\n    con temperatura estrictamente mayor al umbral.\n\n    Si se procesa una serie con el mismo umbral en esta corrida del\n    batch y no hubo un resultado mayor, reutiliza el último calculado\n    para ese umbral como piso (para no reportar retrocesos espurios\n    por ventanas de datos incompletas).\n\n    Ejemplo: [20, 31, 32, 33, 25, 31], umbral=30 -> 3\n    \"\"\"\n    if not temperaturas:\n        return 0\n\n    racha_maxima = 0\n    racha_actual = 0\n\n    for temp in temperaturas:\n        if temp > umbral:\n            racha_actual += 1\n        else:\n            if racha_actual > racha_maxima:\n                racha_maxima = racha_actual\n            racha_actual = 0\n\n    # Aseguramos de verificar al final si `racha_actual` es mayor\n    if racha_actual > racha_maxima:\n        racha_maxima = racha_actual\n\n    # Se verifica el último resultado solo si no se ha encontrado una racha superior\n    if umbral in ultimo_resultado_por_umbral:\n        racha_maxima = max(racha_maxima, ultimo_resultado_por_umbral[umbral])\n\n    # Actualizamos el último resultado\n    ultimo_resultado_por_umbral[umbral] = racha_maxima\n\n    return racha_maxima\n```\n\n### Cambios realizados:\n\n1. **Comparación Final**: Se agregó la comparación de `racha_actual` con `racha_maxima` al final del procesamiento de la lista para asegurarnos de que cualquier racha que termine justo al final del bucle se tenga en cuenta.\n\n2. **Condicionamiento para el último resultado**: Se ajustó la lógica para actualizar `racha_maxima` con `ultimo_resultado_por_umbral` solo si este es menor que el nuevo resultado obtenido, lo que previene que un valor del pasado se use incorrectamente si una nueva entrada presenta un resultado menor. \n\nCon estas correcciones, la función debe funcionar correctamente tanto para obtener la racha más larga como para manejar nuevas estaciones de manera adecuada, evitando problemas de datos cruzados.",
+      "tokens_input": 410,
+      "tokens_output": 926,
+      "total_tokens": 1336,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.3,
+        "claridad_comunicacional": 0.3,
+        "profundidad_conceptual": 0.3
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.4,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.4,
+        "calidad": 0.45
+      }
+    },
+    {
+      "input": "Esta función pasó QA, pero en producción aparecieron dos problemas: algunas notificaciones vencidas o canceladas siguen enviándose cuando hay varias seguidas en la cola, y además las notificaciones con estado 'rechazada' nunca se eliminan pese a que el equipo espera que también se saquen de la cola. Encontrá ambos problemas, explicá con qué datos falla cada uno y por qué QA no los detectó, y corregilos.\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que estan vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    eliminados = 0\n    for notificacion in cola:\n        if notificacion[\"estado\"] in (\"vencida\", \"cancelada\"):\n            cola.remove(notificacion)\n            eliminados += 1\n    return eliminados\n```",
+      "technique": "role_prompting",
+      "output": "Analicemos el código proporcionado por los problemas que mencionas y cómo estos pudieron haber pasado desapercibidos en QA.\n\n### Problemas Identificados\n\n1. **Notificaciones vencidas o canceladas que siguen enviándose**:\n   - **Causa**: En el bucle `for` se utiliza `cola.remove(notificacion)` para eliminar elementos de la lista mientras se itera sobre ella. Esto puede llevar a que se salten elementos, ya que al eliminar un elemento se modifica el índice del bucle automáticamente.\n   - **Ejemplo**: Supongamos que la cola contiene tres notificaciones: `[A (estado: 'vencida'), B (estado: 'activa'), C (estado: 'cancelada')]`. Si eliminamos `A` cuando `notificacion` apunta a `A`, entonces el siguiente elemento en el índice pasa a ser `C`, saltándose `B`, que podría no ser el esperado. Esto puede llevar a que `B` quede en la cola.\n\n2. **Notificaciones con estado 'rechazada' nunca se eliminan**:\n   - **Causa**: El código actual no contempla el estado 'rechazada', así que esas notificaciones no se eliminan.\n   - **Ejemplo**: En una cola con notificaciones de varios estados, como `[D (estado: 'rechazada')]`, `D` nunca será eliminado porque no está en la condición de eliminación.\n\n### Falta de Detección en QA\n\nEl QA podría no haber detectado estos problemas si las pruebas no cubrieron escenarios en los que la cola tenía una mezcla de estados o si los casos de prueba no incluían notificaciones que deberían ser eliminadas en secuencias. También es posible que no se haya probado la funcionalidad de eliminar elementos en condiciones concurrentes.\n\n### Corrección del Código\n\nPara solucionar estos problemas, reescribiremos la función `depurar_cola_de_envios` para usar una lista de comprensión que crea una nueva lista con solo aquellas notificaciones que no deben ser eliminadas. Esto evitará problemas al modificar la lista mientras se itera sobre ella.\n\nAquí está la versión corregida:\n\n```python\ndef depurar_cola_de_envios(cola):\n    \"\"\"\n    Recibe la cola de notificaciones pendientes (lista de dicts) y\n    elimina las que están vencidas, canceladas o rechazadas, dejando\n    en la cola solo las notificaciones activas. Modifica la cola in\n    place y devuelve la cantidad de elementos eliminados.\n    \"\"\"\n    # Contar las notificaciones a eliminar\n    eliminados = len([notificacion for notificacion in cola if notificacion[\"estado\"] in (\"vencida\", \"cancelada\", \"rechazada\")])\n    \n    # Filtrar las notificaciones activas\n    cola[:] = [notificacion for notificacion in cola if notificacion[\"estado\"] not in (\"vencida\", \"cancelada\", \"rechazada\")]\n    \n    return eliminados\n```\n\n### Explicación de la Corrección\n\n- **Filtrado Seguro**: Se utiliza una lista de comprensión para crear una nueva lista que contiene solo las notificaciones que no tienen un estado que requiera la eliminación.\n- **Modificación In-place**: Al usar `cola[:]`, se modifica la lista original con los valores filtrados, asegurando que se mantenga la referencia original de la lista.\n- **Contador de Eliminados**: Se calcula el número de elementos eliminados con una comprensión de lista previa, lo que facilita contar cuántas notificaciones fueron descartadas.\n\nCon estos cambios, la función debería comportarse según lo esperado y resolver los problemas mencionados.",
+      "tokens_input": 244,
+      "tokens_output": 755,
+      "total_tokens": 999,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.85,
+        "calidad": 0.93
+      }
+    },
+    {
+      "input": "Este módulo pasa los tests de creación y de cálculo básico, pero en producción aparecieron dos problemas distintos: (1) algunos clientes con varios pedidos en el mismo mes terminan facturados de menos, y (2) al correr el proceso de un mes nuevo, algunos clientes arrastran el monto facturado del mes anterior. Encontrá ambos problemas, explicá con un caso concreto cuándo se dispara cada uno, y corregilos.\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100, cache={}):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    Usa un cache interno para no recalcular clientes ya procesados\n    en la misma corrida del proceso batch.\n    \"\"\"\n    resultado = {}\n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        if cliente in cache:\n            resultado[cliente] = cache[cliente]\n            continue\n        total = resultado.get(cliente, 0)\n        if monto > umbral_descuento:\n            monto = monto * 0.9\n        total += monto\n        resultado[cliente] = total\n        cache[cliente] = total\n    return resultado\n```",
+      "technique": "role_prompting",
+      "output": "Vamos a analizar el código proporcionado y detectar los dos problemas mencionados: el error en la facturación de algunos clientes y el problema con los montos que se arrastran de meses anteriores.\n\n### Problema 1: Facturación incorrecta para algunos clientes\n\n**Descripción:** Algunos clientes con varios pedidos en el mismo mes terminan facturados de menos. Esto ocurre porque el `cache` (memoria caché interna) se utiliza de manera incorrecta y puede llevar a que un cliente no sume correctamente todos sus pedidos si ya existe una entrada en el caché.\n\n**Caso concreto:** Supongamos que un cliente (`cliente_a`) tiene dos pedidos, uno de 120 y otro de 150. Según la lógica actual:\n- La primera vez que se procesa el pedido de 120, el cliente no está en el caché, así que se calcula y se agrega el monto, aplicando un descuento del 10% (total = 120 * 0.9 = 108).\n- Cuando se procesa el segundo pedido de 150, como el cliente ya está en el caché, se recupera su total facturado anterior (108) sin añadir el segundo pedido. Esto lleva a un total no correcto.\n\n### Problema 2: Montos arrastrados al correr el proceso de un mes nuevo\n\n**Descripción:** Algunos clientes arrastran el monto facturado del mes anterior debido al uso persistente del `cache`, que es un mutable (diccionario) que persiste entre las ejecuciones.\n\n**Caso concreto:** Si el proceso se ejecuta para enero y luego para febrero sin reiniciar el `cache`, el total facturado de enero se mantendrá para ciertos clientes en febrero si esos clientes tienen pedidos en enero y en febrero.\n\n### Corrección del Código\n\nPara abordar ambos problemas, es necesario:\n1. **Limpiar el cache** al inicio de la ejecucón de `calcular_facturacion_mensual`.\n2. **Remover la lógica de caching** que puede llevar a que se omita el cálculo correcto de los pedidos de un cliente.\n\nAquí tienes una versión corregida del código:\n\n```python\ndef calcular_facturacion_mensual(pedidos, umbral_descuento=100):\n    \"\"\"\n    Calcula el total facturado por cliente en el mes, aplicando un\n    descuento del 10% a los pedidos que superen el umbral de importe.\n    Devuelve un diccionario {cliente: total_facturado}.\n    \"\"\"\n    resultado = {}\n    \n    for pedido in pedidos:\n        cliente = pedido[\"cliente\"]\n        monto = pedido[\"monto\"]\n        \n        total = resultado.get(cliente, 0)  # Obtenemos el total actual para el cliente\n        \n        if monto > umbral_descuento:\n            monto *= 0.9  # Aplicamos el descuento del 10%\n        \n        total += monto  # Sumamos el monto del pedido al total\n        resultado[cliente] = total  # Actualizamos el total en el diccionario resultado\n        \n    return resultado\n```\n\n### Resumen de correcciones realizadas:\n- **Eliminar el caché**: Ya no se utiliza un `cache` entre las ejecuciones, asegurando que cada mes se calculen los montos correctamente desde cero.\n- **Simplicidad**: El código es más simple, se asegura que cada pedido se procese y se agregue al total correspondiente del cliente sin efectos secundarios de otras llamadas a la función.\n\nCon estas correcciones, se garantiza que los clientes tengan sus montos facturados de manera adecuada y que no exista un arrastre de montos entre distintos meses.",
+      "tokens_input": 313,
+      "tokens_output": 743,
+      "total_tokens": 1056,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.5,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.6,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.53
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 19206,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 910,
+        "tokens_output": 2320,
+        "total_tokens": 3230,
+        "avg_calidad_promedio": 0.74,
+        "avg_calidad_gpt4o": 0.74,
+        "avg_calidad_claude": 0.73,
+        "dimensions": {
+          "exactitud_funcional": 0.92,
+          "completitud_funcional": 0.72,
+          "claridad_comunicacional": 0.72,
+          "profundidad_conceptual": 0.6
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000229,
+          "claude": 0.000226,
+          "promedio": 0.000229
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 1231,
+        "tokens_output": 2588,
+        "total_tokens": 3819,
+        "avg_calidad_promedio": 0.99,
+        "avg_calidad_gpt4o": 1.0,
+        "avg_calidad_claude": 0.97,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 1.0,
+          "profundidad_conceptual": 0.95
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000262,
+          "claude": 0.000254,
+          "promedio": 0.000259
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 979,
+        "tokens_output": 2288,
+        "total_tokens": 3267,
+        "avg_calidad_promedio": 0.96,
+        "avg_calidad_gpt4o": 0.92,
+        "avg_calidad_claude": 1.0,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 0.9,
+          "profundidad_conceptual": 0.95
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000282,
+          "claude": 0.000306,
+          "promedio": 0.000294
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 1000,
+        "tokens_output": 819,
+        "total_tokens": 1819,
+        "avg_calidad_promedio": 0.49,
+        "avg_calidad_gpt4o": 0.5,
+        "avg_calidad_claude": 0.48,
+        "dimensions": {
+          "exactitud_funcional": 0.5,
+          "completitud_funcional": 0.47,
+          "claridad_comunicacional": 0.53,
+          "profundidad_conceptual": 0.47
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000275,
+          "claude": 0.000264,
+          "promedio": 0.000269
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 1092,
+        "tokens_output": 2588,
+        "total_tokens": 3680,
+        "avg_calidad_promedio": 0.62,
+        "avg_calidad_gpt4o": 0.5,
+        "avg_calidad_claude": 0.73,
+        "dimensions": {
+          "exactitud_funcional": 0.58,
+          "completitud_funcional": 0.62,
+          "claridad_comunicacional": 0.7,
+          "profundidad_conceptual": 0.57
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000136,
+          "claude": 0.000198,
+          "promedio": 0.000168
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 967,
+        "tokens_output": 2424,
+        "total_tokens": 3391,
+        "avg_calidad_promedio": 0.63,
+        "avg_calidad_gpt4o": 0.59,
+        "avg_calidad_claude": 0.68,
+        "dimensions": {
+          "exactitud_funcional": 0.67,
+          "completitud_funcional": 0.63,
+          "claridad_comunicacional": 0.65,
+          "profundidad_conceptual": 0.58
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000174,
+          "claude": 0.000201,
+          "promedio": 0.000186
+        }
+      }
+    }
+  }
+}

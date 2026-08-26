@@ -1,0 +1,616 @@
+{
+  "results": [
+    {
+      "input": "¿Cómo funciona el prompt engineering?\nLos modelos de IA generativa se basan en arquitecturas del transformador, que les permiten comprender las complejidades del lenguaje y procesar grandes cantidades de datos a través de redes neuronales. La ingeniería de prompt de IA ayuda a moldear el resultado del modelo, lo que garantiza que la IA responda de manera significativa y coherente. Varias técnicas de prompting ayudan a garantizar que los modelos de IA generen respuestas útiles, como la tokenización, el ajuste de parámetros del modelo y el muestreo top-k.\n\nEl prompt engineering está demostrando ser vital para liberar todo el potencial de los modelos fundacionales que impulsan la IA generativa. Los modelos fundacionales son modelos de lenguaje de gran tamaño (LLM) basados en la arquitectura del transformador y repletos de toda la información que necesita el sistema de IA generativo.\n\nLos modelos generativos de IA funcionan en función del procesamiento del lenguaje natural (PLN) y utilizan entradas de lenguaje natural para producir resultados complejos. Las preparaciones de ciencia de datos subyacentes, las arquitecturas del transformador y los algoritmos de machine learning permiten a estos modelos comprender el lenguaje y luego utilizar conjuntos de datos masivos para crear salidas de texto o imagen.\n\nLa IA generativa de texto a imagen, como DALL-E y Midjourney, utiliza un LLM junto con una difusión estable, un modelo que destaca en la generación de imágenes a partir de descripciones de texto. El prompt engineering eficaz combina el conocimiento técnico con una comprensión profunda del lenguaje natural, el vocabulario y el contexto para producir resultados óptimos con pocas revisiones.",
+      "technique": "zero_shot",
+      "output": "El prompt engineering es esencial para maximizar el potencial de los modelos de IA generativa, que se basan en arquitecturas de transformador para procesar el lenguaje y datos. Este proceso moldea las respuestas de la IA, garantizando que sean significativas y coherentes, utilizando técnicas como la tokenización, ajuste de parámetros y muestreo top-k. \n\nLos modelos de lenguaje de gran tamaño (LLM) son fundamentales en la IA generativa, ya que utilizan el procesamiento del lenguaje natural (PLN) para generar resultados complejos a partir de entradas de lenguaje natural. Ejemplos de esta tecnología incluyen generadores de imágenes como DALL-E y Midjourney, que combinan un LLM con modelos de difusión para crear imágenes a partir de texto.\n\nUn prompt engineering eficaz requiere no solo conocimientos técnicos, sino también una comprensión del lenguaje, vocabulario y contexto para lograr resultados óptimos con pocas correcciones.",
+      "tokens_input": 353,
+      "tokens_output": 187,
+      "total_tokens": 540,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.77
+      }
+    },
+    {
+      "input": "El cambio climático es uno de los desafíos más apremiantes que enfrenta la humanidad en el siglo XXI. El aumento de las temperaturas globales, causado principalmente por las emisiones de gases de efecto invernadero resultantes de actividades humanas, ha llevado a consecuencias devastadoras en todo el mundo. Los científicos advierten que si no se toman medidas inmediatas, los efectos serán cada vez más catastróficos, incluyendo el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Para abordar este problema, es necesario reducir las emisiones de carbono, promover fuentes de energía renovable y trabajar en la adaptación a los cambios climáticos inevitables. La cooperación internacional y los cambios en los patrones de consumo son esenciales para garantizar un futuro sostenible para las próximas generaciones.",
+      "technique": "zero_shot",
+      "output": "El cambio climático es un desafío urgente del siglo XXI, causado por el aumento de temperaturas globales por las emisiones de gases de efecto invernadero. Esto conlleva consecuencias devastadoras, como el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Es vital reducir las emisiones de carbono, promover energías renovables y adaptarse a los cambios climáticos. La cooperación internacional y cambios en los patrones de consumo son esenciales para un futuro sostenible.",
+      "tokens_input": 183,
+      "tokens_output": 102,
+      "total_tokens": 285,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.81
+      }
+    },
+    {
+      "input": "La revolución digital ha transformado fundamentalmente la forma en que vivimos, trabajamos y nos comunicamos. Desde la adopción de internet hasta el surgimiento de la inteligencia artificial, la tecnología ha acelerado la innovación en casi todos los sectores de la economía. Las redes sociales han cambiado las dinámicas de la comunicación humana, permitiendo que las personas se conecten instantáneamente sin importar su ubicación geográfica. El comercio electrónico ha revolucionado la forma en que compramos productos y servicios. Sin embargo, esta transformación digital también ha planteado desafíos significativos, incluyendo preocupaciones sobre la privacidad de datos, la ciberseguridad, la brecha digital entre comunidades y el impacto en el empleo tradicional. A medida que continuamos navegando por esta era digital, es crucial equilibrar los beneficios de la tecnología con la necesidad de proteger nuestros derechos y bienestar.",
+      "technique": "zero_shot",
+      "output": "La revolución digital ha transformado cómo vivimos, trabajamos y nos comunicamos, impulsando la innovación en diversos sectores a través de internet y la inteligencia artificial. Las redes sociales han cambiado la comunicación al permitir conexiones instantáneas, y el comercio electrónico ha modificado nuestras compras. No obstante, este cambio también presenta desafíos, como preocupaciones sobre la privacidad, la ciberseguridad, la brecha digital y el impacto en el empleo tradicional. Es esencial equilibrar los beneficios tecnológicos con la protección de nuestros derechos y bienestar.",
+      "tokens_input": 192,
+      "tokens_output": 106,
+      "total_tokens": 298,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.81
+      }
+    },
+    {
+      "input": "¿Cómo funciona el prompt engineering?\nLos modelos de IA generativa se basan en arquitecturas del transformador, que les permiten comprender las complejidades del lenguaje y procesar grandes cantidades de datos a través de redes neuronales. La ingeniería de prompt de IA ayuda a moldear el resultado del modelo, lo que garantiza que la IA responda de manera significativa y coherente. Varias técnicas de prompting ayudan a garantizar que los modelos de IA generen respuestas útiles, como la tokenización, el ajuste de parámetros del modelo y el muestreo top-k.\n\nEl prompt engineering está demostrando ser vital para liberar todo el potencial de los modelos fundacionales que impulsan la IA generativa. Los modelos fundacionales son modelos de lenguaje de gran tamaño (LLM) basados en la arquitectura del transformador y repletos de toda la información que necesita el sistema de IA generativo.\n\nLos modelos generativos de IA funcionan en función del procesamiento del lenguaje natural (PLN) y utilizan entradas de lenguaje natural para producir resultados complejos. Las preparaciones de ciencia de datos subyacentes, las arquitecturas del transformador y los algoritmos de machine learning permiten a estos modelos comprender el lenguaje y luego utilizar conjuntos de datos masivos para crear salidas de texto o imagen.\n\nLa IA generativa de texto a imagen, como DALL-E y Midjourney, utiliza un LLM junto con una difusión estable, un modelo que destaca en la generación de imágenes a partir de descripciones de texto. El prompt engineering eficaz combina el conocimiento técnico con una comprensión profunda del lenguaje natural, el vocabulario y el contexto para producir resultados óptimos con pocas revisiones.",
+      "technique": "few_shot",
+      "output": "Resumen: 'El prompt engineering en IA generativa utiliza la arquitectura del transformador y técnicas como tokenización y ajuste de parámetros para moldear respuestas significativas y coherentes. Es crucial para aprovechar el potencial de los modelos de lenguaje de gran tamaño (LLM) en el procesamiento del lenguaje natural. Modelos como DALL-E y Midjourney generan imágenes a partir de texto combinando LLM y modelos de difusión. Un enfoque efectivo en la ingeniería de prompt requiere tanto habilidades técnicas como comprensión del lenguaje.'",
+      "tokens_input": 398,
+      "tokens_output": 102,
+      "total_tokens": 500,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.68
+      }
+    },
+    {
+      "input": "El cambio climático es uno de los desafíos más apremiantes que enfrenta la humanidad en el siglo XXI. El aumento de las temperaturas globales, causado principalmente por las emisiones de gases de efecto invernadero resultantes de actividades humanas, ha llevado a consecuencias devastadoras en todo el mundo. Los científicos advierten que si no se toman medidas inmediatas, los efectos serán cada vez más catastróficos, incluyendo el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Para abordar este problema, es necesario reducir las emisiones de carbono, promover fuentes de energía renovable y trabajar en la adaptación a los cambios climáticos inevitables. La cooperación internacional y los cambios en los patrones de consumo son esenciales para garantizar un futuro sostenible para las próximas generaciones.",
+      "technique": "few_shot",
+      "output": "Resumen: 'El cambio climático, impulsado por las emisiones de gases de efecto invernadero, representa un grave desafío del siglo XXI, provocando consecuencias como el aumento del nivel del mar y la pérdida de biodiversidad. Es crucial reducir las emisiones de carbono, fomentar energías renovables y promover la cooperación internacional para asegurar un futuro sostenible.'",
+      "tokens_input": 228,
+      "tokens_output": 69,
+      "total_tokens": 297,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.68
+      }
+    },
+    {
+      "input": "La revolución digital ha transformado fundamentalmente la forma en que vivimos, trabajamos y nos comunicamos. Desde la adopción de internet hasta el surgimiento de la inteligencia artificial, la tecnología ha acelerado la innovación en casi todos los sectores de la economía. Las redes sociales han cambiado las dinámicas de la comunicación humana, permitiendo que las personas se conecten instantáneamente sin importar su ubicación geográfica. El comercio electrónico ha revolucionado la forma en que compramos productos y servicios. Sin embargo, esta transformación digital también ha planteado desafíos significativos, incluyendo preocupaciones sobre la privacidad de datos, la ciberseguridad, la brecha digital entre comunidades y el impacto en el empleo tradicional. A medida que continuamos navegando por esta era digital, es crucial equilibrar los beneficios de la tecnología con la necesidad de proteger nuestros derechos y bienestar.",
+      "technique": "few_shot",
+      "output": "Resumen: 'La revolución digital ha transformado la vida, el trabajo y la comunicación, impulsando la innovación a través de internet e inteligencia artificial. Las redes sociales han cambiado la comunicación y el comercio electrónico ha alterado las compras. Sin embargo, también surgen desafíos como la privacidad de datos, la ciberseguridad, la brecha digital y el impacto en el empleo, lo que requiere un equilibrio entre los beneficios tecnológicos y la protección de derechos.'",
+      "tokens_input": 237,
+      "tokens_output": 92,
+      "total_tokens": 329,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.74
+      }
+    },
+    {
+      "input": "¿Cómo funciona el prompt engineering?\nLos modelos de IA generativa se basan en arquitecturas del transformador, que les permiten comprender las complejidades del lenguaje y procesar grandes cantidades de datos a través de redes neuronales. La ingeniería de prompt de IA ayuda a moldear el resultado del modelo, lo que garantiza que la IA responda de manera significativa y coherente. Varias técnicas de prompting ayudan a garantizar que los modelos de IA generen respuestas útiles, como la tokenización, el ajuste de parámetros del modelo y el muestreo top-k.\n\nEl prompt engineering está demostrando ser vital para liberar todo el potencial de los modelos fundacionales que impulsan la IA generativa. Los modelos fundacionales son modelos de lenguaje de gran tamaño (LLM) basados en la arquitectura del transformador y repletos de toda la información que necesita el sistema de IA generativo.\n\nLos modelos generativos de IA funcionan en función del procesamiento del lenguaje natural (PLN) y utilizan entradas de lenguaje natural para producir resultados complejos. Las preparaciones de ciencia de datos subyacentes, las arquitecturas del transformador y los algoritmos de machine learning permiten a estos modelos comprender el lenguaje y luego utilizar conjuntos de datos masivos para crear salidas de texto o imagen.\n\nLa IA generativa de texto a imagen, como DALL-E y Midjourney, utiliza un LLM junto con una difusión estable, un modelo que destaca en la generación de imágenes a partir de descripciones de texto. El prompt engineering eficaz combina el conocimiento técnico con una comprensión profunda del lenguaje natural, el vocabulario y el contexto para producir resultados óptimos con pocas revisiones.",
+      "technique": "cot",
+      "output": "**Razonamiento paso a paso:**\n\n1. **Identificación de conceptos clave:** La primera tarea es identificar los conceptos y términos importantes en el texto, como \"prompt engineering\", \"modelos de IA generativa\", \"arquitecturas del transformador\", \"procesamiento del lenguaje natural (PLN)\", \"modelos fundacionales\", \"tokenización\", \"ajuste de parámetros\" y \"muestreo top-k\".\n   \n2. **Comprensión de la función del prompt engineering:** Se destaca que la ingeniería de prompt es crucial para guiar las respuestas de los modelos de IA y lograr que sean coherentes y significativas.\n\n3. **Relación entre diferentes componentes:** El texto menciona la conexión entre la ingeniería de prompt, los modelos generativos, el PLN y la utilización de datos masivos, lo que subraya el proceso completo desde la entrada hasta la salida.\n\n4. **Aplicación práctica:** Ejemplos como DALL-E y Midjourney muestran aplicaciones concretas de estos principios, ilustrando cómo se genera contenido visual a partir de descripciones textuales.\n\n5. **Técnicas y habilidades requeridas:** El texto enfatiza la necesidad de combinar habilidades técnicas y comprensión del lenguaje para lograr un prompt engineering efectivo.\n\n**Resumen:**\nEl prompt engineering es esencial para optimizar las respuestas de los modelos de IA generativa basados en arquitecturas del transformador. Utiliza técnicas como tokenización y ajuste de parámetros para garantizar resultados coherentes en el procesamiento del lenguaje natural (PLN). Los modelos fundacionales, que son grandes modelos de lenguaje, permiten a la IA generar textos y imágenes complejas a partir de entradas lingüísticas. Ejemplos como DALL-E y Midjourney evidencian la aplicación de estos principios, donde el éxito del prompt engineering radica en la combinación de conocimientos técnicos y comprensión del lenguaje.",
+      "tokens_input": 367,
+      "tokens_output": 376,
+      "total_tokens": 743,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "El cambio climático es uno de los desafíos más apremiantes que enfrenta la humanidad en el siglo XXI. El aumento de las temperaturas globales, causado principalmente por las emisiones de gases de efecto invernadero resultantes de actividades humanas, ha llevado a consecuencias devastadoras en todo el mundo. Los científicos advierten que si no se toman medidas inmediatas, los efectos serán cada vez más catastróficos, incluyendo el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Para abordar este problema, es necesario reducir las emisiones de carbono, promover fuentes de energía renovable y trabajar en la adaptación a los cambios climáticos inevitables. La cooperación internacional y los cambios en los patrones de consumo son esenciales para garantizar un futuro sostenible para las próximas generaciones.",
+      "technique": "cot",
+      "output": "Para resumir el texto sobre el cambio climático, seguiré un proceso que incluye identificar los principales temas, evaluar la relevancia de cada uno y luego formular un resumen conciso que cubra los puntos fundamentales.\n\n1. **Identificación del tema central**: El texto se centra en el cambio climático como un desafío urgente en el siglo XXI.\n\n2. **Causas del problema**: Se menciona que el aumento de las temperaturas globales es principalmente atribuible a las emisiones de gases de efecto invernadero derivadas de actividades humanas.\n\n3. **Consecuencias**: Las advertencias de los científicos destacan efectos graves, como el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas.\n\n4. **Soluciones propuestas**: Se sugiere que es crucial reducir las emisiones de carbono, promover energías renovables y adaptarse a los cambios climáticos ya inevitables.\n\n5. **Importancia de la cooperación**: El texto enfatiza que la cooperación internacional y cambios en patrones de consumo son necesarios para asegurar un futuro sostenible.\n\nAhora, con todos estos puntos en mente, puedo formular un resumen:\n\n**Resumen**: El cambio climático representa un desafío crítico en el siglo XXI, impulsado por las emisiones de gases de efecto invernadero de actividades humanas. Los efectos incluyen el aumento del nivel del mar, eventos climáticos extremos y pérdida de biodiversidad. Para mitigar estos efectos, es fundamental reducir las emisiones de carbono, promover energías renovables y adaptarse a los cambios climáticos ya inevitables. La cooperación internacional y cambios en los patrones de consumo son vitales para garantizar un futuro sostenible.",
+      "tokens_input": 197,
+      "tokens_output": 339,
+      "total_tokens": 536,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "La revolución digital ha transformado fundamentalmente la forma en que vivimos, trabajamos y nos comunicamos. Desde la adopción de internet hasta el surgimiento de la inteligencia artificial, la tecnología ha acelerado la innovación en casi todos los sectores de la economía. Las redes sociales han cambiado las dinámicas de la comunicación humana, permitiendo que las personas se conecten instantáneamente sin importar su ubicación geográfica. El comercio electrónico ha revolucionado la forma en que compramos productos y servicios. Sin embargo, esta transformación digital también ha planteado desafíos significativos, incluyendo preocupaciones sobre la privacidad de datos, la ciberseguridad, la brecha digital entre comunidades y el impacto en el empleo tradicional. A medida que continuamos navegando por esta era digital, es crucial equilibrar los beneficios de la tecnología con la necesidad de proteger nuestros derechos y bienestar.",
+      "technique": "cot",
+      "output": "Para resumir el texto proporcionado, seguiré estos pasos de razonamiento:\n\n1. **Identificar temas principales**: El texto aborda la transformación causada por la revolución digital, mencionando la adopción de internet, el surgimiento de la inteligencia artificial, y el impacto en la comunicación, el comercio y la economía.\n\n2. **Reconocer los cambios positivos**: Se destacan beneficios como la innovación en sectores económicos, la conectividad a través de las redes sociales y la revolución en el comercio electrónico.\n\n3. **Señalar desafíos**: El texto menciona preocupaciones importantes, como la privacidad de datos, la ciberseguridad, la brecha digital y el efecto en empleos tradicionales.\n\n4. **Conclusión**: Se enfatiza la necesidad de equilibrar los beneficios de la tecnología con la protección de derechos y bienestar.\n\nAhora, con estos puntos clave, aquí está el resumen:\n\nLa revolución digital ha transformado nuestra vida, trabajo y comunicación, impulsada por internet y la inteligencia artificial, lo que ha generado innovación en diversos sectores. Las redes sociales han mejorado la conectividad y el comercio electrónico ha cambiado la forma en que adquirimos productos y servicios. Sin embargo, esta transformación trae desafíos como la privacidad de datos, la ciberseguridad, la brecha digital y el impacto en el empleo. Es esencial equilibrar los beneficios tecnológicos con la protección de nuestros derechos y bienestar.",
+      "tokens_input": 206,
+      "tokens_output": 285,
+      "total_tokens": 491,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0,
+        "calidad": 1.0
+      }
+    },
+    {
+      "input": "¿Cómo funciona el prompt engineering?\nLos modelos de IA generativa se basan en arquitecturas del transformador, que les permiten comprender las complejidades del lenguaje y procesar grandes cantidades de datos a través de redes neuronales. La ingeniería de prompt de IA ayuda a moldear el resultado del modelo, lo que garantiza que la IA responda de manera significativa y coherente. Varias técnicas de prompting ayudan a garantizar que los modelos de IA generen respuestas útiles, como la tokenización, el ajuste de parámetros del modelo y el muestreo top-k.\n\nEl prompt engineering está demostrando ser vital para liberar todo el potencial de los modelos fundacionales que impulsan la IA generativa. Los modelos fundacionales son modelos de lenguaje de gran tamaño (LLM) basados en la arquitectura del transformador y repletos de toda la información que necesita el sistema de IA generativo.\n\nLos modelos generativos de IA funcionan en función del procesamiento del lenguaje natural (PLN) y utilizan entradas de lenguaje natural para producir resultados complejos. Las preparaciones de ciencia de datos subyacentes, las arquitecturas del transformador y los algoritmos de machine learning permiten a estos modelos comprender el lenguaje y luego utilizar conjuntos de datos masivos para crear salidas de texto o imagen.\n\nLa IA generativa de texto a imagen, como DALL-E y Midjourney, utiliza un LLM junto con una difusión estable, un modelo que destaca en la generación de imágenes a partir de descripciones de texto. El prompt engineering eficaz combina el conocimiento técnico con una comprensión profunda del lenguaje natural, el vocabulario y el contexto para producir resultados óptimos con pocas revisiones.",
+      "technique": "cot_limited",
+      "output": "El texto describe cómo funciona el prompt engineering en los modelos de IA generativa, que operan sobre arquitecturas de transformadores y procesamiento de lenguaje natural. Este enfoque ayuda a moldear resultados significativos y coherentes mediante técnicas como tokenización y ajuste de parámetros. Los modelos fundacionales, que son grandes modelos de lenguaje (LLM), requieren un buen prompt engineering para liberar su potencial. Además, tecnologías como DALL-E y Midjourney utilizan este enfoque para generar imágenes a partir de texto. En esencia, combina conocimientos técnicos con comprensión del lenguaje para optimizar resultados. \n\nResumen: \nEl prompt engineering optimiza los resultados de la IA generativa, que se basa en transformadores y procesamiento de lenguaje natural. Técnicas como tokenización y ajuste de parámetros diestros son esenciales para manejar modelos fundacionales. Herramientas como DALL-E y Midjourney destacan en la creación de imágenes a partir de texto, combinando conocimientos técnicos con comprensión del lenguaje para lograr resultados efectivos.",
+      "tokens_input": 373,
+      "tokens_output": 198,
+      "total_tokens": 571,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "promedio": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.6,
+        "claridad_comunicacional": 0.6,
+        "profundidad_conceptual": 0.5,
+        "calidad": 0.6
+      }
+    },
+    {
+      "input": "El cambio climático es uno de los desafíos más apremiantes que enfrenta la humanidad en el siglo XXI. El aumento de las temperaturas globales, causado principalmente por las emisiones de gases de efecto invernadero resultantes de actividades humanas, ha llevado a consecuencias devastadoras en todo el mundo. Los científicos advierten que si no se toman medidas inmediatas, los efectos serán cada vez más catastróficos, incluyendo el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Para abordar este problema, es necesario reducir las emisiones de carbono, promover fuentes de energía renovable y trabajar en la adaptación a los cambios climáticos inevitables. La cooperación internacional y los cambios en los patrones de consumo son esenciales para garantizar un futuro sostenible para las próximas generaciones.",
+      "technique": "cot_limited",
+      "output": "El texto aborda el cambio climático como un gran desafío del siglo XXI, atribuyéndolo a las emisiones de gases de efecto invernadero. Advierte sobre los efectos devastadores, como el aumento del nivel del mar y la pérdida de biodiversidad, si no se toman medidas inmediatas. Propone soluciones como reducir emisiones de carbono, promover energías renovables y fomentar la adaptación al cambio climático, destacando la necesidad de cooperación internacional y cambios en el consumo para asegurar un futuro sostenible. \n\nResumen:\nEl cambio climático, impulsado por emisiones humanas, representa un desafío crítico del siglo XXI. Sin acción inmediata, habrá efectos devastadores. Se requiere reducir emisiones de carbono, adoptar energías renovables y adaptarse a cambios climáticos, junto con cooperación internacional y cambios en el consumo para un futuro sostenible.",
+      "tokens_input": 203,
+      "tokens_output": 163,
+      "total_tokens": 366,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.72
+      }
+    },
+    {
+      "input": "La revolución digital ha transformado fundamentalmente la forma en que vivimos, trabajamos y nos comunicamos. Desde la adopción de internet hasta el surgimiento de la inteligencia artificial, la tecnología ha acelerado la innovación en casi todos los sectores de la economía. Las redes sociales han cambiado las dinámicas de la comunicación humana, permitiendo que las personas se conecten instantáneamente sin importar su ubicación geográfica. El comercio electrónico ha revolucionado la forma en que compramos productos y servicios. Sin embargo, esta transformación digital también ha planteado desafíos significativos, incluyendo preocupaciones sobre la privacidad de datos, la ciberseguridad, la brecha digital entre comunidades y el impacto en el empleo tradicional. A medida que continuamos navegando por esta era digital, es crucial equilibrar los beneficios de la tecnología con la necesidad de proteger nuestros derechos y bienestar.",
+      "technique": "cot_limited",
+      "output": "Razonamiento: El texto aborda los efectos de la revolución digital en la vida cotidiana, la comunicación y la economía. Destaca tanto las innovaciones positivas, como el comercio electrónico y las redes sociales, como los desafíos, como la privacidad de datos y la ciberseguridad. El resumen captura estos aspectos clave, manteniendo el enfoque en la necesidad de un equilibrio entre beneficios y riesgos.\n\nResumen: La revolución digital ha transformado nuestra forma de vivir, trabajar y comunicarnos, impulsando la innovación y el comercio electrónico. Las redes sociales permiten conexiones instantáneas, pero también surgen desafíos como la privacidad de datos, la ciberseguridad y la brecha digital. Es esencial equilibrar los beneficios de la tecnología con la protección de nuestros derechos y bienestar.",
+      "tokens_input": 212,
+      "tokens_output": 155,
+      "total_tokens": 367,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    },
+    {
+      "input": "¿Cómo funciona el prompt engineering?\nLos modelos de IA generativa se basan en arquitecturas del transformador, que les permiten comprender las complejidades del lenguaje y procesar grandes cantidades de datos a través de redes neuronales. La ingeniería de prompt de IA ayuda a moldear el resultado del modelo, lo que garantiza que la IA responda de manera significativa y coherente. Varias técnicas de prompting ayudan a garantizar que los modelos de IA generen respuestas útiles, como la tokenización, el ajuste de parámetros del modelo y el muestreo top-k.\n\nEl prompt engineering está demostrando ser vital para liberar todo el potencial de los modelos fundacionales que impulsan la IA generativa. Los modelos fundacionales son modelos de lenguaje de gran tamaño (LLM) basados en la arquitectura del transformador y repletos de toda la información que necesita el sistema de IA generativo.\n\nLos modelos generativos de IA funcionan en función del procesamiento del lenguaje natural (PLN) y utilizan entradas de lenguaje natural para producir resultados complejos. Las preparaciones de ciencia de datos subyacentes, las arquitecturas del transformador y los algoritmos de machine learning permiten a estos modelos comprender el lenguaje y luego utilizar conjuntos de datos masivos para crear salidas de texto o imagen.\n\nLa IA generativa de texto a imagen, como DALL-E y Midjourney, utiliza un LLM junto con una difusión estable, un modelo que destaca en la generación de imágenes a partir de descripciones de texto. El prompt engineering eficaz combina el conocimiento técnico con una comprensión profunda del lenguaje natural, el vocabulario y el contexto para producir resultados óptimos con pocas revisiones.",
+      "technique": "structured_prompting_json",
+      "output": "El prompt engineering se centra en la manera en que los modelos de IA generativa, basados en arquitecturas de transformadores, comprenden y procesan el lenguaje. Su propósito es moldear las respuestas del modelo para que sean significativas y coherentes, utilizando técnicas como la tokenización, el ajuste de parámetros y el muestreo top-k. Este enfoque es fundamental para maximizar el potencial de los modelos de lenguaje de gran tamaño (LLM), que son esenciales para la IA generativa.\n\nLos modelos generativos trabajan a partir del procesamiento del lenguaje natural (PLN) y utilizan entradas de este tipo para generar resultados complejos. La combinación de ciencia de datos, algoritmos de machine learning y arquitecturas de transformadores les permite elaborar salidas de texto o imágenes a partir de grandes conjuntos de datos. Ejemplos de IA generativa de texto a imagen, como DALL-E y Midjourney, integran LLM con modelos de difusión para crear imágenes basadas en descripciones textuales. Un prompt engineering efectivo requiere tanto conocimientos técnicos como una comprensión profunda del lenguaje y el contexto para lograr resultados óptimos con mínimas revisiones.",
+      "tokens_input": 373,
+      "tokens_output": 232,
+      "total_tokens": 605,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.5,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 1.0
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.75,
+        "profundidad_conceptual": 0.75,
+        "calidad": 0.78
+      }
+    },
+    {
+      "input": "El cambio climático es uno de los desafíos más apremiantes que enfrenta la humanidad en el siglo XXI. El aumento de las temperaturas globales, causado principalmente por las emisiones de gases de efecto invernadero resultantes de actividades humanas, ha llevado a consecuencias devastadoras en todo el mundo. Los científicos advierten que si no se toman medidas inmediatas, los efectos serán cada vez más catastróficos, incluyendo el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Para abordar este problema, es necesario reducir las emisiones de carbono, promover fuentes de energía renovable y trabajar en la adaptación a los cambios climáticos inevitables. La cooperación internacional y los cambios en los patrones de consumo son esenciales para garantizar un futuro sostenible para las próximas generaciones.",
+      "technique": "structured_prompting_json",
+      "output": "El cambio climático es un desafío crítico del siglo XXI, provocado principalmente por las emisiones de gases de efecto invernadero. Sus consecuencias incluyen el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Se requieren medidas inmediatas, como reducir las emisiones de carbono, promover la energía renovable y adaptarse a los cambios climáticos. La cooperación internacional y cambios en los patrones de consumo son vitales para un futuro sostenible.",
+      "tokens_input": 195,
+      "tokens_output": 96,
+      "total_tokens": 291,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.5,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.75,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.72
+      }
+    },
+    {
+      "input": "La revolución digital ha transformado fundamentalmente la forma en que vivimos, trabajamos y nos comunicamos. Desde la adopción de internet hasta el surgimiento de la inteligencia artificial, la tecnología ha acelerado la innovación en casi todos los sectores de la economía. Las redes sociales han cambiado las dinámicas de la comunicación humana, permitiendo que las personas se conecten instantáneamente sin importar su ubicación geográfica. El comercio electrónico ha revolucionado la forma en que compramos productos y servicios. Sin embargo, esta transformación digital también ha planteado desafíos significativos, incluyendo preocupaciones sobre la privacidad de datos, la ciberseguridad, la brecha digital entre comunidades y el impacto en el empleo tradicional. A medida que continuamos navegando por esta era digital, es crucial equilibrar los beneficios de la tecnología con la necesidad de proteger nuestros derechos y bienestar.",
+      "technique": "structured_prompting_json",
+      "output": "La revolución digital ha cambiado radicalmente nuestra forma de vivir, trabajar y comunicarnos, impulsada por el internet y la inteligencia artificial. Las redes sociales han facilitado la conexión instantánea entre personas, mientras que el comercio electrónico ha transformado nuestras compras. Sin embargo, también han surgido desafíos, como preocupaciones sobre la privacidad de datos, la ciberseguridad, la brecha digital y el impacto en el empleo tradicional. Es esencial encontrar un equilibrio entre los beneficios tecnológicos y la protección de nuestros derechos y bienestar en esta era digital.",
+      "tokens_input": 204,
+      "tokens_output": 109,
+      "total_tokens": 313,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "¿Cómo funciona el prompt engineering?\nLos modelos de IA generativa se basan en arquitecturas del transformador, que les permiten comprender las complejidades del lenguaje y procesar grandes cantidades de datos a través de redes neuronales. La ingeniería de prompt de IA ayuda a moldear el resultado del modelo, lo que garantiza que la IA responda de manera significativa y coherente. Varias técnicas de prompting ayudan a garantizar que los modelos de IA generen respuestas útiles, como la tokenización, el ajuste de parámetros del modelo y el muestreo top-k.\n\nEl prompt engineering está demostrando ser vital para liberar todo el potencial de los modelos fundacionales que impulsan la IA generativa. Los modelos fundacionales son modelos de lenguaje de gran tamaño (LLM) basados en la arquitectura del transformador y repletos de toda la información que necesita el sistema de IA generativo.\n\nLos modelos generativos de IA funcionan en función del procesamiento del lenguaje natural (PLN) y utilizan entradas de lenguaje natural para producir resultados complejos. Las preparaciones de ciencia de datos subyacentes, las arquitecturas del transformador y los algoritmos de machine learning permiten a estos modelos comprender el lenguaje y luego utilizar conjuntos de datos masivos para crear salidas de texto o imagen.\n\nLa IA generativa de texto a imagen, como DALL-E y Midjourney, utiliza un LLM junto con una difusión estable, un modelo que destaca en la generación de imágenes a partir de descripciones de texto. El prompt engineering eficaz combina el conocimiento técnico con una comprensión profunda del lenguaje natural, el vocabulario y el contexto para producir resultados óptimos con pocas revisiones.",
+      "technique": "role_prompting",
+      "output": "El prompt engineering es crucial para optimizar los resultados de los modelos de IA generativa, que se basan en arquitecturas de transformador y utilizan redes neuronales para procesar el lenguaje. Esta disciplina ayuda a moldear las respuestas de la IA para que sean coherentes y significativas, empleando técnicas como la tokenización, ajuste de parámetros y muestreo top-k.\n\nLos modelos fundacionales, que son modelos de lenguaje de gran tamaño (LLM), son la base de la IA generativa y contienen la información necesaria para generar salidas complejas a partir de entradas en lenguaje natural. La inteligencia artificial generativa de texto a imagen, como DALL-E y Midjourney, combina LLMs con modelos de difusión para producir imágenes a partir de descripciones textuales.\n\nUn prompt engineering efectivo se sustenta en una combinación de conocimientos técnicos y una comprensión profunda del lenguaje, vocabulario y contexto, lo que permite generar resultados óptimos con mínimas revisiones.",
+      "tokens_input": 361,
+      "tokens_output": 197,
+      "total_tokens": 558,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.85,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.85
+      }
+    },
+    {
+      "input": "El cambio climático es uno de los desafíos más apremiantes que enfrenta la humanidad en el siglo XXI. El aumento de las temperaturas globales, causado principalmente por las emisiones de gases de efecto invernadero resultantes de actividades humanas, ha llevado a consecuencias devastadoras en todo el mundo. Los científicos advierten que si no se toman medidas inmediatas, los efectos serán cada vez más catastróficos, incluyendo el aumento del nivel del mar, eventos climáticos extremos, pérdida de biodiversidad y colapso de ecosistemas. Para abordar este problema, es necesario reducir las emisiones de carbono, promover fuentes de energía renovable y trabajar en la adaptación a los cambios climáticos inevitables. La cooperación internacional y los cambios en los patrones de consumo son esenciales para garantizar un futuro sostenible para las próximas generaciones.",
+      "technique": "role_prompting",
+      "output": "El cambio climático es uno de los mayores retos del siglo XXI, impulsado por las emisiones de gases de efecto invernadero provenientes de actividades humanas. Sus efectos, como el aumento del nivel del mar, eventos climáticos extremos y la pérdida de biodiversidad, pueden ser catastróficos si no se actúa pronto. Es crucial reducir las emisiones de carbono, fomentar energías renovables y adaptarse a los cambios inevitables. La cooperación internacional y la modificación de patrones de consumo son fundamentales para lograr un futuro sostenible.",
+      "tokens_input": 191,
+      "tokens_output": 106,
+      "total_tokens": 297,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 1.0,
+        "profundidad_conceptual": 0.7,
+        "calidad": 0.89
+      }
+    },
+    {
+      "input": "La revolución digital ha transformado fundamentalmente la forma en que vivimos, trabajamos y nos comunicamos. Desde la adopción de internet hasta el surgimiento de la inteligencia artificial, la tecnología ha acelerado la innovación en casi todos los sectores de la economía. Las redes sociales han cambiado las dinámicas de la comunicación humana, permitiendo que las personas se conecten instantáneamente sin importar su ubicación geográfica. El comercio electrónico ha revolucionado la forma en que compramos productos y servicios. Sin embargo, esta transformación digital también ha planteado desafíos significativos, incluyendo preocupaciones sobre la privacidad de datos, la ciberseguridad, la brecha digital entre comunidades y el impacto en el empleo tradicional. A medida que continuamos navegando por esta era digital, es crucial equilibrar los beneficios de la tecnología con la necesidad de proteger nuestros derechos y bienestar.",
+      "technique": "role_prompting",
+      "output": "La revolución digital ha cambiado drásticamente nuestra vida, trabajo y comunicación, impulsada por internet e inteligencia artificial. Las redes sociales han facilitado conexiones instantáneas, mientras que el comercio electrónico ha transformado nuestras compras. Sin embargo, esta transformación también trae retos, como preocupaciones sobre privacidad, ciberseguridad, desigualdad digital y el impacto en el empleo. Es vital encontrar un equilibrio entre los beneficios tecnológicos y la protección de nuestros derechos y bienestar.",
+      "tokens_input": 200,
+      "tokens_output": 93,
+      "total_tokens": 293,
+      "evaluacion_gpt4o": {
+        "exactitud_funcional": 0.7,
+        "completitud_funcional": 0.7,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.5
+      },
+      "evaluacion_claude": {
+        "exactitud_funcional": 1.0,
+        "completitud_funcional": 1.0,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.7
+      },
+      "promedio": {
+        "exactitud_funcional": 0.85,
+        "completitud_funcional": 0.85,
+        "claridad_comunicacional": 0.7,
+        "profundidad_conceptual": 0.6,
+        "calidad": 0.75
+      }
+    }
+  ],
+  "summary": {
+    "total_results": 18,
+    "total_tokens_used": 7680,
+    "techniques_stats": {
+      "zero_shot": {
+        "count": 3,
+        "tokens_input": 728,
+        "tokens_output": 395,
+        "total_tokens": 1123,
+        "avg_calidad_promedio": 0.8,
+        "avg_calidad_gpt4o": 0.8,
+        "avg_calidad_claude": 0.8,
+        "dimensions": {
+          "exactitud_funcional": 0.95,
+          "completitud_funcional": 0.7,
+          "claridad_comunicacional": 0.85,
+          "profundidad_conceptual": 0.7
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000712,
+          "claude": 0.000712,
+          "promedio": 0.000712
+        }
+      },
+      "few_shot": {
+        "count": 3,
+        "tokens_input": 863,
+        "tokens_output": 263,
+        "total_tokens": 1126,
+        "avg_calidad_promedio": 0.7,
+        "avg_calidad_gpt4o": 0.66,
+        "avg_calidad_claude": 0.73,
+        "dimensions": {
+          "exactitud_funcional": 0.85,
+          "completitud_funcional": 0.57,
+          "claridad_comunicacional": 0.8,
+          "profundidad_conceptual": 0.57
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000586,
+          "claude": 0.000648,
+          "promedio": 0.000622
+        }
+      },
+      "cot": {
+        "count": 3,
+        "tokens_input": 770,
+        "tokens_output": 1000,
+        "total_tokens": 1770,
+        "avg_calidad_promedio": 1.0,
+        "avg_calidad_gpt4o": 1.0,
+        "avg_calidad_claude": 1.0,
+        "dimensions": {
+          "exactitud_funcional": 1.0,
+          "completitud_funcional": 1.0,
+          "claridad_comunicacional": 1.0,
+          "profundidad_conceptual": 1.0
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000565,
+          "claude": 0.000565,
+          "promedio": 0.000565
+        }
+      },
+      "cot_limited": {
+        "count": 3,
+        "tokens_input": 788,
+        "tokens_output": 516,
+        "total_tokens": 1304,
+        "avg_calidad_promedio": 0.69,
+        "avg_calidad_gpt4o": 0.6,
+        "avg_calidad_claude": 0.78,
+        "dimensions": {
+          "exactitud_funcional": 0.8,
+          "completitud_funcional": 0.68,
+          "claridad_comunicacional": 0.72,
+          "profundidad_conceptual": 0.57
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.00046,
+          "claude": 0.000598,
+          "promedio": 0.000529
+        }
+      },
+      "structured_prompting_json": {
+        "count": 3,
+        "tokens_input": 772,
+        "tokens_output": 437,
+        "total_tokens": 1209,
+        "avg_calidad_promedio": 0.8,
+        "avg_calidad_gpt4o": 0.67,
+        "avg_calidad_claude": 0.93,
+        "dimensions": {
+          "exactitud_funcional": 0.9,
+          "completitud_funcional": 0.78,
+          "claridad_comunicacional": 0.82,
+          "profundidad_conceptual": 0.68
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000554,
+          "claude": 0.000769,
+          "promedio": 0.000662
+        }
+      },
+      "role_prompting": {
+        "count": 3,
+        "tokens_input": 752,
+        "tokens_output": 396,
+        "total_tokens": 1148,
+        "avg_calidad_promedio": 0.83,
+        "avg_calidad_gpt4o": 0.76,
+        "avg_calidad_claude": 0.9,
+        "dimensions": {
+          "exactitud_funcional": 0.95,
+          "completitud_funcional": 0.85,
+          "claridad_comunicacional": 0.85,
+          "profundidad_conceptual": 0.67
+        },
+        "efficiency_scores": {
+          "gpt4o": 0.000662,
+          "claude": 0.000784,
+          "promedio": 0.000723
+        }
+      }
+    }
+  }
+}
