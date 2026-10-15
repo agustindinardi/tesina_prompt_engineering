@@ -204,7 +204,7 @@ Tu tarea es:
 1. RANKEAR las respuestas de MEJOR a PEOR
 2. Para CADA respuesta, evaluarla en estas 4 dimensiones.
 
-DIMENSIONES DE EVALUACIÓN (ISO 25010) para {task_description}:
+DIMENSIONES DE EVALUACIÓN para {task_description}:
 
 EXACTITUD FUNCIONAL: {exactitud_criterio}
 - Para esta tarea, usa solo 1 si la respuesta es correcta y 0 si es incorrecta.
